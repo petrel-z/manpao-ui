@@ -1,0 +1,166 @@
+<div id="grab-orders" class="page">
+    <div class="p-4">
+        <h1 class="text-heading-lg font-bold mb-4">抢单大厅</h1>
+        
+        <!-- 筛选选项 -->
+        <div class="flex justify-between items-center mb-4">
+            <div class="flex space-x-2">
+                <select class="border rounded px-2 py-1 text-body-sm">
+                    <option>全部商家</option>
+                    <option>餐饮</option>
+                    <option>超市</option>
+                    <option>水果</option>
+                </select>
+            </div>
+            <div class="flex items-center">
+                <span class="text-body-sm mr-1">排序:</span>
+                <select class="border rounded px-2 py-1 text-body-sm">
+                    <option>配送费高到低</option>
+                    <option>距离近到远</option>
+                    <option>最新发布</option>
+                </select>
+            </div>
+        </div>
+        
+        <!-- 订单列表 -->
+        <div class="space-y-4 max-h-[70vh] overflow-y-auto custom-scrollbar">
+            <!-- 订单项 1 -->
+            <div class="bg-white rounded-lg p-4 shadow-sm">
+                <div class="flex justify-between items-center mb-2">
+                    <div class="flex items-center">
+                        <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?w=40&h=40&fit=crop" alt="商家logo" class="w-7 h-7 rounded-full mr-2">
+                        <span class="font-medium text-body-md">麦当劳</span>
+                    </div>
+                    <span class="text-red-500 font-medium text-body-md">配送费: ¥8</span>
+                </div>
+                
+                <div class="border-t border-b py-2 my-2">
+                    <div class="flex items-center">
+                        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=80&h=80&fit=crop" alt="商品图片" class="w-18 h-18 object-cover rounded mr-3">
+                        <div>
+                            <div class="font-medium text-body-md">巨无霸套餐</div>
+                            <div class="text-gray-500 text-caption">薯条中份+可乐</div>
+                            <div class="text-gray-500 text-caption mt-1">共1件商品</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-2">
+                    <div class="flex items-start mb-2">
+                        <i class="fas fa-map-marker-alt text-gray-400 mt-1 mr-2 text-lg"></i>
+                        <div>
+                            <div class="text-body-sm">东校区 - 第一食堂</div>
+                            <div class="text-caption text-gray-500">距离约1.2公里</div>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-home text-gray-400 mt-1 mr-2 text-lg"></i>
+                        <div>
+                            <div class="text-body-sm">东校区 - 6号宿舍楼</div>
+                            <div class="text-caption text-gray-500">配送距离约0.8公里</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex justify-between items-center mt-3">
+                    <div class="text-caption text-gray-500">期望送达: <span class="font-medium">12:30前</span></div>
+                    <button class="px-3 py-1 bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-full text-caption font-medium">抢单</button>
+                </div>
+            </div>
+            
+            <!-- 订单项 2 -->
+            <div class="bg-white rounded-lg p-4 shadow-sm">
+                <div class="flex justify-between items-center mb-2">
+                    <div class="flex items-center">
+                        <img src="https://images.unsplash.com/photo-1604719312566-8912e9c8a213?w=40&h=40&fit=crop" alt="商家logo" class="w-7 h-7 rounded-full mr-2">
+                        <span class="font-medium text-body-md">全家便利店</span>
+                    </div>
+                    <span class="text-red-500 font-medium text-body-md">配送费: ¥6</span>
+                </div>
+                
+                <div class="border-t border-b py-2 my-2">
+                    <div class="flex items-center">
+                        <img src="https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?w=80&h=80&fit=crop" alt="商品图片" class="w-18 h-18 object-cover rounded mr-3">
+                        <div>
+                            <div class="font-medium text-body-md">日用品</div>
+                            <div class="text-gray-500 text-caption">洗发水+沐浴露</div>
+                            <div class="text-gray-500 text-caption mt-1">共2件商品</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-2">
+                    <div class="flex items-start mb-2">
+                        <i class="fas fa-map-marker-alt text-gray-400 mt-1 mr-2 text-lg"></i>
+                        <div>
+                            <div class="text-body-sm">西校区 - 全家便利店</div>
+                            <div class="text-caption text-gray-500">距离约0.5公里</div>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-home text-gray-400 mt-1 mr-2 text-lg"></i>
+                        <div>
+                            <div class="text-body-sm">西校区 - 3号宿舍楼</div>
+                            <div class="text-caption text-gray-500">配送距离约0.3公里</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex justify-between items-center mt-3">
+                    <div class="text-caption text-gray-500">期望送达: <span class="font-medium">15:00前</span></div>
+                    <button class="px-3 py-1 bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-full text-caption font-medium">抢单</button>
+                </div>
+            </div>
+            
+            <!-- 订单项 3 -->
+            <div class="bg-white rounded-lg p-4 shadow-sm">
+                <div class="flex justify-between items-center mb-2">
+                    <div class="flex items-center">
+                        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=40&h=40&fit=crop" alt="商家logo" class="w-7 h-7 rounded-full mr-2">
+                        <span class="font-medium text-body-md">水果店</span>
+                    </div>
+                    <span class="text-red-500 font-medium text-body-md">配送费: ¥10</span>
+                </div>
+                
+                <div class="border-t border-b py-2 my-2">
+                    <div class="flex items-center">
+                        <img src="https://images.unsplash.com/photo-1619566636858-adf3ef46400b?w=80&h=80&fit=crop" alt="商品图片" class="w-18 h-18 object-cover rounded mr-3">
+                        <div>
+                            <div class="font-medium text-body-md">水果礼盒</div>
+                            <div class="text-gray-500 text-caption">苹果+香蕉+橙子</div>
+                            <div class="text-gray-500 text-caption mt-1">共1件商品</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-2">
+                    <div class="flex items-start mb-2">
+                        <i class="fas fa-map-marker-alt text-gray-400 mt-1 mr-2 text-lg"></i>
+                        <div>
+                            <div class="text-body-sm">南校区 - 水果店</div>
+                            <div class="text-caption text-gray-500">距离约1.8公里</div>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-home text-gray-400 mt-1 mr-2 text-lg"></i>
+                        <div>
+                            <div class="text-body-sm">南校区 - 教师公寓</div>
+                            <div class="text-caption text-gray-500">配送距离约0.6公里</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex justify-between items-center mt-3">
+                    <div class="text-caption text-gray-500">期望送达: <span class="font-medium">今日18:00前</span></div>
+                    <button class="px-3 py-1 bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-full text-caption font-medium">抢单</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    #grab-orders .page {
+        padding-bottom: 60px; /* 为底部导航留出空间 */
+    }
+</style>

@@ -1,0 +1,106 @@
+<!-- 商家入驻页 -->
+<div class="page" id="merchant">
+    <div class="min-h-full bg-gray-50 pb-16">
+        <!-- 头部 -->
+        <div class="primary-red p-3">
+            <div class="flex items-center space-x-3">
+                <i onclick="showPage('profile')" class="fas fa-arrow-left text-white cursor-pointer"></i>
+                <span class="text-white font-semibold">商家入驻</span>
+            </div>
+        </div>
+
+        <!-- 表单内容 -->
+        <div class="p-3 space-y-3 max-h-[55vh] overflow-y-auto custom-scrollbar">
+            <div class="bg-white rounded-lg p-3">
+                <div class="flex items-center">
+                    <label class="text-sm font-medium text-gray-700 w-24">商家名称</label>
+                    <input type="text" placeholder="请输入店铺名称2-10个字" class="flex-1 p-2.5 border border-gray-200 rounded-lg text-sm">
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg p-3">
+                <div class="flex items-center">
+                    <label class="text-sm font-medium text-gray-700 w-24">联系电话</label>
+                    <input type="tel" placeholder="请输入联系电话" class="flex-1 p-2.5 border border-gray-200 rounded-lg text-sm">
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg p-3">
+                <div class="flex items-center">
+                    <label class="text-sm font-medium text-gray-700 w-24">详细地址</label>
+                    <input type="text" placeholder="请输入详细地址" class="flex-1 p-2.5 border border-gray-200 rounded-lg text-sm">
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg p-3">
+                <div class="flex items-center">
+                    <label class="text-sm font-medium text-gray-700 w-24">店铺门头图片</label>
+                    <div class="flex-1 border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
+                        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=200&h=120&fit=crop" 
+                             alt="店铺示例" class="w-24 h-16 object-cover rounded-lg mx-auto mb-2">
+                        <p class="text-gray-500 text-xs">点击重新上传图片</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg p-3">
+                <div class="flex items-center">
+                    <label class="text-sm font-medium text-gray-700 w-24">店铺类型</label>
+                    <select class="flex-1 p-2.5 border border-gray-200 rounded-lg text-sm">
+                        <option>请选择店铺类型</option>
+                        <option>餐饮美食</option>
+                        <option>生活服务</option>
+                        <option>购物零售</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg p-3">
+                <div class="flex items-center">
+                    <label class="text-sm font-medium text-gray-700 w-24">营业时间</label>
+                    <div class="flex-1 flex space-x-2">
+                        <input type="time" value="09:00" class="flex-1 p-2.5 border border-gray-200 rounded-lg text-sm">
+                        <span class="flex items-center text-sm">-</span>
+                        <input type="time" value="21:00" class="flex-1 p-2.5 border border-gray-200 rounded-lg text-sm">
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg p-3">
+                <div class="flex items-center">
+                    <label class="text-sm font-medium text-gray-700 w-24">营业执照</label>
+                    <div class="flex-1 border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
+                        <i class="fas fa-file-upload text-gray-400 text-xl mb-2"></i>
+                        <p class="text-gray-500 text-xs">点击上传营业执照</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg p-3">
+                <div class="flex items-center">
+                    <label class="text-sm font-medium text-gray-700 w-24">食品许可证</label>
+                    <div class="flex-1 border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
+                        <i class="fas fa-file-upload text-gray-400 text-xl mb-2"></i>
+                        <p class="text-gray-500 text-xs">点击上传食品经营安全许可证</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg p-3">
+                <div class="flex items-center">
+                    <label class="text-sm font-medium text-gray-700 w-24">健康证</label>
+                    <div class="flex-1 border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
+                        <i class="fas fa-file-upload text-gray-400 text-xl mb-2"></i>
+                        <p class="text-gray-500 text-xs">点击上传健康证</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 提交按钮 -->
+        <div class="p-3">
+            <button class="w-full btn-primary text-white p-3 rounded-lg font-semibold text-sm">
+                提交申请
+            </button>
+        </div>
+    </div>
+</div>

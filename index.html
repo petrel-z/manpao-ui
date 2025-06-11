@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高校本地生活平台原型</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/typography.css">
+</head>
+<body class="bg-gray-100 p-8">
+    
+    <!-- 原型导航 -->
+    <div class="flex flex-wrap justify-left ml-[15vw]">
+        
+        <!-- 需求说明文案 -->
+        <div class="w-96 bg-white p-5 rounded-lg shadow-md mr-8 self-start mr-[7vw]">
+            <h2 class="text-xl font-bold mb-4 text-gray-800">备注</h2>
+            <div class="space-y-4">
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-700 mb-2">用户类型</h3>
+                    <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                        <li>商家：普通商家、学生商家</li>
+                        <li>团长：学校管理员、负责后台商家审核、楼栋管理</li>
+                        <li>骑手：抢单大厅接单、个人中心身份标识</li>
+                        <li>学生：消费用户</li>
+                    </ul>
+                </div>
+                <!-- <div>
+                    <h3 class="text-lg font-semibold text-gray-700 mb-2">用户角色</h3>
+                    <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                        <li>普通用户：浏览商家、下单、发布跑腿需求</li>
+                        <li>跑腿队长：接取和配送订单</li>
+                        <li>商家：管理店铺、接收订单</li>
+                    </ul>
+                </div> -->
+            </div>
+        </div>
+        
+        <!-- 手机框架 -->
+        <div class="phone-frame">
+            <div class="screen">
+                <!-- 状态栏 -->
+                <div id="status-bar-container"></div>
+                
+                <!-- 页面容器 -->
+                <div id="pages-container">
+                    <!-- 各个页面将通过JavaScript动态加载 -->
+                </div>
+            </div>
+        </div>
+     <div id="prototype-nav-container"></div>
+    </div>
+
+    <!-- 加载JavaScript -->
+    <script src="js/main.js"></script>
+    
+    <script>
+        // 加载组件
+        async function loadComponent(containerId, componentPath) {
+            try {
+                const response = await fetch(componentPath);
+                if (!response.ok) throw new Error(`Failed to load ${componentPath}`);
+                const html = await response.text();
+                document.getElementById(containerId).innerHTML = html;
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        
+        // 加载页面
+        async function loadPage(pageId, pagePath) {
+            try {
+                const response = await fetch(pagePath);
+                if (!response.ok) throw new Error(`Failed to load ${pagePath}`);
+                const html = await response.text();
+                
+                // 创建页面元素并添加到容器
+                const pageContainer = document.getElementById('pages-container');
+                const pageElement = document.createElement('div');
+                pageElement.innerHTML = html;
+                
+                // 将页面内容添加到容器
+                const pageContent = pageElement.firstElementChild;
+                pageContainer.appendChild(pageContent);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        
+        // 初始化应用
+        async function initApp() {
+            // 加载组件
+            await loadComponent('prototype-nav-container', 'components/prototype-nav.html');
+            await loadComponent('status-bar-container', 'components/status-bar.html');
+            
+            // 加载所有页面
+            await loadPage('login', 'pages/login.html');
+            await loadPage('home', 'pages/home.html');
+            await loadPage('school-select', 'pages/school-select.html');
+            await loadPage('profile', 'pages/profile.html');
+            await loadPage('merchant', 'pages/merchant.html');
+            await loadPage('captain', 'pages/captain.html');
+            await loadPage('balance', 'pages/balance.html');
+            await loadPage('profile-edit', 'pages/profile-edit.html');
+            await loadPage('shop-detail', 'pages/shop-detail.html');
+            await loadPage('orders', 'pages/orders.html');
+            await loadPage('community', 'pages/community.html');
+            await loadPage('grab-orders', 'pages/grab-orders.html');
+            
+            // 加载底部导航
+            const bottomNavResponse = await fetch('components/bottom-nav.html');
+            const bottomNavHtml = await bottomNavResponse.text();
+            
+            // 创建一个容器来解析HTML
+            const tempContainer = document.createElement('div');
+            tempContainer.innerHTML = bottomNavHtml;
+            
+            // 将底部导航添加到屏幕容器中，而不是每个页面
+            const screenContainer = document.querySelector('.screen');
+            if (screenContainer && !screenContainer.querySelector('.bottom-nav')) {
+                screenContainer.appendChild(tempContainer.firstElementChild);
+                
+                // 根据初始页面决定是否显示底部导航
+                const lastPage = localStorage.getItem('currentPage') || 'login';
+                const bottomNav = screenContainer.querySelector('.bottom-nav');
+                if (bottomNav) {
+                    // 只在这五个页面显示底部导航
+                    if (lastPage === 'home' || lastPage === 'grab-orders' || lastPage === 'community' || 
+                        lastPage === 'orders' || lastPage === 'profile') {
+                        bottomNav.style.display = 'flex';
+                    } else {
+                        bottomNav.style.display = 'none';
+                    }
+                }
+            }
+            
+            // 调整页面样式，确保底部导航不会遮挡内容
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                // 只为需要底部导航的页面添加底部内边距
+                const pageId = page.id;
+                if (pageId === 'home' || pageId === 'profile' || pageId === 'orders' || pageId === 'community' || pageId === 'grab-orders') {
+                    page.style.paddingBottom = '60px'; // 底部导航的高度
+                }
+            });
+            
+            // 初始化应用
+            initializeApp();
+        }
+        
+        // 当DOM加载完成后初始化应用
+        document.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+</html>

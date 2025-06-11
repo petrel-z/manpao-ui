@@ -1,0 +1,203 @@
+<!-- 订单页面 -->
+<div class="page" id="orders">
+    <div class="min-h-full bg-gray-50 pb-16">
+        <!-- 顶部标题 -->
+        <div class="bg-white p-4 sticky top-0 z-10 shadow-sm">
+            <h2 class="text-center font-bold text-heading-md">我的订单</h2>
+        </div>
+        
+        <!-- 订单状态选项卡 -->
+        <div class="bg-white mb-2 overflow-x-auto custom-scrollbar">
+            <div class="flex whitespace-nowrap px-2 py-3 border-b">
+                <div class="order-tab active px-3 py-1 mx-1 text-center rounded-full cursor-pointer text-body-sm" onclick="switchOrderTab(this, 'all')">
+                    全部
+                </div>
+                <div class="order-tab px-3 py-1 mx-1 text-center rounded-full cursor-pointer text-body-sm" onclick="switchOrderTab(this, 'unpaid')">
+                    待付款
+                </div>
+                <div class="order-tab px-3 py-1 mx-1 text-center rounded-full cursor-pointer text-body-sm" onclick="switchOrderTab(this, 'unaccepted')">
+                    待接单
+                </div>
+                <div class="order-tab px-3 py-1 mx-1 text-center rounded-full cursor-pointer text-body-sm" onclick="switchOrderTab(this, 'pickup')">
+                    待取货
+                </div>
+                <div class="order-tab px-3 py-1 mx-1 text-center rounded-full cursor-pointer text-body-sm" onclick="switchOrderTab(this, 'delivery')">
+                    待送达
+                </div>
+                <div class="order-tab px-3 py-1 mx-1 text-center rounded-full cursor-pointer text-body-sm" onclick="switchOrderTab(this, 'delivered')">
+                    已送达
+                </div>
+                <div class="order-tab px-3 py-1 mx-1 text-center rounded-full cursor-pointer text-body-sm" onclick="switchOrderTab(this, 'completed')">
+                    已完成
+                </div>
+                <div class="order-tab px-3 py-1 mx-1 text-center rounded-full cursor-pointer text-body-sm" onclick="switchOrderTab(this, 'expired')">
+                    已过期
+                </div>
+            </div>
+        </div>
+        
+        <!-- 订单列表 -->
+        <div class="px-3 space-y-3 max-h-[50vh] overflow-y-auto custom-scrollbar">
+            <!-- 订单项 - 待付款 -->
+            <div class="order-item bg-white rounded-lg p-3 shadow-sm" data-status="unpaid">
+                <div class="flex justify-between items-center mb-2">
+                    <div class="flex items-center">
+                        <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?w=40&h=40&fit=crop" alt="商家logo" class="w-6 h-6 rounded-full mr-2">
+                        <span class="font-medium text-body-md">麦当劳</span>
+                    </div>
+                    <span class="text-red-500 text-body-sm">待付款</span>
+                </div>
+                <div class="flex items-center py-2 border-t border-b">
+                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=80&h=80&fit=crop" alt="商品图片" class="w-18 h-18 object-cover rounded mr-3">
+                    <div class="flex-1">
+                        <div class="font-medium text-body-md">巨无霸套餐</div>
+                        <div class="text-gray-500 text-caption mt-1">巨无霸 + 中薯条 + 可乐</div>
+                        <div class="flex justify-between mt-1">
+                            <span class="text-gray-500 text-caption">x1</span>
+                            <span class="font-medium text-body-sm">¥38.00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-between items-center mt-3">
+                    <div class="text-body-sm text-gray-500">共1件商品 实付: <span class="text-red-500 font-medium">¥38.00</span></div>
+                    <div class="flex space-x-1">
+                        <button class="px-2 py-1 border border-gray-300 rounded-full text-caption">取消订单</button>
+                        <button class="px-2 py-1 bg-red-500 text-white rounded-full text-caption">去支付</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 订单项 - 待接单 -->
+            <div class="order-item bg-white rounded-lg p-3 shadow-sm" data-status="unaccepted">
+                <div class="flex justify-between items-center mb-2">
+                    <div class="flex items-center">
+                        <img src="https://images.unsplash.com/photo-1513639776629-7b61b0ac49cb?w=40&h=40&fit=crop" alt="商家logo" class="w-6 h-6 rounded-full mr-2">
+                        <span class="font-medium text-body-md">肯德基</span>
+                    </div>
+                    <span class="text-orange-500 text-body-sm">待接单</span>
+                </div>
+                <div class="flex items-center py-2 border-t border-b">
+                    <img src="https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?w=80&h=80&fit=crop" alt="商品图片" class="w-18 h-18 object-cover rounded mr-3">
+                    <div class="flex-1">
+                        <div class="font-medium text-body-md">原味鸡桶</div>
+                        <div class="text-gray-500 text-caption mt-1">6块原味鸡 + 2份薯条</div>
+                        <div class="flex justify-between mt-1">
+                            <span class="text-gray-500 text-caption">x1</span>
+                            <span class="font-medium text-body-sm">¥88.00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-between items-center mt-3">
+                    <div class="text-body-sm text-gray-500">共1件 <span class="text-red-500 font-medium">¥88.00</span></div>
+                    <div class="flex space-x-1">
+                        <button class="px-2 py-1 border border-gray-300 rounded-full text-caption">取消订单</button>
+                        <button class="px-2 py-1 border border-gray-300 rounded-full text-caption">催单</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 订单项 - 待取货 -->
+            <div class="order-item bg-white rounded-lg p-3 shadow-sm" data-status="pickup">
+                <div class="flex justify-between items-center mb-2">
+                    <div class="flex items-center">
+                        <img src="https://images.unsplash.com/photo-1596428361862-a11618414833?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="商家logo" class="w-6 h-6 rounded-full mr-2">
+                        <span class="font-medium text-body-md">星巴克</span>
+                    </div>
+                    <span class="text-blue-500 text-body-sm">待取货</span>
+                </div>
+                <div class="flex items-center py-2 border-t border-b">
+                    <img src="https://images.unsplash.com/photo-1677094521831-445c675dae7b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="商品图片" class="w-20 h-20 object-cover rounded mr-3">
+                    <div class="flex-1">
+                        <div class="font-medium text-body-md">拿铁咖啡</div>
+                        <div class="text-gray-500 text-caption mt-1">中杯 无糖</div>
+                        <div class="flex justify-between mt-1">
+                            <span class="text-gray-500 text-caption">x2</span>
+                            <span class="font-medium text-body-sm">¥58.00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-between items-center mt-3">
+                    <div class="text-body-sm text-gray-500">共2件 <span class="text-red-500 font-medium">¥58.00</span></div>
+                    <div class="flex space-x-1">
+                        <button class="px-2 py-1 border border-gray-300 rounded-full text-caption">联系商家</button>
+                        <button class="px-2 py-1 bg-blue-500 text-white rounded-full text-caption">确认取货</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 订单项 - 已完成 -->
+            <div class="order-item bg-white rounded-lg p-3 shadow-sm" data-status="completed">
+                <div class="flex justify-between items-center mb-2">
+                    <div class="flex items-center">
+                        <img src="https://images.unsplash.com/photo-1593246049226-ded77bf90326?w=40&h=40&fit=crop" alt="商家logo" class="w-6 h-6 rounded-full mr-2">
+                        <span class="font-medium text-body-md">必胜客</span>
+                    </div>
+                    <span class="text-green-500 text-body-sm">已完成</span>
+                </div>
+                <div class="flex items-center py-2 border-t border-b">
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=80&h=80&fit=crop" alt="商品图片" class="w-18 h-18 object-cover rounded mr-3">
+                    <div class="flex-1">
+                        <div class="font-medium text-body-md">超级至尊披萨</div>
+                        <div class="text-gray-500 text-caption mt-1">9寸 香肠芝士口味</div>
+                        <div class="flex justify-between mt-1">
+                            <span class="text-gray-500 text-caption">x1</span>
+                            <span class="font-medium text-body-sm">¥99.00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-between items-center mt-3">
+                    <div class="text-body-sm text-gray-500">共1件 <span class="text-red-500 font-medium">¥99.00</span></div>
+                    <div class="flex space-x-1">
+                        <button class="px-2 py-1 border border-gray-300 rounded-full text-caption">再来一单</button>
+                        <button class="px-2 py-1 border border-gray-300 rounded-full text-caption">评价</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    
+    <!-- 订单页面的JavaScript -->
+    <script>
+        function switchOrderTab(tab, status) {
+            // 移除所有tab的active类
+            document.querySelectorAll('.order-tab').forEach(t => {
+                t.classList.remove('active');
+            });
+            
+            // 给当前点击的tab添加active类
+            tab.classList.add('active');
+            
+            // 显示或隐藏对应状态的订单
+            const orderItems = document.querySelectorAll('.order-item');
+            
+            if (status === 'all') {
+                // 显示所有订单
+                orderItems.forEach(item => {
+                    item.style.display = 'block';
+                });
+            } else {
+                // 只显示对应状态的订单
+                orderItems.forEach(item => {
+                    if (item.dataset.status === status) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            }
+        }
+    </script>
+</div>
+
+<style>
+    .order-tab {
+        color: #666;
+        transition: all 0.3s ease;
+    }
+    
+    .order-tab.active {
+        color: white;
+        background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+    }
+</style>

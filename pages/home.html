@@ -1,0 +1,110 @@
+<!-- 首页 -->
+<div class="page" id="home">
+    <div class="bg-gray-50 min-h-full pb-16">
+        <!-- 头部搜索栏 -->
+        <div class="primary-red p-3 pb-4">
+            <div class="flex items-center justify-between mb-3">
+                <div onclick="showPage('school-select')" class="flex items-center space-x-2 cursor-pointer">
+                    <i class="fas fa-map-marker-alt text-white text-lg"></i>
+                    <span class="text-white font-medium text-body-sm">北京大学</span>
+                    <i class="fas fa-chevron-down text-white text-xs"></i>
+                </div>
+                <i class="fas fa-bell text-white text-lg"></i>
+            </div>
+            <div class="bg-white rounded-lg p-2.5 flex items-center space-x-2">
+                <i class="fas fa-search text-gray-400 text-lg"></i>
+                <input type="text" placeholder="搜索商家、美食、服务..." class="flex-1 outline-none text-body-sm">
+            </div>
+        </div>
+
+        <!-- 轮播图 -->
+        <div class="px-3 -mt-2 mb-3">
+            <div class="relative rounded-lg overflow-hidden h-24">
+                <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&h=200&fit=crop" 
+                     alt="校园美食" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
+                    <span class="text-white font-bold text-heading-md">校园美食节</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 分类导航 -->
+        <div class="px-3 mb-4">
+            <div class="grid grid-cols-4 gap-3">
+                <div class="text-center">
+                    <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mx-auto mb-1">
+                        <i class="fas fa-utensils text-red-500 text-lg"></i>
+                    </div>
+                    <span class="text-caption text-gray-700">美食</span>
+                </div>
+                <div class="text-center">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-1">
+                        <i class="fas fa-shopping-bag text-blue-500 text-lg"></i>
+                    </div>
+                    <span class="text-caption text-gray-700">购物</span>
+                </div>
+                <div class="text-center">
+                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-1">
+                        <i class="fas fa-running text-green-500 text-lg"></i>
+                    </div>
+                    <span class="text-caption text-gray-700">跑腿</span>
+                </div>
+                <div class="text-center">
+                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-1">
+                        <i class="fas fa-ellipsis-h text-purple-500 text-lg"></i>
+                    </div>
+                    <span class="text-caption text-gray-700">更多</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 商家列表 -->
+        <div class="px-3">
+            <h3 class="font-bold mb-3 text-heading-md">附近商家</h3>
+            <div class="space-y-2">
+                <div class="bg-white rounded-lg p-3 card-hover cursor-pointer" onclick="showPage('shop-detail')">
+                    <div class="flex space-x-3">
+                        <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=80&h=80&fit=crop" 
+                             alt="麦当劳" class="w-14 h-14 rounded-lg object-cover">
+                        <div class="flex-1">
+                            <h4 class="font-semibold text-body-md">麦当劳（北大店）</h4>
+                            <p class="text-gray-600 text-caption">快餐 | 距离200m</p>
+                            <div class="flex items-center justify-between mt-1">
+                                <span class="text-orange-500 font-bold text-caption">★ 4.8</span>
+                                <span class="text-red-500 font-bold text-caption">￥15起送</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg p-3 card-hover">
+                    <div class="flex space-x-3">
+                        <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=80&h=80&fit=crop" 
+                             alt="星巴克" class="w-14 h-14 rounded-lg object-cover">
+                        <div class="flex-1">
+                            <h4 class="font-semibold text-body-md">星巴克咖啡</h4>
+                            <p class="text-gray-600 text-caption">咖啡 | 距离150m</p>
+                            <div class="flex items-center justify-between mt-1">
+                                <span class="text-orange-500 font-bold text-caption">★ 4.9</span>
+                                <span class="text-red-500 font-bold text-caption">￥20起送</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg p-3 card-hover">
+                    <div class="flex space-x-3">
+                        <img src="http://images.unsplash.com/photo-1739193878147-c3c4aada8756?q=80&w=2070&auto=format&fit=crop" 
+                             alt="川菜馆" class="w-14 h-14 rounded-lg object-cover">
+                        <div class="flex-1">
+                            <h4 class="font-semibold text-body-md">蜀香川菜馆</h4>
+                            <p class="text-gray-600 text-caption">川菜 | 距离300m</p>
+                            <div class="flex items-center justify-between mt-1">
+                                <span class="text-orange-500 font-bold text-caption">★ 4.7</span>
+                                <span class="text-red-500 font-bold text-caption">￥25起送</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,88 @@
+<!-- 余额明细页 -->
+<div class="page" id="balance">
+    <div class="min-h-full bg-gray-50 pb-16">
+        <!-- 头部 -->
+        <div class="primary-red p-3">
+            <div class="flex items-center space-x-3">
+                <i onclick="showPage('profile')" class="fas fa-arrow-left text-white cursor-pointer"></i>
+                <span class="text-white font-semibold">余额明细</span>
+            </div>
+        </div>
+
+        <!-- 余额概览 -->
+        <div class="p-3">
+            <div class="bg-white rounded-lg p-4 mb-3">
+                <div class="text-center">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-1">￥128.50</h2>
+                    <p class="text-gray-600 text-sm">可用余额</p>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-3 mt-4">
+                    <div class="text-center">
+                        <div class="font-bold text-green-600">￥45.20</div>
+                        <div class="text-xs text-gray-600">跑腿昨日收入</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="font-bold text-blue-600">￥1,256.80</div>
+                        <div class="text-xs text-gray-600">跑腿总收入</div>
+                    </div>
+                </div>
+                
+                <div class="flex space-x-2 mt-4">
+                    <button class="flex-1 bg-red-500 text-white p-2.5 rounded-lg font-semibold text-sm">
+                        余额提现
+                    </button>
+                    <button class="flex-1 bg-gray-200 text-gray-700 p-2.5 rounded-lg font-semibold text-sm">
+                        收款确认
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 明细列表 -->
+        <div class="px-3">
+            <h3 class="font-bold mb-2 text-sm">交易明细</h3>
+            <div class="space-y-2">
+                <div class="bg-white rounded-lg p-3">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h4 class="font-semibold text-sm">跑腿订单收入</h4>
+                            <p class="text-gray-600 text-xs">2024-06-10 14:30</p>
+                        </div>
+                        <span class="text-green-600 font-bold text-sm">+￥15.50</span>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg p-3">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h4 class="font-semibold text-sm">团购佣金</h4>
+                            <p class="text-gray-600 text-xs">2024-06-10 10:20</p>
+                        </div>
+                        <span class="text-green-600 font-bold text-sm">+￥8.20</span>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg p-3">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h4 class="font-semibold text-sm">余额提现</h4>
+                            <p class="text-gray-600 text-xs">2024-06-09 16:45</p>
+                        </div>
+                        <span class="text-red-600 font-bold text-sm">-￥100.00</span>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg p-3">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h4 class="font-semibold text-sm">跑腿订单收入</h4>
+                            <p class="text-gray-600 text-xs">2024-06-09 12:10</p>
+                        </div>
+                        <span class="text-green-600 font-bold text-sm">+￥22.80</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

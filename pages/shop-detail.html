@@ -1,0 +1,264 @@
+a<!-- 商家详情页 -->
+<div class="page" id="shop-detail">
+    <div class="min-h-full bg-gray-50 pb-16">
+        <!-- 头部店铺信息 -->
+        <div class="bg-white">
+            <!-- 返回按钮和收藏 -->
+            <div class="p-3 flex items-center justify-between">
+                <i onclick="showPage('home')" class="fas fa-arrow-left text-gray-700 cursor-pointer"></i>
+                <i class="far fa-heart text-gray-700"></i>
+            </div>
+            
+            <!-- 店铺基本信息 -->
+            <div class="px-3 pb-3">
+                <div class="flex space-x-3">
+                    <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=120&h=120&fit=crop" 
+                         alt="麦当劳" class="w-16 h-16 rounded-lg object-cover">
+                    <div class="flex-1">
+                        <h2 class="font-bold text-lg">麦当劳（北大店）</h2>
+                        <div class="flex items-center space-x-2 mt-1">
+                            <span class="text-orange-500 font-bold text-sm">★ 4.8</span>
+                            <span class="text-gray-500 text-xs">月售2000+</span>
+                        </div>
+                        <p class="text-gray-600 text-xs mt-1">配送时间：约30分钟 | 距离200m</p>
+                    </div>
+                </div>
+                
+                <!-- 优惠信息 -->
+                <div class="mt-3 bg-red-50 rounded-lg p-2">
+                    <div class="flex items-center space-x-2">
+                        <span class="bg-red-500 text-white text-xs px-1 rounded">优惠</span>
+                        <span class="text-red-500 text-xs">新用户下单立减5元</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Tab切换 -->
+        <div class="bg-white sticky top-0 z-10 border-b">
+            <div class="flex">
+                <div id="tab-menu" class="flex-1 text-center py-3 font-medium text-red-500 border-b-2 border-red-500" onclick="switchTab('menu')">
+                    商品列表
+                </div>
+                <div id="tab-info" class="flex-1 text-center py-3 font-medium text-gray-500" onclick="switchTab('info')">
+                    商家信息
+                </div>
+            </div>
+        </div>
+        
+        <!-- 商品列表内容 -->
+        <div id="content-menu" class="bg-white">
+            <div class="flex">
+                <!-- 左侧分类列表 -->
+                <div class="w-1/4 bg-gray-100 max-h-[calc(100vh-250px)] overflow-y-auto custom-scrollbar">
+                    <div class="category-item active py-3 px-2 text-center text-sm font-medium border-l-4 border-red-500 bg-white">
+                        热销
+                    </div>
+                    <div class="category-item py-3 px-2 text-center text-sm text-gray-500">
+                        汉堡
+                    </div>
+                    <div class="category-item py-3 px-2 text-center text-sm text-gray-500">
+                        小食
+                    </div>
+                    <div class="category-item py-3 px-2 text-center text-sm text-gray-500">
+                        饮料
+                    </div>
+                    <div class="category-item py-3 px-2 text-center text-sm text-gray-500">
+                        套餐
+                    </div>
+                </div>
+                
+                <!-- 右侧商品列表 -->
+                <div class="w-3/4 max-h-[calc(100vh-250px)] overflow-y-auto custom-scrollbar">
+                    <!-- 分类标题 -->
+                    <div class="p-2 bg-gray-50 sticky top-0">
+                        <h3 class="font-bold text-sm">热销</h3>
+                    </div>
+                    
+                    <!-- 商品列表 -->
+                    <div class="divide-y">
+                        <!-- 商品项 -->
+                        <div class="p-3 flex space-x-2">
+                            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=80&h=80&fit=crop" 
+                                 alt="巨无霸" class="w-16 h-16 rounded-lg object-cover">
+                            <div class="flex-1">
+                                <h4 class="font-semibold text-sm">巨无霸</h4>
+                                <p class="text-gray-500 text-xs mt-1">美味多汁的牛肉汉堡</p>
+                                <div class="flex items-center justify-between mt-2">
+                                    <span class="text-red-500 font-bold">¥20</span>
+                                    <button class="bg-red-500 text-white w-6 h-6 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-plus text-xs"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="p-3 flex space-x-2">
+                            <img src="https://images.unsplash.com/photo-1585109649139-366815a0d713?w=80&h=80&fit=crop" 
+                                 alt="麦辣鸡腿汉堡" class="w-16 h-16 rounded-lg object-cover">
+                            <div class="flex-1">
+                                <h4 class="font-semibold text-sm">麦辣鸡腿汉堡</h4>
+                                <p class="text-gray-500 text-xs mt-1">香辣酥脆的鸡腿汉堡</p>
+                                <div class="flex items-center justify-between mt-2">
+                                    <span class="text-red-500 font-bold">¥18</span>
+                                    <button class="bg-red-500 text-white w-6 h-6 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-plus text-xs"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="p-3 flex space-x-2">
+                            <img src="https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?w=80&h=80&fit=crop" 
+                                 alt="薯条" class="w-16 h-16 rounded-lg object-cover">
+                            <div class="flex-1">
+                                <h4 class="font-semibold text-sm">薯条（中）</h4>
+                                <p class="text-gray-500 text-xs mt-1">金黄酥脆的薯条</p>
+                                <div class="flex items-center justify-between mt-2">
+                                    <span class="text-red-500 font-bold">¥12</span>
+                                    <button class="bg-red-500 text-white w-6 h-6 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-plus text-xs"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 商家信息内容 -->
+        <div id="content-info" class="bg-white hidden">
+            <div class="p-4 space-y-4">
+                <!-- 地址 -->
+                <div>
+                    <h3 class="font-bold mb-2 flex items-center">
+                        <i class="fas fa-map-marker-alt text-red-500 mr-2"></i>
+                        地址
+                    </h3>
+                    <p class="text-gray-600 text-sm ml-6">北京市海淀区北京大学燕园校区附近</p>
+                </div>
+                
+                <!-- 食品安全档案 -->
+                <div>
+                    <h3 class="font-bold mb-2 flex items-center">
+                        <i class="fas fa-shield-alt text-red-500 mr-2"></i>
+                        食品安全档案
+                    </h3>
+                    <div class="text-sm ml-6 flex items-center justify-between">
+                        <span class="text-gray-600">查看食品安全档案</span>
+                        <i class="fas fa-chevron-right text-gray-400" onclick="showFoodSafetyInfo()"></i>
+                    </div>
+                </div>
+                
+                <!-- 商家电话 -->
+                <div>
+                    <h3 class="font-bold mb-2 flex items-center">
+                        <i class="fas fa-phone text-red-500 mr-2"></i>
+                        商家电话
+                    </h3>
+                    <p class="text-gray-600 text-sm ml-6">010-12345678</p>
+                </div>
+                
+                <!-- 营业时间 -->
+                <div>
+                    <h3 class="font-bold mb-2 flex items-center">
+                        <i class="fas fa-clock text-red-500 mr-2"></i>
+                        营业时间
+                    </h3>
+                    <p class="text-gray-600 text-sm ml-6">周一至周日 10:00-22:00</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 底部购物车 -->
+        <div class="fixed bottom-0 left-0 right-0 bg-white border-t p-3 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="relative">
+                    <i class="fas fa-shopping-cart text-xl text-gray-600"></i>
+                    <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">0</span>
+                </div>
+                <span class="text-gray-400 text-sm">未选购商品</span>
+            </div>
+            <button class="bg-gray-300 text-white px-4 py-2 rounded-full text-sm">
+                去结算
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- 食品安全档案弹窗 -->
+<div id="food-safety-popup" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
+    <div class="bg-white rounded-lg w-4/5 max-w-md p-4">
+        <div class="flex justify-between items-center mb-4">
+            <h3 class="font-bold">食品安全档案</h3>
+            <i class="fas fa-times text-gray-500" onclick="closeFoodSafetyInfo()"></i>
+        </div>
+        <div class="space-y-3">
+            <div>
+                <h4 class="font-medium text-sm">食品经营许可证</h4>
+                <p class="text-gray-600 text-xs">证书编号：JY11108123456789</p>
+                <p class="text-gray-600 text-xs">有效期至：2025-12-31</p>
+            </div>
+            <div>
+                <h4 class="font-medium text-sm">餐饮服务许可证</h4>
+                <p class="text-gray-600 text-xs">证书编号：CS11108123456789</p>
+                <p class="text-gray-600 text-xs">有效期至：2025-12-31</p>
+            </div>
+            <div>
+                <h4 class="font-medium text-sm">卫生检查</h4>
+                <p class="text-gray-600 text-xs">最近检查日期：2023-06-15</p>
+                <p class="text-gray-600 text-xs">检查结果：合格</p>
+            </div>
+        </div>
+        <button onclick="closeFoodSafetyInfo()" class="mt-4 w-full bg-red-500 text-white py-2 rounded-lg text-sm">
+            关闭
+        </button>
+    </div>
+</div>
+
+<script>
+    // Tab切换功能
+    function switchTab(tabName) {
+        // 重置所有tab和内容
+        document.getElementById('tab-menu').classList.remove('text-red-500', 'border-b-2', 'border-red-500');
+        document.getElementById('tab-menu').classList.add('text-gray-500');
+        document.getElementById('tab-info').classList.remove('text-red-500', 'border-b-2', 'border-red-500');
+        document.getElementById('tab-info').classList.add('text-gray-500');
+        
+        document.getElementById('content-menu').classList.add('hidden');
+        document.getElementById('content-info').classList.add('hidden');
+        
+        // 激活选中的tab和内容
+        document.getElementById('tab-' + tabName).classList.remove('text-gray-500');
+        document.getElementById('tab-' + tabName).classList.add('text-red-500', 'border-b-2', 'border-red-500');
+        document.getElementById('content-' + tabName).classList.remove('hidden');
+    }
+    
+    // 分类点击事件
+    document.addEventListener('DOMContentLoaded', function() {
+        const categoryItems = document.querySelectorAll('.category-item');
+        categoryItems.forEach(item => {
+            item.addEventListener('click', function() {
+                // 移除所有分类的激活状态
+                categoryItems.forEach(i => {
+                    i.classList.remove('active', 'border-l-4', 'border-red-500', 'bg-white', 'font-medium');
+                    i.classList.add('text-gray-500');
+                });
+                
+                // 添加当前分类的激活状态
+                this.classList.add('active', 'border-l-4', 'border-red-500', 'bg-white', 'font-medium');
+                this.classList.remove('text-gray-500');
+            });
+        });
+    });
+    
+    // 食品安全档案弹窗
+    function showFoodSafetyInfo() {
+        document.getElementById('food-safety-popup').classList.remove('hidden');
+    }
+    
+    function closeFoodSafetyInfo() {
+        document.getElementById('food-safety-popup').classList.add('hidden');
+    }
+</script>
