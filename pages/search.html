@@ -1,0 +1,200 @@
+<!-- 搜索页面 -->
+<div class="page" id="search">
+    <div class="bg-gray-50 min-h-full">
+        <!-- 顶部搜索栏 -->
+        <div class="bg-white p-3 flex items-center space-x-3 sticky top-0 z-10 shadow-sm">
+            <i class="fas fa-arrow-left text-gray-600 text-lg cursor-pointer" onclick="showPage('home')"></i>
+            <div class="bg-gray-100 rounded-lg p-2.5 flex items-center space-x-2 flex-1">
+                <i class="fas fa-search text-gray-400 text-lg"></i>
+                <input type="text" id="search-input" placeholder="搜索商家、美食、服务..." class="flex-1 outline-none text-body-sm bg-transparent">
+                <i class="fas fa-times text-gray-400 text-lg cursor-pointer hidden" id="clear-search-btn" onclick="clearSearchInput()"></i>
+            </div>
+            <button class="text-primary-red font-medium text-body-sm" onclick="performSearch()">搜索</button>
+        </div>
+
+        <!-- 历史搜索记录 -->
+        <div class="p-4" id="search-history-container">
+            <div class="flex items-center justify-between mb-3">
+                <h3 class="font-medium text-body-md text-gray-700">历史搜索</h3>
+                <i class="fas fa-trash text-gray-500 cursor-pointer" onclick="clearSearchHistory()"></i>
+            </div>
+            <div class="flex flex-wrap gap-2" id="search-history-list">
+                <!-- 历史搜索标签将通过JavaScript动态添加 -->
+            </div>
+        </div>
+
+        <!-- 搜索结果 -->
+        <div class="p-4 hidden" id="search-results">
+            <h3 class="font-medium text-body-md text-gray-700 mb-3">搜索结果</h3>
+            <div id="search-results-list">
+                <!-- 搜索结果将通过JavaScript动态添加 -->
+                <div class="text-center text-gray-500 py-8 hidden" id="no-results-message">
+                    <i class="fas fa-search text-4xl mb-3 text-gray-300"></i>
+                    <p>没有找到相关结果</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 搜索历史记录
+    let searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+
+    // 初始化搜索页面
+    document.addEventListener('DOMContentLoaded', function() {
+        // 显示历史搜索记录
+        renderSearchHistory();
+        
+        // 监听搜索输入框变化
+        const searchInput = document.getElementById('search-input');
+        const clearBtn = document.getElementById('clear-search-btn');
+        
+        searchInput.addEventListener('input', function() {
+            if (this.value.length > 0) {
+                clearBtn.classList.remove('hidden');
+            } else {
+                clearBtn.classList.add('hidden');
+            }
+        });
+        
+        // 监听回车键搜索
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+    });
+
+    // 渲染搜索历史
+    function renderSearchHistory() {
+        const historyList = document.getElementById('search-history-list');
+        historyList.innerHTML = '';
+        
+        searchHistory.forEach(term => {
+            const tag = document.createElement('div');
+            tag.className = 'bg-gray-200 rounded-full px-3 py-1.5 text-sm text-gray-700 flex items-center';
+            tag.innerHTML = `
+                <span class="cursor-pointer" onclick="searchWithHistoryTerm('${term}')">${term}</span>
+                <i class="fas fa-times-circle ml-2 text-gray-500 cursor-pointer" onclick="removeHistoryTerm('${term}')"></i>
+            `;
+            historyList.appendChild(tag);
+        });
+        
+        // 如果没有历史记录，显示提示
+        if (searchHistory.length === 0) {
+            const emptyMessage = document.createElement('div');
+            emptyMessage.className = 'text-gray-500 text-sm w-full text-center py-4';
+            emptyMessage.textContent = '暂无搜索历史';
+            historyList.appendChild(emptyMessage);
+        }
+    }
+
+    // 执行搜索
+    function performSearch() {
+        const searchInput = document.getElementById('search-input');
+        const searchTerm = searchInput.value.trim();
+        
+        if (searchTerm.length === 0) return;
+        
+        // 添加到搜索历史
+        addToSearchHistory(searchTerm);
+        
+        // 显示搜索结果区域
+        document.getElementById('search-results').classList.remove('hidden');
+        
+        // 模拟搜索结果（实际应用中应该调用API）
+        const resultsContainer = document.getElementById('search-results-list');
+        const noResultsMessage = document.getElementById('no-results-message');
+        
+        // 清空之前的结果
+        resultsContainer.innerHTML = '';
+        resultsContainer.appendChild(noResultsMessage);
+        
+        // 模拟搜索结果
+        if (searchTerm.includes('食') || searchTerm.includes('餐') || searchTerm.includes('吃')) {
+            noResultsMessage.classList.add('hidden');
+            
+            // 添加模拟的搜索结果
+            const results = [
+                { name: '麦当劳（北大店）', category: '快餐', distance: '200m', rating: '4.8', minOrder: '￥15起送', image: 'https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=80&h=80&fit=crop' },
+                { name: '蜀香川菜馆', category: '川菜', distance: '300m', rating: '4.7', minOrder: '￥25起送', image: 'http://images.unsplash.com/photo-1739193878147-c3c4aada8756?q=80&w=2070&auto=format&fit=crop' }
+            ];
+            
+            results.forEach(item => {
+                const resultItem = document.createElement('div');
+                resultItem.className = 'bg-white rounded-lg p-3 card-hover cursor-pointer mb-2';
+                resultItem.setAttribute('onclick', "showPage('shop-detail')");
+                resultItem.innerHTML = `
+                    <div class="flex space-x-3">
+                        <img src="${item.image}" alt="${item.name}" class="w-14 h-14 rounded-lg object-cover">
+                        <div class="flex-1">
+                            <h4 class="font-semibold text-body-md">${item.name}</h4>
+                            <p class="text-gray-600 text-caption">${item.category} | 距离${item.distance}</p>
+                            <div class="flex items-center justify-between mt-1">
+                                <span class="text-orange-500 font-bold text-caption">★ ${item.rating}</span>
+                                <span class="text-red-500 font-bold text-caption">${item.minOrder}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                resultsContainer.appendChild(resultItem);
+            });
+        } else {
+            noResultsMessage.classList.remove('hidden');
+        }
+    }
+
+    // 添加到搜索历史
+    function addToSearchHistory(term) {
+        // 如果已存在，先移除
+        const index = searchHistory.indexOf(term);
+        if (index !== -1) {
+            searchHistory.splice(index, 1);
+        }
+        
+        // 添加到历史记录开头
+        searchHistory.unshift(term);
+        
+        // 限制历史记录数量
+        if (searchHistory.length > 10) {
+            searchHistory = searchHistory.slice(0, 10);
+        }
+        
+        // 保存到本地存储
+        localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+        
+        // 更新显示
+        renderSearchHistory();
+    }
+
+    // 从历史记录中移除
+    function removeHistoryTerm(term) {
+        const index = searchHistory.indexOf(term);
+        if (index !== -1) {
+            searchHistory.splice(index, 1);
+            localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+            renderSearchHistory();
+        }
+    }
+
+    // 清空搜索历史
+    function clearSearchHistory() {
+        searchHistory = [];
+        localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+        renderSearchHistory();
+    }
+
+    // 使用历史搜索词进行搜索
+    function searchWithHistoryTerm(term) {
+        document.getElementById('search-input').value = term;
+        performSearch();
+    }
+
+    // 清空搜索输入框
+    function clearSearchInput() {
+        const searchInput = document.getElementById('search-input');
+        searchInput.value = '';
+        document.getElementById('clear-search-btn').classList.add('hidden');
+    }
+</script>

@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="css/typography.css">
 </head>
 <body class="bg-gray-100 p-8">
-    
     <!-- 原型导航 -->
     <div class="flex flex-wrap justify-left ml-[15vw]">
         
@@ -52,9 +51,7 @@
         </div>
      <div id="prototype-nav-container"></div>
     </div>
-
     <!-- 加载JavaScript -->
-    <script src="js/main.js"></script>
     
     <script>
         // 加载组件
@@ -108,6 +105,10 @@
             await loadPage('orders', 'pages/orders.html');
             await loadPage('community', 'pages/community.html');
             await loadPage('grab-orders', 'pages/grab-orders.html');
+            await loadPage('real-name-auth', 'pages/real-name-auth.html');
+            await loadPage('real-name-auth-icon', 'pages/real-name-auth-icon.html');
+            await loadPage('search', 'pages/search.html');
+            await loadPage('reward-detail', 'pages/reward-detail.html');
             
             // 加载底部导航
             const bottomNavResponse = await fetch('components/bottom-nav.html');
@@ -127,7 +128,7 @@
                 const bottomNav = screenContainer.querySelector('.bottom-nav');
                 if (bottomNav) {
                     // 只在这五个页面显示底部导航
-                    if (lastPage === 'home' || lastPage === 'grab-orders' || lastPage === 'community' || 
+                    if (lastPage === 'home' || lastPage === 'grab-orders' || 
                         lastPage === 'orders' || lastPage === 'profile') {
                         bottomNav.style.display = 'flex';
                     } else {
@@ -141,7 +142,7 @@
             pages.forEach(page => {
                 // 只为需要底部导航的页面添加底部内边距
                 const pageId = page.id;
-                if (pageId === 'home' || pageId === 'profile' || pageId === 'orders' || pageId === 'community' || pageId === 'grab-orders') {
+                if (pageId === 'home' || pageId === 'profile' || pageId === 'orders' || pageId === 'grab-orders') {
                     page.style.paddingBottom = '60px'; // 底部导航的高度
                 }
             });
@@ -153,5 +154,6 @@
         // 当DOM加载完成后初始化应用
         document.addEventListener('DOMContentLoaded', initApp);
     </script>
+    <script src="js/main.js"></script>
 </body>
 </html>

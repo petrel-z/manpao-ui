@@ -1,0 +1,162 @@
+<!-- 实名认证页（带图标版本） -->
+<div class="page" id="real-name-auth-icon">
+    <div class="min-h-full bg-gray-50 pb-16">
+        <!-- 头部 -->
+        <div class="primary-red p-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <i onclick="showPage('profile-edit')" class="fas fa-arrow-left text-white cursor-pointer"></i>
+                    <span class="text-white font-semibold">实名认证</span>
+                </div>
+                <button class="text-white font-semibold text-sm">提交</button>
+            </div>
+        </div>
+        
+        <div class="h-[78vh] overflow-y-auto">
+            <!-- 认证说明 -->
+            <div class="p-3">
+                <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
+                    <div class="flex items-start space-x-2">
+                        <i class="fas fa-shield-alt text-yellow-500 mt-0.5"></i>
+                        <div class="text-xs text-gray-700">
+                            <p>实名认证是保障账户安全的重要措施，请填写真实信息。</p>
+                            <p class="mt-1">认证信息仅用于身份验证，我们将严格保护您的隐私。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 认证进度 -->
+            <div class="px-3 mb-3">
+                <div class="bg-white rounded-lg p-4">
+                    <div class="flex justify-between items-center">
+                        <div class="flex flex-col items-center">
+                            <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
+                                <i class="fas fa-user text-white"></i>
+                            </div>
+                            <span class="text-xs mt-1 text-red-500 font-medium">填写信息</span>
+                        </div>
+                        <div class="flex-1 h-1 bg-gray-200 mx-2 relative">
+                            <div class="absolute inset-0 bg-red-500 w-1/2"></div>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
+                                <i class="fas fa-id-card text-gray-400"></i>
+                            </div>
+                            <span class="text-xs mt-1 text-gray-400">上传证件</span>
+                        </div>
+                        <div class="flex-1 h-1 bg-gray-200 mx-2"></div>
+                        <div class="flex flex-col items-center">
+                            <div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
+                                <i class="fas fa-check-circle text-gray-400"></i>
+                            </div>
+                            <span class="text-xs mt-1 text-gray-400">完成认证</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 认证表单 -->
+            <div class="px-3 space-y-3">
+                <!-- 姓名 -->
+                <div class="bg-white rounded-lg p-3">
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-user text-red-500"></i>
+                        </div>
+                        <label class="text-sm font-medium text-gray-700 w-20">真实姓名</label>
+                        <input type="text" placeholder="请输入您的真实姓名" class="flex-1 p-2.5 border border-gray-200 rounded-lg focus:border-red-400 focus:outline-none transition-colors text-sm">
+                    </div>
+                </div>
+                
+                <!-- 身份证号 -->
+                <div class="bg-white rounded-lg p-3">
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-id-card text-blue-500"></i>
+                        </div>
+                        <label class="text-sm font-medium text-gray-700 w-20">身份证号</label>
+                        <input type="text" placeholder="请输入18位身份证号码" class="flex-1 p-2.5 border border-gray-200 rounded-lg focus:border-red-400 focus:outline-none transition-colors text-sm">
+                    </div>
+                </div>
+                
+                <!-- 身份证正面照 -->
+                <div class="bg-white rounded-lg p-3">
+                    <div class="flex items-start">
+                        <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-2">
+                            <i class="fas fa-camera text-green-500"></i>
+                        </div>
+                        <div>
+                            <label class="text-sm font-medium text-gray-700 block mb-2">身份证正面</label>
+                            <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
+                                <i class="fas fa-id-card text-gray-400 text-2xl mb-2"></i>
+                                <p class="text-gray-500 text-xs mb-1">点击上传身份证人像面</p>
+                                <p class="text-gray-400 text-xs">请确保图片清晰可见</p>
+                            </div>
+                            <div class="mt-2 flex items-center">
+                                <div class="w-4 h-4 bg-red-100 rounded-full flex items-center justify-center mr-2">
+                                    <i class="fas fa-check text-red-500 text-[8px]"></i>
+                                </div>
+                                <span class="text-xs text-gray-500">需拍摄完整身份证，信息清晰可见</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 身份证背面照 -->
+                <div class="bg-white rounded-lg p-3">
+                    <div class="flex items-start">
+                        <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center mr-3 mt-2">
+                            <i class="fas fa-camera text-purple-500"></i>
+                        </div>
+                        <div>
+                            <label class="text-sm font-medium text-gray-700 block mb-2">身份证背面</label>
+                            <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
+                                <i class="fas fa-id-card text-gray-400 text-2xl mb-2"></i>
+                                <p class="text-gray-500 text-xs mb-1">点击上传身份证国徽面</p>
+                                <p class="text-gray-400 text-xs">请确保图片清晰可见</p>
+                            </div>
+                            <div class="mt-2 flex items-center">
+                                <div class="w-4 h-4 bg-red-100 rounded-full flex items-center justify-center mr-2">
+                                    <i class="fas fa-check text-red-500 text-[8px]"></i>
+                                </div>
+                                <span class="text-xs text-gray-500">需拍摄完整身份证，信息清晰可见</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 人脸识别 -->
+                <div class="bg-white rounded-lg p-3">
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-user-check text-orange-500"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h4 class="font-semibold text-sm">人脸识别</h4>
+                                    <p class="text-gray-500 text-xs">确保本人操作，提高安全性</p>
+                                </div>
+                                <button class="bg-red-500 text-white text-xs px-3 py-1.5 rounded-full">开始验证</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 隐私协议 -->
+                <div class="p-3">
+                    <label class="flex items-start">
+                        <input type="checkbox" class="mt-0.5 mr-2 text-red-500">
+                        <span class="text-xs text-gray-600">我已阅读并同意<span class="text-red-500">《实名认证服务协议》</span>和<span class="text-red-500">《个人信息保护声明》</span></span>
+                    </label>
+                </div>
+                
+                <!-- 提交按钮 -->
+                <div class="p-3">
+                    <button class="w-full bg-red-500 text-white py-3 rounded-lg font-medium">提交认证</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

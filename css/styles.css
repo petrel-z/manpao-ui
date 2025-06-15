@@ -86,6 +86,26 @@
     background: linear-gradient(135deg, #ff6b6b, #ff8e53);
 }
 
+.header-curve {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 54px;
+}
+
+.header-curve::after {
+    content: '';
+    width: 120%;
+    height: 140px;
+    position: absolute;
+    z-index: 1;
+    left: -10%;
+    top: 0;
+    border-radius: 0 0 50% 50%;
+    background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+}
+
 .btn-primary {
     background: linear-gradient(135deg, #ff6b6b, #ff8e53);
     transition: all 0.3s ease;
@@ -162,4 +182,61 @@
 .prototype-nav button.active {
     background: #ff6b6b;
     color: white;
+}
+
+
+/* 圈子专用底部导航样式 */
+.circle-bottom-nav {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: white;
+    border-radius: 0 0 32px 32px;
+    box-shadow: 0 -2px 20px rgba(0,0,0,0.1);
+    z-index: 100;
+    width: 100%;
+    display: flex; /* 默认使用flex布局 */
+}
+
+/* 筛选和排序样式 */
+.filter-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background-color: #f3f4f6;
+    border-radius: 16px;
+    font-size: 12px;
+    color: #4b5563;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filter-tag.active {
+    background-color: #ff6b6b;
+    color: white;
+}
+
+.sort-option {
+    padding: 10px 0;
+    border-bottom: 1px solid #f3f4f6;
+    font-size: 14px;
+    color: #4b5563;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.sort-option:last-child {
+    border-bottom: none;
+}
+
+.sort-option.active {
+    color: #ff6b6b;
+    font-weight: 500;
+}
+
+.sort-option.active::before {
+    content: '✓';
+    margin-right: 8px;
+    color: #ff6b6b;
 }

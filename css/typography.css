@@ -27,6 +27,12 @@ body {
     font-weight: 600;
 }
 
+.text-heading-md-small {
+    font-size: 18px;
+    line-height: 1.4;
+    font-weight: 600;
+}
+
 .text-heading-sm {
     font-size: 18px;
     line-height: 1.4;

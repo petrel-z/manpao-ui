@@ -1,23 +1,32 @@
 <!-- 圈子页面 -->
 <div class="page" id="community">
-    <div class="min-h-full bg-gray-100 pb-16 relative">
+    <div class="min-h-full bg-gray-100 pb-16 relative h-[86vh]">
+        <!-- 顶部导航栏 -->
+        <div class="bg-white flex items-center p-3 shadow-sm">
+            <div onclick="showPage('profile')" class="w-8 h-8 flex items-center justify-center cursor-pointer">
+                <i class="fas fa-arrow-left text-gray-600"></i>
+            </div>
+            <div class="text-center flex-1 font-medium">圈子</div>
+            <div class="w-8 h-8"></div> <!-- 占位，保持标题居中 -->
+        </div>
+        
         <!-- 分类选项卡 -->
         <div class="bg-white mb-2">
             <div class="flex justify-around px-2 py-3 border-b">
-                <div class="community-tab active px-5 py-1 text-center rounded-full cursor-pointer" onclick="switchCommunityTab(this, 'all')">
+                <div class="circle-tab active px-5 py-1 text-center rounded-full cursor-pointer" onclick="switchCircleTab(this, 'all')">
                     全部
                 </div>
-                <div class="community-tab px-5 py-1 text-center rounded-full cursor-pointer" onclick="switchCommunityTab(this, 'hot')">
+                <div class="circle-tab px-5 py-1 text-center rounded-full cursor-pointer" onclick="switchCircleTab(this, 'hot')">
                     最热
                 </div>
-                <div class="community-tab px-5 py-1 text-center rounded-full cursor-pointer" onclick="switchCommunityTab(this, 'new')">
+                <div class="circle-tab px-5 py-1 text-center rounded-full cursor-pointer" onclick="switchCircleTab(this, 'new')">
                     最新
                 </div>
             </div>
         </div>
         
         <!-- 帖子列表 -->
-        <div class="px-3 space-y-3 max-h-[61vh] overflow-y-auto custom-scrollbar">
+        <div class="px-3 space-y-3 max-h-[66vh] overflow-y-auto custom-scrollbar">
             <!-- 帖子项 1 -->
             <div class="post-item bg-white rounded-lg p-3 shadow-sm" data-category="hot">
                 <!-- 用户信息 -->
@@ -48,19 +57,15 @@
                 
                 <!-- 互动数据 -->
                 <div class="flex justify-between text-gray-500 text-xs border-t pt-3">
-                    <div>
-                        <i class="far fa-eye mr-1"></i>
-                        <span>328</span>
-                    </div>
-                    <div>
-                        <i class="far fa-comment mr-1"></i>
-                        <span>42</span>
-                    </div>
-                    <div>
+                    <div class="flex items-center">
                         <i class="far fa-heart mr-1"></i>
-                        <span>96</span>
+                        <span>128</span>
                     </div>
-                    <div>
+                    <div class="flex items-center">
+                        <i class="far fa-comment mr-1"></i>
+                        <span>36</span>
+                    </div>
+                    <div class="flex items-center">
                         <i class="far fa-share-square mr-1"></i>
                         <span>分享</span>
                     </div>
@@ -72,7 +77,7 @@
                 <!-- 用户信息 -->
                 <div class="flex justify-between items-center mb-3">
                     <div class="flex items-center">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face" 
+                        <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=40&h=40&fit=crop&crop=face" 
                              alt="用户头像" class="w-9 h-9 rounded-full object-cover mr-2">
                         <div>
                             <div class="font-medium text-sm">王同学</div>
@@ -86,71 +91,20 @@
                 
                 <!-- 帖子内容 -->
                 <div class="mb-3">
-                    <p class="text-sm mb-2">有没有同学知道图书馆今天晚上开到几点？想去自习，但不确定关门时间，谢谢！</p>
+                    <p class="text-sm mb-2">有没有同学知道图书馆今天开门时间？我想去自习，但不确定几点开门。</p>
                 </div>
                 
                 <!-- 互动数据 -->
                 <div class="flex justify-between text-gray-500 text-xs border-t pt-3">
-                    <div>
-                        <i class="far fa-eye mr-1"></i>
-                        <span>156</span>
-                    </div>
-                    <div>
-                        <i class="far fa-comment mr-1"></i>
-                        <span>23</span>
-                    </div>
-                    <div>
-                        <i class="far fa-heart mr-1"></i>
-                        <span>18</span>
-                    </div>
-                    <div>
-                        <i class="far fa-share-square mr-1"></i>
-                        <span>分享</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 帖子项 3 -->
-            <div class="post-item bg-white rounded-lg p-3 shadow-sm" data-category="hot">
-                <!-- 用户信息 -->
-                <div class="flex justify-between items-center mb-3">
                     <div class="flex items-center">
-                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&h=40&fit=crop&crop=face" 
-                             alt="用户头像" class="w-9 h-9 rounded-full object-cover mr-2">
-                        <div>
-                            <div class="font-medium text-sm">张同学</div>
-                            <div class="text-gray-400 text-xs">昨天 14:30</div>
-                        </div>
-                    </div>
-                    <div class="text-gray-400">
-                        <i class="fas fa-ellipsis-h"></i>
-                    </div>
-                </div>
-                
-                <!-- 帖子内容 -->
-                <div class="mb-3">
-                    <p class="text-sm mb-2">校园歌手大赛开始报名啦！有兴趣的同学可以扫描下方二维码，奖品超丰厚，一等奖iPhone 13 Pro！</p>
-                    <!-- 单张图片 -->
-                    <div class="w-full">
-                        <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=600" alt="活动海报" class="w-full h-48 object-cover rounded">
-                    </div>
-                </div>
-                
-                <!-- 互动数据 -->
-                <div class="flex justify-between text-gray-500 text-xs border-t pt-3">
-                    <div>
-                        <i class="far fa-eye mr-1"></i>
-                        <span>1024</span>
-                    </div>
-                    <div>
-                        <i class="far fa-comment mr-1"></i>
-                        <span>128</span>
-                    </div>
-                    <div>
                         <i class="far fa-heart mr-1"></i>
-                        <span>256</span>
+                        <span>12</span>
                     </div>
-                    <div>
+                    <div class="flex items-center">
+                        <i class="far fa-comment mr-1"></i>
+                        <span>8</span>
+                    </div>
+                    <div class="flex items-center">
                         <i class="far fa-share-square mr-1"></i>
                         <span>分享</span>
                     </div>
@@ -158,131 +112,70 @@
             </div>
         </div>
         
-        <!-- 悬浮发帖按钮 -->
-        <div class="fixed bottom-20 right-4 z-20">
-            <button onclick="showPostForm()" class="w-14 h-14 rounded-full bg-gradient-to-r from-red-500 to-orange-500 text-white shadow-lg flex items-center justify-center">
-                <i class="fas fa-plus text-xl"></i>
-            </button>
-        </div>
-        
-        <!-- 发帖表单弹窗 -->
-        <div id="post-form" class="fixed inset-0 bg-black bg-opacity-50 z-30 hidden flex items-center justify-center">
-            <div class="bg-white w-5/6 rounded-lg p-4 max-h-[80vh] overflow-y-auto">
-                <div class="flex justify-between items-center mb-4">
-                    <h3 class="font-bold">发布新帖子</h3>
-                    <button onclick="hidePostForm()" class="text-gray-500">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                
-                <div class="mb-4">
-                    <textarea placeholder="分享你的想法..." class="w-full border rounded-lg p-3 h-32 focus:outline-none focus:ring-2 focus:ring-red-300"></textarea>
-                </div>
-                
-                <div class="mb-4">
-                    <div class="flex items-center space-x-4 mb-2">
-                        <button class="flex items-center text-gray-600">
-                            <i class="fas fa-image mr-1"></i>
-                            <span>添加图片</span>
-                        </button>
-                        <button class="flex items-center text-gray-600">
-                            <i class="fas fa-video mr-1"></i>
-                            <span>添加视频</span>
-                        </button>
-                    </div>
-                    
-                    <!-- 图片预览区域 -->
-                    <div class="grid grid-cols-3 gap-2 mt-2">
-                        <div class="relative bg-gray-100 rounded-lg h-24 flex items-center justify-center">
-                            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=150&h=150&fit=crop" alt="预览图片" class="h-full w-full object-cover rounded-lg">
-                            <button class="absolute top-1 right-1 bg-black bg-opacity-50 text-white rounded-full w-5 h-5 flex items-center justify-center">
-                                <i class="fas fa-times text-xs"></i>
-                            </button>
-                        </div>
-                        <div class="bg-gray-100 rounded-lg h-24 flex items-center justify-center border-dashed border-2 border-gray-300">
-                            <i class="fas fa-plus text-gray-400"></i>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="flex justify-between items-center">
-                    <div class="flex items-center space-x-4">
-                        <button class="text-gray-600">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </button>
-                        <button class="text-gray-600">
-                            <i class="fas fa-at"></i>
-                        </button>
-                        <button class="text-gray-600">
-                            <i class="fas fa-hashtag"></i>
-                        </button>
-                    </div>
-                    <button class="px-4 py-2 bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-full">
-                        发布
-                    </button>
-                </div>
+        <!-- 圈子专用底部导航 -->
+        <div class=" flex items-center justify-around absolute bottom-0 left-0 right-0 bg-white border-t py-2 shadow-md w-full z-10">
+            <div id="circle-nav-square" class="nav-item text-center cursor-pointer" onclick="switchCircleNav('circle-nav-square')">
+                <i class="fas fa-th-large text-xl mb-1"></i>
+                <div class="text-caption">广场</div>
+            </div>
+            <div id="circle-nav-message" class="nav-item text-center text-gray-500 cursor-pointer" onclick="switchCircleNav('circle-nav-message')">
+                <i class="fas fa-comment-dots text-xl mb-1"></i>
+                <div class="text-caption">消息</div>
+            </div>
+            <div id="circle-nav-profile" class="nav-item text-center text-gray-500 cursor-pointer" onclick="switchCircleNav('circle-nav-profile')">
+                <i class="fas fa-user text-xl mb-1"></i>
+                <div class="text-caption">我的</div>
             </div>
         </div>
     </div>
-    
-    <!-- 圈子页面的JavaScript -->
-    <script>
-        function switchCommunityTab(tab, category) {
-            // 移除所有tab的active类
-            document.querySelectorAll('.community-tab').forEach(t => {
-                t.classList.remove('active');
-            });
-            
-            // 给当前点击的tab添加active类
-            tab.classList.add('active');
-            
-            // 显示或隐藏对应分类的帖子
-            const postItems = document.querySelectorAll('.post-item');
-            
-            if (category === 'all') {
-                // 显示所有帖子
-                postItems.forEach(item => {
-                    item.style.display = 'block';
-                });
-            } else {
-                // 只显示对应分类的帖子
-                postItems.forEach(item => {
-                    if (item.dataset.category === category) {
-                        item.style.display = 'block';
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
-            }
-        }
-        
-        function showPostForm() {
-            document.getElementById('post-form').classList.remove('hidden');
-        }
-        
-        function hidePostForm() {
-            document.getElementById('post-form').classList.add('hidden');
-        }
-    </script>
 </div>
 
-<style>
-    .community-tab {
-        color: #666;
-        transition: all 0.3s ease;
+<script>
+    /**
+     * 切换圈子选项卡
+     * @param {HTMLElement} tab - 被点击的选项卡
+     * @param {string} category - 选项卡类别
+     */
+    function switchCircleTab(tab, category) {
+        // 移除所有选项卡的活跃状态
+        const tabs = document.querySelectorAll('.circle-tab');
+        tabs.forEach(t => t.classList.remove('active'));
+        
+        // 添加当前选项卡的活跃状态
+        tab.classList.add('active');
+        
+        // 根据类别筛选帖子
+        const posts = document.querySelectorAll('.post-item');
+        if (category === 'all') {
+            posts.forEach(post => post.style.display = 'block');
+        } else {
+            posts.forEach(post => {
+                if (post.dataset.category === category) {
+                    post.style.display = 'block';
+                } else {
+                    post.style.display = 'none';
+                }
+            });
+        }
     }
     
-    .community-tab.active {
-        color: white;
-        background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+    /**
+     * 切换圈子底部导航
+     * @param {string} navId - 导航项ID
+     */
+    function switchCircleNav(navId) {
+        // 移除所有导航项的活跃状态
+        const navItems = document.querySelectorAll('.circle-bottom-nav .nav-item');
+        navItems.forEach(item => {
+            item.classList.remove('primary-red');
+            item.classList.add('text-gray-500');
+        });
+        
+        // 添加当前导航项的活跃状态
+        const activeNav = document.getElementById(navId);
+        if (activeNav) {
+            activeNav.classList.add('primary-red');
+            activeNav.classList.remove('text-gray-500');
+        }
     }
-    
-    .post-item {
-        transition: all 0.3s ease;
-    }
-    
-    .post-item:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-</style>
+</script>

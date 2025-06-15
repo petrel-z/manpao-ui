@@ -27,14 +27,20 @@ function showPage(pageId) {
     
     // 控制底部导航的显示与隐藏
     const bottomNav = document.querySelector('.bottom-nav');
-    if (bottomNav) {
-        // 只在这五个页面显示底部导航
-        if (pageId === 'home' || pageId === 'grab-orders' || pageId === 'community' || 
-            pageId === 'orders' || pageId === 'profile') {
-            bottomNav.style.display = 'flex';
-        } else {
-            bottomNav.style.display = 'none';
-        }
+    const circleBottomNav = document.querySelector('.circle-bottom-nav');
+    
+    // 隐藏所有底部导航
+    if (bottomNav) bottomNav.style.display = 'none';
+    if (circleBottomNav) circleBottomNav.style.display = 'none';
+    
+    // 根据页面ID显示相应的底部导航
+    if (pageId === 'circle') {
+        // 显示圈子专用底部导航
+        if (circleBottomNav) circleBottomNav.style.display = 'flex';
+    } else if (pageId === 'home' || pageId === 'grab-orders' ||  
+               pageId === 'orders' || pageId === 'profile') {
+        // 显示主底部导航
+        if (bottomNav) bottomNav.style.display = 'flex';
     }
     
     // 更新底部导航栏状态
@@ -160,9 +166,6 @@ function login() {
     
     localStorage.setItem('userInfo', JSON.stringify(userInfo));
     
-    // 保存当前页面为首页
-    localStorage.setItem('currentPage', 'home');
-    
     // 登录成功，跳转到首页
     showPage('home');
 }
@@ -190,9 +193,6 @@ function wechatLogin() {
     };
     
     localStorage.setItem('userInfo', JSON.stringify(userInfo));
-    
-    // 保存当前页面为首页
-    localStorage.setItem('currentPage', 'home');
     
     // 登录成功，跳转到首页
     showPage('home');
@@ -320,7 +320,7 @@ function showPage(pageId) {
     
     const bottomNav = document.querySelector('.bottom-nav');
     if (bottomNav) {
-        if (pageId === 'home' || pageId === 'grab-orders' || pageId === 'community' || 
+        if (pageId === 'home' || pageId === 'grab-orders'  || 
             pageId === 'orders' || pageId === 'profile') {
             bottomNav.style.display = 'flex';
         } else {
@@ -356,4 +356,333 @@ function toggleLoginMethod() {
         wechatLogin.classList.add('hidden');
         accountLogin.classList.remove('hidden');
     }
+}
+
+  // 显示支付弹窗
+  function showPaymentModal() {
+    document.getElementById('payment-modal').classList.remove('hidden');
+}
+
+// 隐藏支付弹窗
+function hidePaymentModal() {
+    document.getElementById('payment-modal').classList.add('hidden');
+}
+
+
+function showPaymentModal() {
+    document.getElementById('payment-modal').classList.remove('hidden');
+}
+
+function hidePaymentModal() {
+    document.getElementById('payment-modal').classList.add('hidden');
+}
+
+function switchIdentity(identity) {
+    // 获取所有商家特有的表单项
+    const merchantOnlyFields = document.querySelectorAll('.merchant-only');
+    // 获取所有学生特有的表单项
+    const studentOnlyFields = document.querySelectorAll('.student-only');
+    // 获取商家和学生共有的表单项
+    const commonFields = document.querySelectorAll('.common-field');
+    
+    // 获取身份选择按钮
+    const merchantBtn = document.getElementById('merchant-btn');
+    const studentBtn = document.getElementById('student-btn');
+    
+    // 更新页面标题
+    const pageTitle = document.getElementById('page-title');
+    
+    if (identity === 'merchant') {
+        // 显示商家特有的表单项
+        merchantOnlyFields.forEach(field => field.classList.remove('hidden'));
+        // 隐藏学生特有的表单项
+        studentOnlyFields.forEach(field => field.classList.add('hidden'));
+        // 更新按钮样式
+        merchantBtn.classList.add('bg-red-500', 'text-white');
+        merchantBtn.classList.remove('bg-gray-200', 'text-gray-700');
+        studentBtn.classList.add('bg-gray-200', 'text-gray-700');
+        studentBtn.classList.remove('bg-red-500', 'text-white');
+        // 更新页面标题
+        pageTitle.textContent = '商家入驻';
+    } else if (identity === 'student') {
+        // 隐藏商家特有的表单项
+        merchantOnlyFields.forEach(field => field.classList.add('hidden'));
+        // 显示学生特有的表单项
+        studentOnlyFields.forEach(field => field.classList.remove('hidden'));
+        // 更新按钮样式
+        studentBtn.classList.add('bg-red-500', 'text-white');
+        studentBtn.classList.remove('bg-gray-200', 'text-gray-700');
+        merchantBtn.classList.add('bg-gray-200', 'text-gray-700');
+        merchantBtn.classList.remove('bg-red-500', 'text-white');
+        // 更新页面标题
+        pageTitle.textContent = '学生入驻';
+    }
+}
+// 创建推广名片弹窗
+function createPromotionCardModal() {
+    // 检查是否已存在弹窗
+    if (document.getElementById('promotion-card-modal')) {
+        return;
+    }
+    
+    // 创建弹窗元素
+    const modal = document.createElement('div');
+    modal.id = 'promotion-card-modal';
+    modal.className = 'hidden absolute z-50';
+    modal.style.cssText = 'top: 0; left: 0; right: 0; bottom: 0; margin: 0 auto; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5);';
+    
+    // 弹窗内容
+    modal.innerHTML = `
+    <div class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg w-[80%] max-w-xs overflow-hidden relative">
+        <!-- 关闭按钮 -->
+        <div onclick="hidePromotionCard()" class="absolute top-2 right-2 w-7 h-7 bg-black bg-opacity-30 rounded-full flex items-center justify-center cursor-pointer z-10">
+            <i class="fas fa-times text-white text-sm"></i>
+        </div>
+        
+        <!-- 海报内容 -->
+        <div class="p-3 text-center">
+            <h3 class="font-bold text-base mb-1">我的推广海报</h3>
+            <p class="text-gray-500 text-xs mb-3">扫描二维码或保存图片分享给好友</p>
+            
+            <!-- 海报图片 -->
+            <div class="bg-red-50 rounded-lg p-3 mb-3">
+                <div class="bg-white rounded-lg p-2 shadow-md">
+                    <div class="flex items-center mb-2">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&h=50&fit=crop&crop=face" 
+                             alt="用户头像" class="w-8 h-8 rounded-full object-cover mr-2">
+                        <div class="text-left">
+                            <h4 class="font-bold text-xs">张同学</h4>
+                            <p class="text-gray-500 text-[10px]">邀请您加入满跑</p>
+                        </div>
+                    </div>
+                    <div class="bg-gradient-to-r from-red-500 to-orange-400 text-white p-3 rounded-lg mb-2">
+                        <div class="flex items-center">
+                            <div class="flex-1">
+                                <p class="font-bold text-sm">慢跑App</p>
+                                <p class="text-xs mt-1">能吃能玩能赚钱</p>
+                            </div>
+                            <div class="ml-2">
+                                <i class="fas fa-utensils text-yellow-200 text-sm mr-1"></i>
+                                <i class="fas fa-gamepad text-yellow-200 text-sm mr-1"></i>
+                                <i class="fas fa-coins text-yellow-200 text-sm"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-center">
+                        <!-- 二维码 -->
+                        <div class="w-24 h-24 bg-gray-200 rounded-md flex items-center justify-center">
+                            <i class="fas fa-qrcode text-gray-400 text-2xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 操作按钮 -->
+            <div class="flex space-x-2">
+                <button class="flex-1 bg-gray-100 py-1.5 rounded-lg text-gray-700 text-sm font-medium">
+                    <i class="fas fa-download mr-1"></i> 保存图片
+                </button>
+                <button class="flex-1 bg-red-500 py-1.5 rounded-lg text-white text-sm font-medium">
+                    <i class="fas fa-share-alt mr-1"></i> 立即分享
+                </button>
+            </div>
+        </div>
+    </div>
+    `;
+    
+    // 将弹窗添加到profile页面
+    const profilePage = document.getElementById('profile');
+    if (profilePage) {
+        profilePage.appendChild(modal);
+    }
+}
+
+// 页面加载时创建弹窗
+document.addEventListener('DOMContentLoaded', function() {
+    createPromotionCardModal();
+});
+
+// 显示推广名片弹窗
+function showPromotionCard() {
+    // 确保弹窗已创建
+    createPromotionCardModal();
+    
+    const modal = document.getElementById('promotion-card-modal');
+    const profilePage = document.getElementById('profile');
+    
+    if (modal && profilePage) {
+        // 确保弹窗在profile页面内部
+        if (!profilePage.contains(modal)) {
+            profilePage.appendChild(modal);
+        }
+        modal.classList.remove('hidden');
+        // 防止背景滚动，但只针对profile页面
+        const scrollContainer = profilePage.querySelector('.overflow-y-auto');
+        if (scrollContainer) {
+            scrollContainer.style.overflow = 'hidden';
+        }
+    } else {
+        console.error('找不到推广名片弹窗元素或profile页面元素');
+    }
+}
+
+// 隐藏推广名片弹窗
+function hidePromotionCard() {
+    const modal = document.getElementById('promotion-card-modal');
+    const profilePage = document.getElementById('profile');
+    
+    if (modal) {
+        modal.classList.add('hidden');
+        // 恢复背景滚动，但只针对profile页面
+        if (profilePage) {
+            const scrollContainer = profilePage.querySelector('.overflow-y-auto');
+            if (scrollContainer) {
+                scrollContainer.style.overflow = 'auto';
+            }
+        }
+    }
+}
+
+// Tab切换功能
+function switchTab(tabName) {
+    // 重置所有tab和内容
+    document.getElementById('tab-menu').classList.remove('text-red-500', 'border-b-2', 'border-red-500');
+    document.getElementById('tab-menu').classList.add('text-gray-500');
+    document.getElementById('tab-info').classList.remove('text-red-500', 'border-b-2', 'border-red-500');
+    document.getElementById('tab-info').classList.add('text-gray-500');
+    
+    document.getElementById('content-menu').classList.add('hidden');
+    document.getElementById('content-info').classList.add('hidden');
+    
+    // 激活选中的tab和内容
+    document.getElementById('tab-' + tabName).classList.remove('text-gray-500');
+    document.getElementById('tab-' + tabName).classList.add('text-red-500', 'border-b-2', 'border-red-500');
+    document.getElementById('content-' + tabName).classList.remove('hidden');
+}
+
+function categoryClick(category) {
+    const categoryItems = document.querySelectorAll('.category-item');
+    // 移除所有分类的激活状态
+    categoryItems.forEach(i => {
+        i.classList.remove('active', 'border-l-4', 'border-red-500', 'bg-white', 'font-medium');
+        i.classList.add('text-gray-500');
+    });
+
+    // 添加当前分类的激活状态
+    category.classList.add('active', 'border-l-4', 'border-red-500', 'bg-white', 'font-medium');
+    category.classList.remove('text-gray-500');
+}
+function productItemsClick(product) {
+    // 如果点击的是加号按钮，不显示详情弹窗
+    // if (product.target.closest('button')) {
+    //     return;
+    // }
+    
+    // 获取商品信息
+    const img = product.querySelector('img').src;
+    const name = product.querySelector('h4').textContent;
+    const desc = product.querySelector('p').textContent;
+    const price = product.querySelector('.text-red-500').textContent.replace('¥', '');
+    
+    // 显示商品详情弹窗
+    showProductDetail(img, name, desc, price);
+}
+
+// 食品安全档案弹窗
+function showFoodSafetyInfo() {
+    document.getElementById('food-safety-popup').classList.remove('hidden');
+    document.body.style.overflow = 'hidden'; // 禁止背景滚动
+}
+
+function closeFoodSafetyInfo() {
+    document.getElementById('food-safety-popup').classList.add('hidden');
+    document.body.style.overflow = ''; // 恢复背景滚动
+}
+
+// 商品详情弹窗
+function showProductDetail(img, name, desc, price) {
+    // 设置商品详情
+    document.getElementById('product-detail-img').src = img;
+    document.getElementById('product-detail-name').textContent = name;
+    document.getElementById('product-detail-desc').textContent = desc;
+    document.getElementById('product-detail-price').textContent = price;
+    
+    // 重置数量
+    document.querySelector('.quantity-value').textContent = '0';
+    updateQuantityButtonState();
+    
+    // 显示弹窗
+    document.getElementById('product-detail-popup').classList.remove('hidden');
+    document.body.style.overflow = 'hidden'; // 禁止背景滚动
+}
+
+function closeProductDetail() {
+    document.getElementById('product-detail-popup').classList.add('hidden');
+    document.body.style.overflow = ''; // 恢复背景滚动
+}
+
+// 初始化数量按钮事件
+document.addEventListener('DOMContentLoaded', function() {
+    // 为数量按钮添加点击事件
+    const quantityBtns = document.querySelectorAll('.quantity-btn');
+    quantityBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const action = this.dataset.action;
+            const quantityElement = document.querySelector('.quantity-value');
+            let quantity = parseInt(quantityElement.textContent);
+            
+            if (action === 'increase') {
+                quantity++;
+            } else if (action === 'decrease' && quantity > 0) {
+                quantity--;
+            }
+            
+            quantityElement.textContent = quantity;
+            updateQuantityButtonState();
+        });
+    });
+});
+
+// 更新数量按钮状态
+function updateQuantityButtonState() {
+    const quantity = parseInt(document.querySelector('.quantity-value').textContent);
+    const decreaseBtn = document.querySelector('.quantity-btn[data-action="decrease"]');
+    
+    if (quantity <= 0) {
+        decreaseBtn.classList.add('opacity-50');
+        decreaseBtn.disabled = true;
+    } else {
+        decreaseBtn.classList.remove('opacity-50');
+        decreaseBtn.disabled = false;
+    }
+}
+
+// 加入购物车
+function addToCart() {
+    const name = document.getElementById('product-detail-name').textContent;
+    const price = document.getElementById('product-detail-price').textContent;
+    const quantity = parseInt(document.querySelector('.quantity-value').textContent);
+    const selectedSpec = document.querySelector('.spec-option.selected').textContent;
+    
+    if (quantity <= 0) {
+        alert('请选择商品数量');
+        return;
+    }
+    
+    // 这里可以添加实际的购物车逻辑
+    console.log(`添加到购物车: ${name} (${selectedSpec}) x${quantity}, 单价: ¥${price}`);
+    
+    // 显示成功提示
+    const toast = document.createElement('div');
+    toast.className = 'fixed bottom-20 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-70 text-white px-4 py-2 rounded-full text-sm';
+    toast.textContent = '已加入购物车';
+    document.body.appendChild(toast);
+    
+    // 3秒后移除提示
+    setTimeout(() => {
+        toast.remove();
+    }, 3000);
+    
+    // 关闭弹窗
+    closeProductDetail();
 }

@@ -2,24 +2,25 @@
 <div class="page" id="home">
     <div class="bg-gray-50 min-h-full pb-16">
         <!-- 头部搜索栏 -->
-        <div class="primary-red p-3 pb-4">
-            <div class="flex items-center justify-between mb-3">
-                <div onclick="showPage('school-select')" class="flex items-center space-x-2 cursor-pointer">
-                    <i class="fas fa-map-marker-alt text-white text-lg"></i>
-                    <span class="text-white font-medium text-body-sm">北京大学</span>
-                    <i class="fas fa-chevron-down text-white text-xs"></i>
+        <div class="header-curve relative">
+            <div class="w-[90%] flex flex-row items-center justify-between relative z-10">
+                <div class="flex-1">
+                    <div onclick="showPage('school-select')" class="flex items-center space-x-2 cursor-pointer px-3 py-1.5">
+                        <i class="fas fa-university text-white text-sm"></i>
+                        <span class="text-white font-medium text-body-sm">北京大学</span>
+                        <i class="fas fa-chevron-down text-white text-xs"></i>
+                    </div>
                 </div>
-                <i class="fas fa-bell text-white text-lg"></i>
-            </div>
-            <div class="bg-white rounded-lg p-2.5 flex items-center space-x-2">
-                <i class="fas fa-search text-gray-400 text-lg"></i>
-                <input type="text" placeholder="搜索商家、美食、服务..." class="flex-1 outline-none text-body-sm">
+                <div class="bg-gray-100 rounded-full p-2 flex items-center space-x-2 shadow-sm cursor-pointer w-40" onclick="showPage('search')">
+                    <i class="fas fa-search text-red-500 text-sm ml-2"></i>
+                    <div class="flex-1 text-gray-500 text-xs truncate">输入商家名称查询</div>
+                </div>
             </div>
         </div>
 
         <!-- 轮播图 -->
-        <div class="px-3 -mt-2 mb-3">
-            <div class="relative rounded-lg overflow-hidden h-24">
+        <div class="px-3 -mt-2 mb-3 relative z-10">
+            <div class="relative rounded-lg overflow-hidden h-28">
                 <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&h=200&fit=crop" 
                      alt="校园美食" class="w-full h-full object-cover">
                 <div class="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
@@ -32,35 +33,75 @@
         <div class="px-3 mb-4">
             <div class="grid grid-cols-4 gap-3">
                 <div class="text-center">
-                    <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mx-auto mb-1">
-                        <i class="fas fa-utensils text-red-500 text-lg"></i>
+                    <div class="w-14 flex items-center justify-center mx-auto mb-1">
+                        <i class="fas fa-print text-red-500 text-3xl"></i>
                     </div>
-                    <span class="text-caption text-gray-700">美食</span>
+                    <span class="text-caption text-gray-700">打印资料</span>
                 </div>
                 <div class="text-center">
-                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-1">
-                        <i class="fas fa-shopping-bag text-blue-500 text-lg"></i>
+                    <div class="w-14 flex items-center justify-center mx-auto mb-1">
+                        <i class="fas fa-motorcycle text-red-500 text-3xl"></i>
                     </div>
-                    <span class="text-caption text-gray-700">购物</span>
+                    <span class="text-caption text-gray-700">申请骑手</span>
                 </div>
                 <div class="text-center">
-                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-1">
-                        <i class="fas fa-running text-green-500 text-lg"></i>
+                    <div class="w-14 flex items-center justify-center mx-auto mb-1">
+                        <i class="fas fa-briefcase text-red-500 text-3xl"></i>
                     </div>
-                    <span class="text-caption text-gray-700">跑腿</span>
+                    <span class="text-caption text-gray-700">校园兼职</span>
                 </div>
                 <div class="text-center">
-                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-1">
-                        <i class="fas fa-ellipsis-h text-purple-500 text-lg"></i>
+                    <div class="w-14 flex items-center justify-center mx-auto mb-1">
+                        <i class="fas fa-trophy text-red-500 text-3xl"></i>
                     </div>
-                    <span class="text-caption text-gray-700">更多</span>
+                    <span class="text-caption text-gray-700">校园赛事</span>
                 </div>
             </div>
         </div>
 
         <!-- 商家列表 -->
         <div class="px-3">
-            <h3 class="font-bold mb-3 text-heading-md">附近商家</h3>
+            <div class="flex items-center justify-between mb-3">
+                <h3 class="font-bold text-heading-md-small">附近商家</h3>
+                <div class="flex items-center space-x-2">
+                    <div class="flex items-center space-x-1 bg-white rounded-full px-3 py-1.5 text-sm text-gray-700 shadow-sm" onclick="toggleFilterOptions()">
+                        <i class="fas fa-filter text-gray-500"></i>
+                        <span>筛选</span>
+                    </div>
+                    <div class="flex items-center space-x-1 bg-white rounded-full px-3 py-1.5 text-sm text-gray-700 shadow-sm" onclick="toggleSortOptions()">
+                        <i class="fas fa-random text-gray-500"></i>
+                        <span>综合排序</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 筛选选项 -->
+            <div id="filter-options" class="bg-white rounded-lg p-3 mb-3 hidden">
+                <div class="text-sm font-medium mb-2">商家类型</div>
+                <div class="flex flex-wrap gap-2 mb-3">
+                    <div class="filter-tag active">全部</div>
+                    <div class="filter-tag">快餐</div>
+                    <div class="filter-tag">咖啡</div>
+                    <div class="filter-tag">川菜</div>
+                    <div class="filter-tag">甜品</div>
+                </div>
+                <div class="text-sm font-medium mb-2">配送范围</div>
+                <div class="flex flex-wrap gap-2">
+                    <div class="filter-tag active">全部</div>
+                    <div class="filter-tag">500m内</div>
+                    <div class="filter-tag">1km内</div>
+                    <div class="filter-tag">2km内</div>
+                </div>
+            </div>
+            
+            <!-- 排序选项 -->
+            <div id="sort-options" class="bg-white rounded-lg p-3 mb-3 hidden">
+                <div class="sort-option active">综合排序</div>
+                <div class="sort-option">距离最近</div>
+                <div class="sort-option">评分最高</div>
+                <div class="sort-option">起送价最低</div>
+            </div>
+            
             <div class="space-y-2">
                 <div class="bg-white rounded-lg p-3 card-hover cursor-pointer" onclick="showPage('shop-detail')">
                     <div class="flex space-x-3">
@@ -108,3 +149,70 @@
         </div>
     </div>
 </div>
+
+<script>
+    // 筛选和排序功能
+    function toggleFilterOptions() {
+        const filterOptions = document.getElementById('filter-options');
+        const sortOptions = document.getElementById('sort-options');
+        
+        // 隐藏排序选项
+        sortOptions.classList.add('hidden');
+        
+        // 切换筛选选项的显示状态
+        filterOptions.classList.toggle('hidden');
+    }
+    
+    function toggleSortOptions() {
+        const filterOptions = document.getElementById('filter-options');
+        const sortOptions = document.getElementById('sort-options');
+        
+        // 隐藏筛选选项
+        filterOptions.classList.add('hidden');
+        
+        // 切换排序选项的显示状态
+        sortOptions.classList.toggle('hidden');
+    }
+    
+    // 页面加载完成后初始化筛选和排序功能
+    document.addEventListener('DOMContentLoaded', function() {
+        // 初始化筛选标签点击事件
+        const filterTags = document.querySelectorAll('.filter-tag');
+        filterTags.forEach(tag => {
+            tag.addEventListener('click', function() {
+                // 同一组中只能有一个标签处于激活状态
+                const siblings = Array.from(this.parentNode.children);
+                siblings.forEach(sibling => {
+                    sibling.classList.remove('active');
+                });
+                
+                // 激活当前点击的标签
+                this.classList.add('active');
+                
+                // 模拟筛选效果（实际应用中应该根据筛选条件过滤数据）
+                console.log('筛选条件：', this.textContent);
+            });
+        });
+        
+        // 初始化排序选项点击事件
+        const sortOptions = document.querySelectorAll('.sort-option');
+        sortOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                // 只能有一个排序选项处于激活状态
+                const siblings = Array.from(this.parentNode.children);
+                siblings.forEach(sibling => {
+                    sibling.classList.remove('active');
+                });
+                
+                // 激活当前点击的选项
+                this.classList.add('active');
+                
+                // 隐藏排序选项面板
+                document.getElementById('sort-options').classList.add('hidden');
+                
+                // 模拟排序效果（实际应用中应该根据排序条件对数据进行排序）
+                console.log('排序条件：', this.textContent);
+            });
+        });
+    });
+</script>

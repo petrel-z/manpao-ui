@@ -11,7 +11,7 @@
                 <button class="text-white font-semibold text-sm">保存</button>
             </div>
         </div>
-
+        <div class="h-[78vh] overflow-y-auto">
         <!-- 头像编辑 -->
         <div class="p-3">
             <div class="bg-white rounded-lg p-4">
@@ -35,28 +35,27 @@
         <!-- 基本信息编辑 -->
         <div class="px-3 space-y-3">
             <div class="bg-white rounded-lg p-3">
-                <label class="block text-sm font-medium text-gray-700 mb-2">昵称</label>
-                <input type="text" value="张同学" class="w-full p-2.5 border border-gray-200 rounded-lg focus:border-red-400 focus:outline-none transition-colors text-sm">
-            </div>
-            
-            <div class="bg-white rounded-lg p-3">
-                <label class="block text-sm font-medium text-gray-700 mb-2">性别</label>
-                <div class="flex space-x-4">
-                    <label class="flex items-center text-sm">
-                        <input type="radio" name="gender" value="male" checked class="mr-2 text-red-500">
-                        <span>男</span>
-                    </label>
-                    <label class="flex items-center text-sm">
-                        <input type="radio" name="gender" value="female" class="mr-2 text-red-500">
-                        <span>女</span>
-                    </label>
+                <div class="flex items-center">
+                    <label class="text-sm font-medium text-gray-700 w-24">昵称</label>
+                    <input type="text" value="张同学" class="flex-1 p-2.5 border border-gray-200 rounded-lg focus:border-red-400 focus:outline-none transition-colors text-sm">
                 </div>
             </div>
             
-            <div class="bg-white rounded-lg p-3">
-                <label class="block text-sm font-medium text-gray-700 mb-2">个人简介</label>
-                <textarea placeholder="介绍一下自己吧..." rows="3" class="w-full p-2.5 border border-gray-200 rounded-lg resize-none focus:border-red-400 focus:outline-none transition-colors text-sm"></textarea>
-            </div>
+            <!-- <div class="bg-white rounded-lg p-3">
+                <div class="flex items-center">
+                    <label class="text-sm font-medium text-gray-700 w-24">性别</label>
+                    <div class="flex space-x-4 flex-1">
+                        <label class="flex items-center text-sm">
+                            <input type="radio" name="gender" value="male" checked class="mr-2 text-red-500">
+                            <span>男</span>
+                        </label>
+                        <label class="flex items-center text-sm">
+                            <input type="radio" name="gender" value="female" class="mr-2 text-red-500">
+                            <span>女</span>
+                        </label>
+                    </div>
+                </div>
+            </div> -->
         </div>
 
         <!-- 认证状态 -->
@@ -64,8 +63,8 @@
             <div class="bg-white rounded-lg p-3">
                 <h3 class="font-bold mb-3 text-sm">认证状态</h3>
                 <div class="space-y-3">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center space-x-3">
+                    <div class="flex items-center">
+                        <div class="flex items-center space-x-3 w-3/4">
                             <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
                                 <i class="fas fa-check text-green-500 text-xs"></i>
                             </div>
@@ -74,24 +73,11 @@
                                 <p class="text-gray-600 text-xs">138****8888</p>
                             </div>
                         </div>
-                        <span class="text-green-600 text-xs font-medium">已认证</span>
+                        <span class="text-green-600 text-xs font-medium ml-auto">已认证</span>
                     </div>
                     
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center space-x-3">
-                            <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                                <i class="fas fa-id-card text-blue-500 text-xs"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-sm">学生认证</h4>
-                                <p class="text-gray-600 text-xs">北京大学在校学生</p>
-                            </div>
-                        </div>
-                        <button class="text-red-500 text-xs font-medium">去认证</button>
-                    </div>
-                    
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center space-x-3">
+                    <div class="flex items-center">
+                        <div class="flex items-center space-x-3 w-3/4">
                             <div class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
                                 <i class="fas fa-shield-alt text-gray-400 text-xs"></i>
                             </div>
@@ -100,7 +86,9 @@
                                 <p class="text-gray-600 text-xs">提高账户安全性</p>
                             </div>
                         </div>
-                        <button class="text-red-500 text-xs font-medium">去认证</button>
+                        <div class="flex space-x-2 ml-auto">
+                            <button onclick="showPage('real-name-auth')" class="text-red-500 text-xs font-medium">去认证</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -110,35 +98,33 @@
         <div class="px-3 mt-4">
             <div class="bg-white rounded-lg p-3">
                 <h3 class="font-bold mb-3 text-sm">账户设置</h3>
-                <div class="space-y-3">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center space-x-3">
+                <div class="space-y-4">
+                    <div class="flex items-center py-2">
+                        <div class="flex items-center space-x-3 w-3/4">
                             <i class="fas fa-lock text-gray-600 text-sm"></i>
                             <span class="text-sm">修改密码</span>
                         </div>
-                        <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+                        <i class="fas fa-chevron-right text-gray-400 text-xs ml-auto"></i>
                     </div>
                     
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center space-x-3">
-                            <i class="fas fa-bell text-gray-600 text-sm"></i>
-                            <span class="text-sm">消息通知</span>
-                        </div>
-                        <div class="flex items-center space-x-2">
-                            <span class="text-gray-500 text-xs">已开启</span>
-                            <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center space-x-3">
+                    <div class="flex items-center py-2">
+                        <div class="flex items-center space-x-3 w-3/4">
                             <i class="fas fa-user-shield text-gray-600 text-sm"></i>
-                            <span class="text-sm">隐私设置</span>
+                            <span class="text-sm">隐私政策</span>
                         </div>
-                        <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+                        <i class="fas fa-chevron-right text-gray-400 text-xs ml-auto"></i>
+                    </div>
+                    
+                    <div class="flex items-center py-2">
+                        <div class="flex items-center space-x-3 w-3/4">
+                            <i class="fas fa-file-contract text-gray-600 text-sm"></i>
+                            <span class="text-sm">用户服务协议</span>
+                        </div>
+                        <i class="fas fa-chevron-right text-gray-400 text-xs ml-auto"></i>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </div>
