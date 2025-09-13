@@ -1,0 +1,294 @@
+<!-- 提交订单 -->
+<div class="page" id="submit-order">
+  <div class="min-h-full bg-gray-50">
+    <!-- 头部导航 -->
+    <div
+      class="bg-white p-3 flex items-center justify-between sticky top-0 z-10 shadow-sm"
+    >
+      <i
+        class="fas fa-arrow-left text-gray-600 text-lg cursor-pointer"
+        onclick="showPage('shop-detail')"
+      ></i>
+      <h1 class="font-semibold text-body-lg">确认订单</h1>
+      <div class="w-6"></div>
+    </div>
+
+    <div class="max-h-[55vh] overflow-y-auto custom-scrollbar">
+      <!-- 商家信息 -->
+      <div class="bg-white mx-3 mt-3 rounded-lg overflow-hidden shadow-sm">
+        <div class="p-3 border-b border-gray-100">
+          <div class="flex items-center space-x-3">
+            <img
+              src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=60&h=60&fit=crop"
+              alt="麦当劳"
+              class="w-12 h-12 rounded-lg object-cover"
+            />
+            <div class="flex-1">
+              <h4 class="font-semibold text-body-md">麦当劳（北大店）</h4>
+              <p class="text-gray-600 text-caption">距离1.5km</p>
+            </div>
+            <span class="text-orange-500 font-bold text-caption">★ 4.8</span>
+          </div>
+        </div>
+
+        <!-- 商品列表 -->
+        <div class="p-3">
+          <h5 class="font-medium text-body-sm mb-3 text-gray-700">订单商品</h5>
+
+          <!-- 商品1 -->
+          <div class="flex items-center space-x-3 mb-3">
+            <img
+              src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=60&h=60&fit=crop"
+              alt="巨无霸"
+              class="w-12 h-12 rounded-lg object-cover"
+            />
+            <div class="flex-1">
+              <h6 class="font-medium text-body-sm">巨无霸</h6>
+              <p class="text-gray-500 text-caption">经典牛肉汉堡</p>
+            </div>
+            <div class="text-right">
+              <p class="text-gray-400 text-caption line-through">￥25</p>
+              <p class="text-red-500 font-bold text-caption">￥22</p>
+            </div>
+            <span class="text-gray-600 text-caption">×2</span>
+          </div>
+
+          <!-- 商品2 -->
+          <div class="flex items-center space-x-3 mb-3">
+            <img
+              src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=60&h=60&fit=crop"
+              alt="薯条"
+              class="w-12 h-12 rounded-lg object-cover"
+            />
+            <div class="flex-1">
+              <h6 class="font-medium text-body-sm">中薯条</h6>
+              <p class="text-gray-500 text-caption">香脆可口</p>
+            </div>
+            <div class="text-right">
+              <p class="text-red-500 font-bold text-caption">￥12</p>
+            </div>
+            <span class="text-gray-600 text-caption">×1</span>
+          </div>
+
+          <!-- 商品3 -->
+          <div class="flex items-center space-x-3">
+            <img
+              src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=60&h=60&fit=crop"
+              alt="可乐"
+              class="w-12 h-12 rounded-lg object-cover"
+            />
+            <div class="flex-1">
+              <h6 class="font-medium text-body-sm">可口可乐</h6>
+              <p class="text-gray-500 text-caption">中杯</p>
+            </div>
+            <div class="text-right">
+              <p class="text-red-500 font-bold text-caption">￥8</p>
+            </div>
+            <span class="text-gray-600 text-caption">×1</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 订单信息 -->
+      <div class="bg-white mx-3 mt-3 rounded-lg p-3 shadow-sm">
+        <h3 class="font-medium text-body-md mb-3 flex items-center">
+          <i class="fas fa-receipt text-red-500 mr-2"></i>
+          订单信息
+        </h3>
+        <div class="space-y-2 text-caption">
+          <div class="flex justify-between">
+            <span class="text-gray-600">订单号</span>
+            <span class="text-gray-800 font-mono">#202312150001</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-gray-600">下单时间</span>
+            <span class="text-gray-800">2023-12-15 14:30</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-gray-600">预计送达</span>
+            <span class="text-gray-800">2023-12-15 15:00</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 优惠券 -->
+      <div class="bg-white mx-3 mt-3 rounded-lg p-3 shadow-sm">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center">
+            <i class="fas fa-ticket-alt text-red-500 mr-2"></i>
+            <span class="font-medium text-body-sm">优惠券</span>
+          </div>
+          <div class="flex items-center">
+            <span class="text-red-500 text-caption mr-2">-￥5</span>
+            <i class="fas fa-chevron-right text-gray-400"></i>
+          </div>
+        </div>
+        <p class="text-gray-500 text-caption ml-6 mt-1">新用户立减券</p>
+      </div>
+
+      <!-- 费用明细 -->
+      <div class="bg-white mx-3 mt-3 rounded-lg p-3 shadow-sm">
+        <h3 class="font-medium text-body-md mb-3 flex items-center">
+          <i class="fas fa-calculator text-red-500 mr-2"></i>
+          费用明细
+        </h3>
+        <div class="space-y-2 text-caption">
+          <div class="flex justify-between">
+            <span class="text-gray-600">商品小计</span>
+            <span class="text-gray-800">￥64</span>
+          </div>
+          <div class="flex justify-between text-red-500">
+            <span>优惠券</span>
+            <span>-￥5</span>
+          </div>
+          <div class="border-t border-gray-200 pt-2 mt-2">
+            <div class="flex justify-between font-semibold text-body-sm">
+              <span class="text-gray-800">实付金额</span>
+              <span class="text-red-500 text-lg">￥64</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 支付方式 -->
+      <div class="bg-white mx-3 mt-3 rounded-lg p-3 shadow-sm">
+        <h3 class="font-medium text-body-md mb-3 flex items-center">
+          <i class="fas fa-credit-card text-red-500 mr-2"></i>
+          支付方式
+        </h3>
+        <div
+          class="flex items-center justify-between p-2 bg-green-50 rounded-lg border border-green-200"
+        >
+          <div class="flex items-center">
+            <i class="fab fa-weixin text-green-500 text-xl mr-3"></i>
+            <div>
+              <p class="font-medium text-body-sm">微信支付</p>
+              <p class="text-gray-500 text-caption">推荐使用微信支付</p>
+            </div>
+          </div>
+          <i class="fas fa-check-circle text-green-500"></i>
+        </div>
+      </div>
+    </div>
+    <!-- 底部支付区域 -->
+    <div
+      class="bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-3 shadow-lg"
+    >
+      <div class="max-w-sm mx-auto">
+        <div class="flex items-center justify-between mb-3">
+          <div>
+            <p class="text-gray-600 text-caption">实付金额</p>
+            <p class="text-red-500 font-bold text-lg">￥64</p>
+          </div>
+          <button
+            class="bg-red-500 text-white px-8 py-3 rounded-lg font-medium text-body-sm hover:bg-red-600 transition-colors"
+            onclick="showPaymentModal()"
+          >
+            立即支付
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 支付成功模态框 -->
+    <div
+      id="payment-modal"
+      class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center"
+    >
+      <div class="bg-white rounded-lg p-6 mx-4 max-w-sm w-full text-center">
+        <div class="mb-4">
+          <i class="fas fa-check-circle text-green-500 text-4xl mb-3"></i>
+          <h3 class="font-bold text-lg mb-2">支付成功</h3>
+          <p class="text-gray-600 text-caption">订单已提交，商家正在准备中</p>
+        </div>
+        <div class="space-y-2 mb-4">
+          <button
+            class="w-full bg-red-500 text-white py-2 rounded-lg font-medium"
+            onclick="hidePaymentModal(); showPage('orders')"
+          >
+            查看订单
+          </button>
+          <button
+            class="w-full border border-gray-300 text-gray-700 py-2 rounded-lg"
+            onclick="hidePaymentModal(); showPage('home')"
+          >
+            返回首页
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .line-through {
+    text-decoration: line-through;
+  }
+
+  .font-mono {
+    font-family: "Courier New", monospace;
+  }
+
+  .transition-colors {
+    transition: background-color 0.2s ease;
+  }
+
+  .hover\:bg-red-600:hover {
+    background-color: #dc2626;
+  }
+
+  /* 支付按钮动画效果 */
+  @keyframes pulse {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+  }
+
+  .payment-btn:active {
+    animation: pulse 0.2s ease-in-out;
+  }
+</style>
+
+<script>
+  // 显示支付模态框
+  function showPaymentModal() {
+    const modal = document.getElementById("payment-modal");
+    if (modal) {
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+
+      // 模拟支付处理时间
+      setTimeout(() => {
+        // 这里可以添加实际的支付逻辑
+        console.log("处理微信支付...");
+      }, 500);
+    }
+  }
+
+  // 隐藏支付模态框
+  function hidePaymentModal() {
+    const modal = document.getElementById("payment-modal");
+    if (modal) {
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+    }
+  }
+
+  // 页面初始化
+  document.addEventListener("DOMContentLoaded", function () {
+    // 可以在这里添加页面初始化逻辑
+    console.log("订单页面已加载");
+  });
+
+  // 点击模态框背景关闭
+  document.addEventListener("click", function (e) {
+    const modal = document.getElementById("payment-modal");
+    if (e.target === modal) {
+      hidePaymentModal();
+    }
+  });
+</script>

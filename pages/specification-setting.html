@@ -1,0 +1,149 @@
+<!-- 规格管理 -->
+<div class="page" id="specification-setting">
+    <div class="bg-gradient-to-b from-red-50 to-white min-h-screen">
+        <!-- 头部 -->
+        <div class="bg-white rounded-b-3xl shadow-sm relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-r from-red-500 to-pink-500 opacity-10"></div>
+            <div class="relative px-4 py-6">
+                <div class="flex items-center justify-between">
+                    <button onclick="goBack()" class="p-2 -ml-2">
+                        <i class="fas fa-arrow-left text-gray-600"></i>
+                    </button>
+                    <h1 class="text-lg font-medium text-gray-800">规格设置</h1>
+                    <div class="w-8"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 规格设置内容 -->
+        <div class="p-4">
+            <div class="bg-white rounded-2xl shadow-sm p-6">
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">规格类型</label>
+                        <select id="spec-type" class="w-full p-3 border border-gray-200 rounded-lg" onchange="changeSpecType()">
+                            <option value="unified">统一规格</option>
+                            <option value="single">单规格</option>
+                            <option value="multiple">多规格</option>
+                        </select>
+                    </div>
+                    
+                    <div id="single-spec-section" class="hidden">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm font-medium">规格选项</span>
+                            <button onclick="addSpecOption()" class="text-red-500 text-sm">
+                                <i class="fas fa-plus mr-1"></i>添加选项
+                            </button>
+                        </div>
+                        <div id="spec-options" class="space-y-2">
+                            <div class="flex items-center space-x-2 p-2 border border-gray-200 rounded-lg">
+                                <input type="text" placeholder="规格名称" class="flex-1 p-2 border-0 focus:outline-none">
+                                <input type="number" placeholder="加价" class="w-20 p-2 border-0 focus:outline-none text-right">
+                                <button class="text-red-500 text-sm">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="multiple-spec-section" class="hidden">
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-sm font-medium">规格组1</span>
+                                    <button class="text-red-500 text-sm">
+                                        <i class="fas fa-plus mr-1"></i>添加选项
+                                    </button>
+                                </div>
+                                <input type="text" placeholder="规格组名称（如：颜色）" class="w-full p-2 border border-gray-200 rounded-lg mb-2">
+                                <div class="space-y-1">
+                                    <div class="flex items-center space-x-2 p-2 bg-gray-50 rounded">
+                                        <input type="text" placeholder="选项名称" class="flex-1 p-1 border-0 bg-transparent focus:outline-none">
+                                        <button class="text-red-500 text-xs">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 规格预览 -->
+                    <div id="spec-preview" class="hidden">
+                        <div class="border-t pt-4 mt-4">
+                            <h4 class="text-sm font-medium text-gray-700 mb-2">规格预览</h4>
+                            <div id="spec-preview-content" class="text-sm text-gray-600">
+                                <!-- 预览内容将在这里显示 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部按钮 -->
+        <div class="fixed bottom-0 left-0 right-0 p-4 bg-white border-t">
+            <div class="flex space-x-3">
+                <button onclick="goBack()" class="flex-1 py-3 border border-gray-200 rounded-lg text-gray-600">取消</button>
+                <button onclick="saveSpecSettings()" class="flex-1 py-3 bg-red-500 text-white rounded-lg">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 规格设置相关函数
+    window.changeSpecType = function() {
+        const specType = document.getElementById('spec-type').value;
+        const singleSection = document.getElementById('single-spec-section');
+        const multipleSection = document.getElementById('multiple-spec-section');
+        const preview = document.getElementById('spec-preview');
+        
+        // 隐藏所有区域
+        singleSection.classList.add('hidden');
+        multipleSection.classList.add('hidden');
+        preview.classList.add('hidden');
+        
+        // 根据选择显示对应区域
+        if (specType === 'single') {
+            singleSection.classList.remove('hidden');
+            preview.classList.remove('hidden');
+        } else if (specType === 'multiple') {
+            multipleSection.classList.remove('hidden');
+            preview.classList.remove('hidden');
+        }
+    };
+    
+    window.addSpecOption = function() {
+        const container = document.getElementById('spec-options');
+        const newOption = document.createElement('div');
+        newOption.className = 'flex items-center space-x-2 p-2 border border-gray-200 rounded-lg';
+        newOption.innerHTML = `
+            <input type="text" placeholder="规格名称" class="flex-1 p-2 border-0 focus:outline-none">
+            <input type="number" placeholder="加价" class="w-20 p-2 border-0 focus:outline-none text-right">
+            <button onclick="this.parentElement.remove()" class="text-red-500 text-sm">
+                <i class="fas fa-trash"></i>
+            </button>
+        `;
+        container.appendChild(newOption);
+    };
+    
+    window.saveSpecSettings = function() {
+        // 保存规格设置逻辑
+        const specType = document.getElementById('spec-type').value;
+        
+        // 这里可以添加保存到本地存储或发送到服务器的逻辑
+        console.log('保存规格设置:', specType);
+        
+        // 显示成功提示
+        alert('规格设置已保存！');
+        
+        // 返回上一页
+        goBack();
+    };
+    
+    window.goBack = function() {
+        // 返回到新增商品页面
+        showPage('add-goods');
+    };
+</script>

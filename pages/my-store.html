@@ -1,0 +1,164 @@
+<!-- 我的小店 -->
+<div class="page" id="my-store">
+    <div class="min-h-full bg-gray-50 pb-20 h-[65vh] overflow-y-auto">
+        <!-- 头部背景区域 -->
+        <div class="relative h-100 overflow-hidden">
+            <!-- 背景头像虚化效果 -->
+            <div class="absolute inset-0">
+                <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=300&fit=crop" 
+                     alt="店铺背景" class="w-full h-full object-cover filter blur-sm scale-110">
+                <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+            </div>
+            
+            <!-- 头部导航 -->
+            <div class="relative z-10 flex items-center justify-between p-4 pt-2">
+                <button onclick="history.back()" class="w-8 h-8 flex items-center justify-center text-white">
+                    <i class="fas fa-chevron-left text-lg"></i>
+                </button>
+                <h1 class="text-white font-bold text-lg">我的小店</h1>
+                <div class="flex items-center space-x-3">
+                    <button class="w-8 h-8 flex items-center justify-center text-white bg-white bg-opacity-20 rounded-full">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 店铺信息 - 居中上下结构 -->
+            <div class="relative z-10 flex flex-col items-center justify-center px-4 mt-8 mb-10 ">
+                <!-- 店铺头像 -->
+                <div class="w-20 h-20 bg-white rounded-full p-1 shadow-lg mb-4">
+                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=80&h=80&fit=crop" 
+                         alt="店铺头像" class="w-full h-full rounded-full object-cover">
+                </div>
+                
+                <!-- 店铺信息 -->
+                <div class="text-center">
+                    <h2 class="text-white font-bold text-xl mb-2">男生7号楼小店</h2>
+                    <p class="text-white text-opacity-90 text-sm">
+                        <i class="fas fa-map-marker-alt mr-1"></i>
+                        所属学院：河南师范大学
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 余额卡片 -->
+        <div class="px-4 -mt-8 relative z-20">
+            <div class="bg-white rounded-2xl p-4 shadow-lg">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-gray-700 font-medium">我的余额（元）</h3>
+                    <button class="bg-red-500 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-red-600 transition-colors">
+                        提现
+                    </button>
+                </div>
+                <div class="text-3xl font-bold text-gray-900 mb-4">0.00</div>
+                
+                <!-- 统计数据 -->
+                <div class="grid grid-cols-3 gap-4 pt-4 border-t border-gray-100">
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-gray-900">0</div>
+                        <div class="text-gray-500 text-sm mt-1">今日订单</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-gray-900">0</div>
+                        <div class="text-gray-500 text-sm mt-1">总订单</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-orange-500">1</div>
+                        <div class="text-gray-500 text-sm mt-1">金豆</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 功能菜单 -->
+        <div class="px-4 mt-6 space-y-3">
+            
+            <!-- 订单管理 -->
+            <div 
+            onclick="showPage('order-magene')"
+            class="bg-white rounded-xl p-4 shadow-sm flex items-center justify-between hover:bg-gray-50 transition-colors cursor-pointer">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-clipboard-list text-blue-500 text-lg"></i>
+                    </div>
+                    <span class="text-gray-900 font-medium">订单管理</span>
+                </div>
+                <i class="fas fa-chevron-right text-gray-400"></i>
+            </div>
+            
+            <!-- 分类管理 -->
+            <div class="bg-white rounded-xl p-4 shadow-sm flex items-center justify-between hover:bg-gray-50 transition-colors cursor-pointer">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-tags text-purple-500 text-lg"></i>
+                    </div>
+                    <span class="text-gray-900 font-medium">分类管理</span>
+                </div>
+                <i class="fas fa-chevron-right text-gray-400"></i>
+            </div>
+            
+            <!-- 商品管理 -->
+            <div class="bg-white rounded-xl p-4 shadow-sm flex items-center justify-between hover:bg-gray-50 transition-colors cursor-pointer">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-box text-green-500 text-lg"></i>
+                    </div>
+                    <span class="text-gray-900 font-medium">商品管理</span>
+                </div>
+                <i class="fas fa-chevron-right text-gray-400"></i>
+            </div>
+            
+            <!-- 到店核销 -->
+            <div class="bg-white rounded-xl p-4 shadow-sm flex items-center justify-between hover:bg-gray-50 transition-colors cursor-pointer">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-qrcode text-teal-500 text-lg"></i>
+                    </div>
+                    <span class="text-gray-900 font-medium">到店核销</span>
+                </div>
+                <i class="fas fa-chevron-right text-gray-400"></i>
+            </div>
+            
+            <!-- 评论管理 -->
+            <div class="bg-white rounded-xl p-4 shadow-sm flex items-center justify-between hover:bg-gray-50 transition-colors cursor-pointer">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-comments text-yellow-500 text-lg"></i>
+                    </div>
+                    <span class="text-gray-900 font-medium">评论管理</span>
+                </div>
+                <i class="fas fa-chevron-right text-gray-400"></i>
+            </div>
+        </div>
+        
+        <!-- 底部间距 -->
+        <div class="h-8"></div>
+    </div>
+</div>
+
+<style>
+/* 我的小店页面特定样式 */
+#my-store .bg-gradient-to-br {
+    background: linear-gradient(135deg, #10b981, #059669, #047857);
+}
+
+#my-store .hover\:bg-gray-50:hover {
+    background-color: #f9fafb;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#my-store .transition-colors {
+    transition: all 0.2s ease-in-out;
+}
+
+/* 卡片阴影效果 */
+#my-store .shadow-lg {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+#my-store .shadow-sm {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+</style>

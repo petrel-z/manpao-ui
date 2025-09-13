@@ -1,0 +1,435 @@
+<!-- 订单详情页面 -->
+<div class="page" id="order-detail">
+  <div class="min-h-full bg-gray-50 relative">
+    <div class="max-h-[67vh] overflow-y-auto custom-scrollbar">
+      <!-- 头部导航 -->
+      <div
+        class="bg-white p-3 flex items-center justify-between sticky top-0 z-10 shadow-sm"
+      >
+        <i
+          class="fas fa-arrow-left text-gray-600 text-lg cursor-pointer"
+          onclick="showPage('orders')"
+        ></i>
+        <h1 class="font-semibold text-body-lg">订单详情</h1>
+        <i
+          class="fas fa-share-alt text-gray-600 text-lg cursor-pointer"
+          onclick="shareOrder()"
+        ></i>
+      </div>
+
+      <!-- 核销二维码 -->
+      <div class="bg-white mx-3 mt-3 rounded-lg p-4 shadow-sm text-center">
+        <h3
+          class="font-semibold text-body-md mb-3 flex items-center justify-center"
+        >
+          <i class="fas fa-qrcode text-red-500 mr-2"></i>
+          核销码
+        </h3>
+        <div class="bg-gray-50 rounded-lg p-6 mb-3">
+          <!-- 二维码占位符 -->
+          <div
+            class="w-32 h-32 mx-auto bg-white border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center"
+          >
+            <div class="text-center">
+              <i class="fas fa-qrcode text-4xl text-gray-400 mb-2"></i>
+              <p class="text-gray-500 text-caption">核销二维码</p>
+            </div>
+          </div>
+        </div>
+        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
+          <p
+            class="text-yellow-800 text-caption flex items-center justify-center"
+          >
+            <i class="fas fa-info-circle mr-2"></i>
+            请到店出示此码给商家核销
+          </p>
+        </div>
+      </div>
+
+      <!-- 商家信息 -->
+      <div class="bg-white mx-3 mt-3 rounded-lg overflow-hidden shadow-sm">
+        <div class="p-3 border-b border-gray-100">
+          <h3 class="font-semibold text-body-md mb-3 flex items-center">
+            <i class="fas fa-store text-red-500 mr-2"></i>
+            商家信息
+          </h3>
+          <div class="flex items-center space-x-3">
+            <img
+              src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=60&h=60&fit=crop"
+              alt="麦当劳"
+              class="w-12 h-12 rounded-lg object-cover"
+            />
+            <div class="flex-1">
+              <h4 class="font-semibold text-body-md">麦当劳（北大店）</h4>
+              <p class="text-gray-600 text-caption">距离1.5km · 营业中</p>
+              <div class="flex items-center mt-1">
+                <span class="text-orange-500 font-bold text-caption mr-2"
+                  >★ 4.8</span
+                >
+                <span class="text-gray-500 text-caption">月售1000+</span>
+              </div>
+            </div>
+            <div class="flex flex-col space-y-2">
+              <button
+                class="bg-red-500 text-white px-3 py-1 rounded text-caption"
+                onclick="callMerchant()"
+              >
+                <i class="fas fa-phone mr-1"></i>联系商家
+              </button>
+              <button
+                class="border border-gray-300 text-gray-700 px-3 py-1 rounded text-caption"
+                onclick="viewLocation()"
+              >
+                <i class="fas fa-map-marker-alt mr-1"></i>查看位置
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 商家地址 -->
+        <div class="p-3">
+          <div class="flex items-start space-x-2">
+            <i class="fas fa-map-marker-alt text-red-500 mt-1"></i>
+            <div class="flex-1">
+              <p class="text-gray-800 text-caption font-medium">
+                北京大学燕园美食广场1层
+              </p>
+              <p class="text-gray-500 text-caption mt-1">
+                营业时间：07:00-22:00
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 商品信息 -->
+      <div class="bg-white mx-3 mt-3 rounded-lg p-3 shadow-sm">
+        <h3 class="font-semibold text-body-md mb-3 flex items-center">
+          <i class="fas fa-shopping-bag text-red-500 mr-2"></i>
+          商品信息
+        </h3>
+
+        <!-- 商品1 -->
+        <div class="flex items-center space-x-3 mb-3 p-2 bg-gray-50 rounded-lg">
+          <img
+            src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=60&h=60&fit=crop"
+            alt="巨无霸"
+            class="w-12 h-12 rounded-lg object-cover"
+          />
+          <div class="flex-1">
+            <h6 class="font-medium text-body-sm">巨无霸</h6>
+            <p class="text-gray-500 text-caption">经典牛肉汉堡</p>
+            <div class="flex items-center justify-between mt-1">
+              <span class="text-red-500 font-bold text-caption">￥22</span>
+              <span class="text-gray-600 text-caption">×2</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 商品2 -->
+        <div class="flex items-center space-x-3 mb-3 p-2 bg-gray-50 rounded-lg">
+          <img
+            src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=60&h=60&fit=crop"
+            alt="薯条"
+            class="w-12 h-12 rounded-lg object-cover"
+          />
+          <div class="flex-1">
+            <h6 class="font-medium text-body-sm">中薯条</h6>
+            <p class="text-gray-500 text-caption">香脆可口</p>
+            <div class="flex items-center justify-between mt-1">
+              <span class="text-red-500 font-bold text-caption">￥12</span>
+              <span class="text-gray-600 text-caption">×1</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 商品3 -->
+        <div class="flex items-center space-x-3 p-2 bg-gray-50 rounded-lg">
+          <img
+            src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=60&h=60&fit=crop"
+            alt="可乐"
+            class="w-12 h-12 rounded-lg object-cover"
+          />
+          <div class="flex-1">
+            <h6 class="font-medium text-body-sm">可口可乐</h6>
+            <p class="text-gray-500 text-caption">中杯</p>
+            <div class="flex items-center justify-between mt-1">
+              <span class="text-red-500 font-bold text-caption">￥8</span>
+              <span class="text-gray-600 text-caption">×1</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 订单信息 -->
+      <div class="bg-white mx-3 mt-3 rounded-lg p-3 shadow-sm">
+        <h3 class="font-semibold text-body-md mb-3 flex items-center">
+          <i class="fas fa-receipt text-red-500 mr-2"></i>
+          订单信息
+        </h3>
+        <div class="space-y-3">
+          <div class="flex justify-between items-center">
+            <span class="text-gray-600 text-caption">订单号</span>
+            <div class="flex items-center">
+              <span class="text-gray-800 font-mono text-caption mr-2"
+                >#202312150001</span
+              >
+              <i
+                class="fas fa-copy text-gray-400 cursor-pointer"
+                onclick="copyOrderNumber()"
+              ></i>
+            </div>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-gray-600 text-caption">下单时间</span>
+            <span class="text-gray-800 text-caption">2023-12-15 14:30</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-gray-600 text-caption">支付时间</span>
+            <span class="text-gray-800 text-caption">2023-12-15 14:32</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-gray-600 text-caption">支付方式</span>
+            <div class="flex items-center">
+              <i class="fab fa-weixin text-green-500 mr-1"></i>
+              <span class="text-gray-800 text-caption">微信支付</span>
+            </div>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-gray-600 text-caption">核销状态</span>
+            <span class="text-orange-500 text-caption font-medium">待核销</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 费用明细 -->
+      <div class="bg-white mx-3 mt-3 rounded-lg p-3 shadow-sm">
+        <h3 class="font-semibold text-body-md mb-3 flex items-center">
+          <i class="fas fa-calculator text-red-500 mr-2"></i>
+          费用明细
+        </h3>
+        <div class="space-y-2 text-caption">
+          <div class="flex justify-between">
+            <span class="text-gray-600">商品小计</span>
+            <span class="text-gray-800">￥64</span>
+          </div>
+          <div class="flex justify-between text-red-500">
+            <span>优惠券</span>
+            <span>-￥5</span>
+          </div>
+          <div class="border-t border-gray-200 pt-2 mt-2">
+            <div class="flex justify-between font-semibold text-body-sm">
+              <span class="text-gray-800">实付金额</span>
+              <span class="text-red-500 text-lg">￥64</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 底部操作区域 -->
+      <div
+        class="sticky bottom-0 bg-white border-t border-gray-200 p-3 shadow-lg mt-4"
+      >
+        <div class="flex space-x-3">
+          <button
+            class="flex-1 border border-gray-300 text-gray-700 py-3 rounded-lg font-medium text-body-sm"
+            onclick="reorder()"
+          >
+            <i class="fas fa-headset mr-2"></i>申请退款
+          </button>
+          <button
+            class="flex-1 bg-red-500 text-white py-3 rounded-lg font-medium text-body-sm"
+            onclick="contactService()"
+          >
+            <i class="fas fa-redo mr-2"></i>再来一单
+          </button>
+        </div>
+      </div>
+
+      <!-- 分享模态框 -->
+      <div
+        id="share-modal"
+        class="absolute inset-0 bg-black bg-opacity-50 z-50 hidden flex items-end justify-center"
+      >
+        <div class="bg-white rounded-t-lg w-full max-w-sm p-4">
+          <div class="text-center mb-4">
+            <h3 class="font-bold text-lg mb-2">分享订单</h3>
+            <p class="text-gray-600 text-caption">分享给朋友一起享受美食</p>
+          </div>
+          <div class="grid grid-cols-4 gap-4 mb-4">
+            <div class="text-center" onclick="shareToWechat()">
+              <div
+                class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-2"
+              >
+                <i class="fab fa-weixin text-white text-xl"></i>
+              </div>
+              <p class="text-caption">微信</p>
+            </div>
+            <div class="text-center" onclick="shareToMoments()">
+              <div
+                class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-2"
+              >
+                <i class="fas fa-camera text-white text-xl"></i>
+              </div>
+              <p class="text-caption">朋友圈</p>
+            </div>
+            <div class="text-center" onclick="shareToQQ()">
+              <div
+                class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-2"
+              >
+                <i class="fab fa-qq text-white text-xl"></i>
+              </div>
+              <p class="text-caption">QQ</p>
+            </div>
+            <div class="text-center" onclick="copyLink()">
+              <div
+                class="w-12 h-12 bg-gray-500 rounded-full flex items-center justify-center mx-auto mb-2"
+              >
+                <i class="fas fa-link text-white text-xl"></i>
+              </div>
+              <p class="text-caption">复制链接</p>
+            </div>
+          </div>
+          <button
+            class="w-full border border-gray-300 text-gray-700 py-2 rounded-lg"
+            onclick="hideShareModal()"
+          >
+            取消
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .font-mono {
+    font-family: "Courier New", monospace;
+  }
+
+  .line-through {
+    text-decoration: line-through;
+  }
+
+  /* 二维码动画效果 */
+  @keyframes qrcode-pulse {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+  }
+
+  .qrcode-container:hover {
+    animation: qrcode-pulse 1s ease-in-out;
+  }
+
+  /* 按钮点击效果 */
+  .btn-active:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+  }
+</style>
+
+<script>
+  // 分享订单
+  function shareOrder() {
+    const modal = document.getElementById("share-modal");
+    if (modal) {
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+    }
+  }
+
+  // 隐藏分享模态框
+  function hideShareModal() {
+    const modal = document.getElementById("share-modal");
+    if (modal) {
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+    }
+  }
+
+  // 复制订单号
+  function copyOrderNumber() {
+    const orderNumber = "#202312150001";
+    navigator.clipboard
+      .writeText(orderNumber)
+      .then(() => {
+        alert("订单号已复制到剪贴板");
+      })
+      .catch(() => {
+        alert("复制失败，请手动复制");
+      });
+  }
+
+  // 联系商家
+  function callMerchant() {
+    alert("正在拨打商家电话：010-12345678");
+  }
+
+  // 查看位置
+  function viewLocation() {
+    alert("正在打开地图导航...");
+  }
+
+  // 再来一单
+  function reorder() {
+    if (confirm("确定要再来一单吗？")) {
+      showPage("shop-detail");
+    }
+  }
+
+  // 联系客服
+  function contactService() {
+    alert("正在为您转接客服...");
+  }
+
+  // 分享到微信
+  function shareToWechat() {
+    alert("正在分享到微信...");
+    hideShareModal();
+  }
+
+  // 分享到朋友圈
+  function shareToMoments() {
+    alert("正在分享到朋友圈...");
+    hideShareModal();
+  }
+
+  // 分享到QQ
+  function shareToQQ() {
+    alert("正在分享到QQ...");
+    hideShareModal();
+  }
+
+  // 复制链接
+  function copyLink() {
+    const link = "https://manpao.com/order/202312150001";
+    navigator.clipboard
+      .writeText(link)
+      .then(() => {
+        alert("链接已复制到剪贴板");
+        hideShareModal();
+      })
+      .catch(() => {
+        alert("复制失败，请手动复制");
+        hideShareModal();
+      });
+  }
+
+  // 点击模态框背景关闭
+  document.addEventListener("click", function (e) {
+    const modal = document.getElementById("share-modal");
+    if (e.target === modal) {
+      hideShareModal();
+    }
+  });
+
+  // 页面初始化
+  document.addEventListener("DOMContentLoaded", function () {
+    console.log("订单详情页面已加载");
+  });
+</script>

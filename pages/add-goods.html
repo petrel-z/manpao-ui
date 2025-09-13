@@ -1,0 +1,272 @@
+<!-- 新增商品 -->
+<div class="page" id="add-goods">
+    <div class="min-h-full bg-gray-50 pb-20">
+        <!-- 头部导航 -->
+        <div class="primary-red p-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <i onclick="showPage('order-magene')" class="fas fa-arrow-left text-white cursor-pointer"></i>
+                    <h1 class="text-white text-lg font-medium">新增商品</h1>
+                </div>
+                <button onclick="saveProduct()" class="bg-white bg-opacity-20 text-white px-4 py-2 rounded-lg text-sm font-medium">
+                    保存
+                </button>
+            </div>
+        </div>
+
+        <!-- 表单内容 -->
+        <div class="p-4 h-[60vh] overflow-y-auto space-y-4">
+            <!-- 商品图片 -->
+            <div class="bg-white rounded-lg p-4">
+                <h3 class="text-sm font-medium text-gray-800 mb-3">商品图片</h3>
+                <div class="grid grid-cols-3 gap-3">
+                    <div class="aspect-square bg-gray-100 rounded-lg border-2 border-dashed border-gray-300 flex flex-col items-center justify-center cursor-pointer hover:border-red-400 transition-colors" onclick="uploadImage(1)">
+                        <i class="fas fa-camera text-gray-400 text-xl mb-2"></i>
+                        <span class="text-xs text-gray-500">主图</span>
+                    </div>
+                    <div class="aspect-square bg-gray-100 rounded-lg border-2 border-dashed border-gray-300 flex flex-col items-center justify-center cursor-pointer hover:border-red-400 transition-colors" onclick="uploadImage(2)">
+                        <i class="fas fa-plus text-gray-400 text-xl mb-2"></i>
+                        <span class="text-xs text-gray-500">副图</span>
+                    </div>
+                    <div class="aspect-square bg-gray-100 rounded-lg border-2 border-dashed border-gray-300 flex flex-col items-center justify-center cursor-pointer hover:border-red-400 transition-colors" onclick="uploadImage(3)">
+                        <i class="fas fa-plus text-gray-400 text-xl mb-2"></i>
+                        <span class="text-xs text-gray-500">副图</span>
+                    </div>
+                </div>
+                <p class="text-xs text-gray-500 mt-2">建议尺寸：750x750像素，支持JPG、PNG格式，最多上传5张</p>
+            </div>
+
+            <!-- 基本信息 -->
+            <div class="bg-white rounded-lg p-4">
+                <h3 class="text-sm font-medium text-gray-800 mb-3">基本信息</h3>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm text-gray-700 mb-2">商品名称 <span class="text-red-500">*</span></label>
+                        <input type="text" id="product-name" placeholder="请输入商品名称" class="w-full p-3 border border-gray-200 rounded-lg focus:border-red-400 focus:outline-none" maxlength="30">
+                        <div class="flex justify-between items-center mt-1">
+                            <span class="text-xs text-gray-500">商品名称将展示在商品列表中</span>
+                            <span class="text-xs text-gray-400"><span id="name-count">0</span>/30</span>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm text-gray-700 mb-2">商品分类 <span class="text-red-500">*</span></label>
+                        <select id="product-category" class="w-full p-3 border border-gray-200 rounded-lg focus:border-red-400 focus:outline-none">
+                            <option value="">请选择商品分类</option>
+                            <option value="food">美食饮品</option>
+                            <option value="daily">生活用品</option>
+                            <option value="study">学习用品</option>
+                            <option value="entertainment">娱乐休闲</option>
+                            <option value="service">服务类</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm text-gray-700 mb-2">商品描述</label>
+                        <textarea id="product-desc" placeholder="请输入商品描述，详细介绍商品特色和使用方法" class="w-full p-3 border border-gray-200 rounded-lg focus:border-red-400 focus:outline-none h-20 resize-none" maxlength="200"></textarea>
+                        <div class="flex justify-end mt-1">
+                            <span class="text-xs text-gray-400"><span id="desc-count">0</span>/200</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 价格库存 -->
+            <div class="bg-white rounded-lg p-4">
+                <h3 class="text-sm font-medium text-gray-800 mb-3">价格库存</h3>
+                <div class="space-y-4">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm text-gray-700 mb-2">商品价格 <span class="text-red-500">*</span></label>
+                            <div class="relative">
+                                <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">¥</span>
+                                <input type="number" id="product-price" placeholder="0.00" class="w-full pl-8 pr-3 py-3 border border-gray-200 rounded-lg focus:border-red-400 focus:outline-none" step="0.01" min="0">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm text-gray-700 mb-2">库存数量</label>
+                            <input type="number" id="product-stock" placeholder="999" class="w-full p-3 border border-gray-200 rounded-lg focus:border-red-400 focus:outline-none" min="0">
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm text-gray-700 mb-2">原价</label>
+                            <div class="relative">
+                                <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">¥</span>
+                                <input type="number" id="product-original-price" placeholder="0.00" class="w-full pl-8 pr-3 py-3 border border-gray-200 rounded-lg focus:border-red-400 focus:outline-none" step="0.01" min="0">
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1">用于显示划线价格</p>
+                        </div>
+                        <div>
+                            <label class="block text-sm text-gray-700 mb-2">限购数量</label>
+                            <input type="number" id="product-limit" placeholder="不限制" class="w-full p-3 border border-gray-200 rounded-lg focus:border-red-400 focus:outline-none" min="1">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 商品规格 -->
+            <div class="bg-white rounded-lg p-4">
+                <div class="flex items-center justify-between mb-3">
+                    <h3 class="text-sm font-medium text-gray-800">商品规格</h3>
+                    <button onclick="showPage('specification-setting')" class="text-red-500 text-sm">
+                        <i class="fas fa-cog mr-1"></i>设置规格
+                    </button>
+                </div>
+                
+                <div id="spec-type-selector" class="space-y-3">
+                    <div class="flex space-x-3">
+                        <label class="flex items-center space-x-2 cursor-pointer">
+                            <input type="radio" name="spec-type" value="unified" class="text-red-500" checked>
+                            <span class="text-sm">统一规格</span>
+                        </label>
+                        <label class="flex items-center space-x-2 cursor-pointer">
+                            <input type="radio" name="spec-type" value="single" class="text-red-500">
+                            <span class="text-sm">单规格</span>
+                        </label>
+                        <label class="flex items-center space-x-2 cursor-pointer">
+                            <input type="radio" name="spec-type" value="multiple" class="text-red-500">
+                            <span class="text-sm">多规格</span>
+                        </label>
+                    </div>
+                    <p class="text-xs text-gray-500">统一规格：所有商品使用相同价格和库存<br>单规格：如大杯、中杯、小杯<br>多规格：如颜色+尺寸的组合</p>
+                </div>
+                
+                <div id="spec-preview" class="mt-3 p-3 bg-gray-50 rounded-lg hidden">
+                    <div class="text-xs text-gray-600 mb-2">当前规格预览：</div>
+                    <div class="text-sm text-gray-800">统一规格 - 无规格选项</div>
+                </div>
+            </div>
+
+            <!-- 核销设置 -->
+            <div class="bg-white rounded-lg p-4">
+                <h3 class="text-sm font-medium text-gray-800 mb-3">核销设置</h3>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm text-gray-700 mb-2">核销有效期</label>
+                        <select id="validity-period" class="w-full p-3 border border-gray-200 rounded-lg focus:border-red-400 focus:outline-none">
+                            <option value="7">7天</option>
+                            <option value="15">15天</option>
+                            <option value="30" selected>30天</option>
+                            <option value="60">60天</option>
+                            <option value="90">90天</option>
+                            <option value="custom">自定义</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm text-gray-700 mb-2">核销说明</label>
+                        <textarea id="verification-note" placeholder="请输入核销说明，如使用方法、注意事项等" class="w-full p-3 border border-gray-200 rounded-lg focus:border-red-400 focus:outline-none h-16 resize-none" maxlength="100"></textarea>
+                        <div class="flex justify-end mt-1">
+                            <span class="text-xs text-gray-400"><span id="note-count">0</span>/100</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center space-x-3">
+                        <label class="flex items-center space-x-2 cursor-pointer">
+                            <input type="checkbox" id="allow-refund" class="text-red-500">
+                            <span class="text-sm">支持退款</span>
+                        </label>
+                        <label class="flex items-center space-x-2 cursor-pointer">
+                            <input type="checkbox" id="auto-verify" class="text-red-500">
+                            <span class="text-sm">自动核销</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 营业时间 -->
+            <div class="bg-white rounded-lg p-4">
+                <h3 class="text-sm font-medium text-gray-800 mb-3">营业时间</h3>
+                <div class="space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm text-gray-700">全天营业</span>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" id="all-day" class="sr-only peer">
+                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-red-500"></div>
+                        </label>
+                    </div>
+                    
+                    <div id="time-settings" class="space-y-2">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-sm text-gray-700 w-16">营业时间</span>
+                            <input type="time" id="open-time" value="09:00" class="p-2 border border-gray-200 rounded-lg text-sm">
+                            <span class="text-gray-500">-</span>
+                            <input type="time" id="close-time" value="22:00" class="p-2 border border-gray-200 rounded-lg text-sm">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 商品状态 -->
+            <div class="bg-white rounded-lg p-4">
+                <h3 class="text-sm font-medium text-gray-800 mb-3">商品状态</h3>
+                <div class="flex space-x-4">
+                    <label class="flex items-center space-x-2 cursor-pointer">
+                        <input type="radio" name="product-status" value="draft" class="text-red-500">
+                        <span class="text-sm">保存草稿</span>
+                    </label>
+                    <label class="flex items-center space-x-2 cursor-pointer">
+                        <input type="radio" name="product-status" value="pending" class="text-red-500" checked>
+                        <span class="text-sm">提交审核</span>
+                    </label>
+                    <label class="flex items-center space-x-2 cursor-pointer">
+                        <input type="radio" name="product-status" value="active" class="text-red-500">
+                        <span class="text-sm">立即上架</span>
+                    </label>
+                </div>
+                <p class="text-xs text-gray-500 mt-2">草稿：仅保存不提交；提交审核：等待平台审核后上架；立即上架：直接上架销售</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+    <script>
+        // 字符计数
+        document.getElementById('product-name').addEventListener('input', function() {
+            document.getElementById('name-count').textContent = this.value.length;
+        });
+        
+        document.getElementById('product-desc').addEventListener('input', function() {
+            document.getElementById('desc-count').textContent = this.value.length;
+        });
+        
+        document.getElementById('verification-note').addEventListener('input', function() {
+            document.getElementById('note-count').textContent = this.value.length;
+        });
+        
+        // 全天营业切换
+        document.getElementById('all-day').addEventListener('change', function() {
+            const timeSettings = document.getElementById('time-settings');
+            if (this.checked) {
+                timeSettings.style.display = 'none';
+            } else {
+                timeSettings.style.display = 'block';
+            }
+        });
+        
+        // 上传图片
+        function uploadImage(index) {
+            alert('上传第' + index + '张图片');
+        }
+        
+
+        
+        // 保存商品
+        function saveProduct() {
+            const name = document.getElementById('product-name').value;
+            const category = document.getElementById('product-category').value;
+            const price = document.getElementById('product-price').value;
+            
+            if (!name || !category || !price) {
+                alert('请填写必填项：商品名称、分类和价格');
+                return;
+            }
+            
+            alert('商品保存成功！');
+            showPage('order-magene');
+        }
+    </script>

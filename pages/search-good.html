@@ -1,0 +1,295 @@
+<!-- 搜索商品结果页面 -->
+<div class="page" id="search-good">
+    <div class="bg-gray-50 min-h-full">
+        <!-- 顶部搜索栏 -->
+        <div class="bg-white p-3 flex items-center space-x-3 sticky top-0 z-10 shadow-sm">
+            <i class="fas fa-arrow-left text-gray-600 text-lg cursor-pointer" onclick="showPage('search')"></i>
+            <div class="bg-gray-100 rounded-lg p-2.5 flex items-center space-x-2 flex-1">
+                <i class="fas fa-search text-gray-400 text-lg"></i>
+                <input type="text" id="search-good-input" placeholder="搜索商品..." class="flex-1 outline-none text-body-sm bg-transparent" value="汉堡">
+                <i class="fas fa-times text-gray-400 text-lg cursor-pointer" onclick="clearSearchGoodInput()"></i>
+            </div>
+            <button class="text-red-500 font-medium text-body-sm" onclick="performGoodSearch()">搜索</button>
+        </div>
+
+        <!-- 筛选栏 -->
+        <div class="bg-white px-3 py-2 border-b border-gray-100">
+            <div class="flex space-x-4 text-caption">
+                <div class="sort-option active" onclick="sortBy('default')">综合排序</div>
+                <div class="sort-option" onclick="sortBy('distance')">距离最近</div>
+                <div class="sort-option" onclick="sortBy('rating')">评分最高</div>
+                <div class="sort-option" onclick="sortBy('price')">价格最低</div>
+            </div>
+        </div>
+
+        <!-- 搜索结果统计 -->
+        <div class="px-3 py-2 bg-white border-b border-gray-100">
+            <p class="text-gray-600 text-caption">找到 <span class="text-red-500 font-medium">12</span> 家商家的相关商品</p>
+        </div>
+
+        <!-- 商家列表 -->
+        <div class="space-y-3 p-3" id="merchant-list">
+            <!-- 商家1 -->
+            <div class="bg-white rounded-lg overflow-hidden shadow-sm">
+                <!-- 商家信息 -->
+                <div class="p-3 border-b border-gray-100 cursor-pointer" onclick="showPage('shop-detail')">
+                    <div class="flex space-x-3">
+                        <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=80&h=80&fit=crop" 
+                             alt="麦当劳" class="w-14 h-14 rounded-lg object-cover">
+                        <div class="flex-1">
+                            <h4 class="font-semibold text-body-md">麦当劳（北大店）</h4>
+                            <p class="text-gray-600 text-caption">快餐 | 距离200m</p>
+                            <div class="flex items-center justify-between mt-1">
+                                <span class="text-orange-500 font-bold text-caption">★ 4.8</span>
+                                <span class="text-red-500 font-bold text-caption">￥15起送</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 商品列表 -->
+                <div class="p-3">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-gray-700 font-medium text-body-sm">相关商品</span>
+                        <span class="text-gray-500 text-caption">共找到3个商品</span>
+                    </div>
+                    <div class="flex space-x-3 overflow-x-auto custom-scrollbar pb-2">
+                        <!-- 商品1 -->
+                        <div class="flex-shrink-0 w-24 cursor-pointer" onclick="addToCart('burger1')">
+                            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=100&h=100&fit=crop" 
+                                 alt="巨无霸" class="w-24 h-20 rounded-lg object-cover mb-1">
+                            <h5 class="text-caption font-medium text-gray-800 truncate">巨无霸</h5>
+                            <p class="text-red-500 font-bold text-caption">￥22</p>
+                        </div>
+                        <!-- 商品2 -->
+                        <div class="flex-shrink-0 w-24 cursor-pointer" onclick="addToCart('burger2')">
+                            <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=100&h=100&fit=crop" 
+                                 alt="双层牛肉堡" class="w-24 h-20 rounded-lg object-cover mb-1">
+                            <h5 class="text-caption font-medium text-gray-800 truncate">双层牛肉堡</h5>
+                            <p class="text-red-500 font-bold text-caption">￥28</p>
+                        </div>
+                        <!-- 商品3 -->
+                        <div class="flex-shrink-0 w-24 cursor-pointer" onclick="addToCart('burger3')">
+                            <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=100&h=100&fit=crop" 
+                                 alt="鸡肉汉堡" class="w-24 h-20 rounded-lg object-cover mb-1">
+                            <h5 class="text-caption font-medium text-gray-800 truncate">鸡肉汉堡</h5>
+                            <p class="text-red-500 font-bold text-caption">￥18</p>
+                        </div>
+                        <!-- 商品4 -->
+                        <div class="flex-shrink-0 w-24 cursor-pointer" onclick="addToCart('burger4')">
+                            <img src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=100&h=100&fit=crop" 
+                                 alt="培根汉堡" class="w-24 h-20 rounded-lg object-cover mb-1">
+                            <h5 class="text-caption font-medium text-gray-800 truncate">培根汉堡</h5>
+                            <p class="text-red-500 font-bold text-caption">￥25</p>
+                        </div>
+                        <!-- 商品5 -->
+                        <div class="flex-shrink-0 w-24 cursor-pointer" onclick="addToCart('burger5')">
+                            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=100&h=100&fit=crop" 
+                                 alt="芝士汉堡" class="w-24 h-20 rounded-lg object-cover mb-1">
+                            <h5 class="text-caption font-medium text-gray-800 truncate">芝士汉堡</h5>
+                            <p class="text-red-500 font-bold text-caption">￥20</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 商家2 -->
+            <div class="bg-white rounded-lg overflow-hidden shadow-sm">
+                <!-- 商家信息 -->
+                <div class="p-3 border-b border-gray-100 cursor-pointer" onclick="showPage('shop-detail')">
+                    <div class="flex space-x-3">
+                        <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=80&h=80&fit=crop" 
+                             alt="汉堡王" class="w-14 h-14 rounded-lg object-cover">
+                        <div class="flex-1">
+                            <h4 class="font-semibold text-body-md">汉堡王（清华店）</h4>
+                            <p class="text-gray-600 text-caption">快餐 | 距离350m</p>
+                            <div class="flex items-center justify-between mt-1">
+                                <span class="text-orange-500 font-bold text-caption">★ 4.6</span>
+                                <span class="text-red-500 font-bold text-caption">￥20起送</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 商品列表 -->
+                <div class="p-3">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-gray-700 font-medium text-body-sm">相关商品</span>
+                        <span class="text-gray-500 text-caption">共找到4个商品</span>
+                    </div>
+                    <div class="flex space-x-3 overflow-x-auto custom-scrollbar pb-2">
+                        <!-- 商品1 -->
+                        <div class="flex-shrink-0 w-24 cursor-pointer" onclick="addToCart('bk1')">
+                            <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=100&h=100&fit=crop" 
+                                 alt="皇堡" class="w-24 h-20 rounded-lg object-cover mb-1">
+                            <h5 class="text-caption font-medium text-gray-800 truncate">皇堡</h5>
+                            <p class="text-red-500 font-bold text-caption">￥26</p>
+                        </div>
+                        <!-- 商品2 -->
+                        <div class="flex-shrink-0 w-24 cursor-pointer" onclick="addToCart('bk2')">
+                            <img src="https://images.unsplash.com/photo-1553979459-d2229ba7433a?w=100&h=100&fit=crop" 
+                                 alt="鸡腿堡" class="w-24 h-20 rounded-lg object-cover mb-1">
+                            <h5 class="text-caption font-medium text-gray-800 truncate">鸡腿堡</h5>
+                            <p class="text-red-500 font-bold text-caption">￥24</p>
+                        </div>
+                        <!-- 商品3 -->
+                        <div class="flex-shrink-0 w-24 cursor-pointer" onclick="addToCart('bk3')">
+                            <img src="https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?w=100&h=100&fit=crop" 
+                                 alt="鱼堡" class="w-24 h-20 rounded-lg object-cover mb-1">
+                            <h5 class="text-caption font-medium text-gray-800 truncate">鱼堡</h5>
+                            <p class="text-red-500 font-bold text-caption">￥22</p>
+                        </div>
+                        <!-- 商品4 -->
+                        <div class="flex-shrink-0 w-24 cursor-pointer" onclick="addToCart('bk4')">
+                            <img src="https://images.unsplash.com/photo-1520072959219-c595dc870360?w=100&h=100&fit=crop" 
+                                 alt="辣鸡堡" class="w-24 h-20 rounded-lg object-cover mb-1">
+                            <h5 class="text-caption font-medium text-gray-800 truncate">辣鸡堡</h5>
+                            <p class="text-red-500 font-bold text-caption">￥21</p>
+                        </div>
+                        <!-- 商品5 -->
+                        <div class="flex-shrink-0 w-24 cursor-pointer" onclick="addToCart('bk5')">
+                            <img src="https://images.unsplash.com/photo-1551782450-17144efb9c50?w=100&h=100&fit=crop" 
+                                 alt="素食堡" class="w-24 h-20 rounded-lg object-cover mb-1">
+                            <h5 class="text-caption font-medium text-gray-800 truncate">素食堡</h5>
+                            <p class="text-red-500 font-bold text-caption">￥19</p>
+                        </div>
+                        <!-- 商品6 -->
+                        <div class="flex-shrink-0 w-24 cursor-pointer" onclick="addToCart('bk6')">
+                            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=100&h=100&fit=crop" 
+                                 alt="双层皇堡" class="w-24 h-20 rounded-lg object-cover mb-1">
+                            <h5 class="text-caption font-medium text-gray-800 truncate">双层皇堡</h5>
+                            <p class="text-red-500 font-bold text-caption">￥32</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 商家3 -->
+            <div class="bg-white rounded-lg overflow-hidden shadow-sm">
+                <!-- 商家信息 -->
+                <div class="p-3 border-b border-gray-100 cursor-pointer" onclick="showPage('shop-detail')">
+                    <div class="flex space-x-3">
+                        <img src="https://images.unsplash.com/photo-1594007654729-407eedc4be65?w=80&h=80&fit=crop" 
+                             alt="德克士" class="w-14 h-14 rounded-lg object-cover">
+                        <div class="flex-1">
+                            <h4 class="font-semibold text-body-md">德克士（中关村店）</h4>
+                            <p class="text-gray-600 text-caption">快餐 | 距离500m</p>
+                            <div class="flex items-center justify-between mt-1">
+                                <span class="text-orange-500 font-bold text-caption">★ 4.5</span>
+                                <span class="text-red-500 font-bold text-caption">￥18起送</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 商品列表 -->
+                <div class="p-3">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-gray-700 font-medium text-body-sm">相关商品</span>
+                        <span class="text-gray-500 text-caption">共找到2个商品</span>
+                    </div>
+                    <div class="flex space-x-3 overflow-x-auto custom-scrollbar pb-2">
+                        <!-- 商品1 -->
+                        <div class="flex-shrink-0 w-24 cursor-pointer" onclick="addToCart('dks1')">
+                            <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=100&h=100&fit=crop" 
+                                 alt="脆鸡堡" class="w-24 h-20 rounded-lg object-cover mb-1">
+                            <h5 class="text-caption font-medium text-gray-800 truncate">脆鸡堡</h5>
+                            <p class="text-red-500 font-bold text-caption">￥16</p>
+                        </div>
+                        <!-- 商品2 -->
+                        <div class="flex-shrink-0 w-24 cursor-pointer" onclick="addToCart('dks2')">
+                            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=100&h=100&fit=crop" 
+                                 alt="香辣鸡腿堡" class="w-24 h-20 rounded-lg object-cover mb-1">
+                            <h5 class="text-caption font-medium text-gray-800 truncate">香辣鸡腿堡</h5>
+                            <p class="text-red-500 font-bold text-caption">￥23</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 没有更多结果提示 -->
+        <div class="text-center py-6 text-gray-500 text-caption">
+            <i class="fas fa-check-circle text-lg mb-2"></i>
+            <p>已显示全部搜索结果</p>
+        </div>
+    </div>
+</div>
+
+<style>
+.sort-option {
+    color: #666;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.sort-option.active {
+    color: #ff6b6b;
+    background-color: #fff2f2;
+}
+
+.sort-option:hover {
+    color: #ff6b6b;
+}
+
+.card-hover {
+    transition: all 0.2s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+</style>
+
+<script>
+// 清空搜索输入框
+function clearSearchGoodInput() {
+    document.getElementById('search-good-input').value = '';
+}
+
+// 执行商品搜索
+function performGoodSearch() {
+    const searchTerm = document.getElementById('search-good-input').value.trim();
+    if (searchTerm) {
+        // 这里可以添加实际的搜索逻辑
+        console.log('搜索商品:', searchTerm);
+        // 可以调用API或更新页面内容
+    }
+}
+
+// 排序功能
+function sortBy(type) {
+    // 移除所有active类
+    document.querySelectorAll('.sort-option').forEach(option => {
+        option.classList.remove('active');
+    });
+    
+    // 添加active类到当前选项
+    event.target.classList.add('active');
+    
+    // 这里可以添加实际的排序逻辑
+    console.log('排序方式:', type);
+}
+
+// 添加到购物车
+function addToCart(productId) {
+    console.log('添加商品到购物车:', productId);
+    // 这里可以添加实际的购物车逻辑
+    // 可以显示一个提示或更新购物车状态
+}
+
+// 监听搜索输入框回车事件
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('search-good-input');
+    if (searchInput) {
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performGoodSearch();
+            }
+        });
+    }
+});
+</script>

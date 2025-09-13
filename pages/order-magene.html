@@ -1,0 +1,186 @@
+<!-- 订单管理 -->
+<div class="page" id="order-magene">
+    <div class="min-h-full bg-gray-50 pb-20">
+        <!-- 头部导航 -->
+        <div class="primary-red p-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <i onclick="showPage('my-store')" class="fas fa-arrow-left text-white cursor-pointer"></i>
+                    <h1 class="text-white text-lg font-medium">商品管理</h1>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <button onclick="showPage('add-goods')" class="bg-white bg-opacity-20 text-white px-3 py-1.5 rounded-full text-sm font-medium">
+                        <i class="fas fa-plus mr-1"></i>新增商品
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 统计卡片 -->
+        <div class="p-4">
+            <div class="grid grid-cols-3 gap-3">
+                <div class="bg-white rounded-lg p-3 text-center">
+                    <div class="text-2xl font-bold text-red-500">12</div>
+                    <div class="text-xs text-gray-500 mt-1">在售商品</div>
+                </div>
+                <div class="bg-white rounded-lg p-3 text-center">
+                    <div class="text-2xl font-bold text-orange-500">3</div>
+                    <div class="text-xs text-gray-500 mt-1">待审核</div>
+                </div>
+                <div class="bg-white rounded-lg p-3 text-center">
+                    <div class="text-2xl font-bold text-gray-500">2</div>
+                    <div class="text-xs text-gray-500 mt-1">已下架</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 筛选栏 -->
+        <div class="px-4 mb-4">
+            <div class="bg-white rounded-lg p-3">
+                <div class="flex items-center space-x-3">
+                    <select class="flex-1 p-2 border border-gray-200 rounded-lg text-sm">
+                        <option>全部状态</option>
+                        <option>在售中</option>
+                        <option>待审核</option>
+                        <option>已下架</option>
+                    </select>
+                    <select class="flex-1 p-2 border border-gray-200 rounded-lg text-sm">
+                        <option>全部分类</option>
+                        <option>美食饮品</option>
+                        <option>生活用品</option>
+                        <option>学习用品</option>
+                    </select>
+                    <button class="bg-red-500 text-white px-4 py-2 rounded-lg text-sm">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 商品列表 -->
+        <div class="px-4 space-y-3 h-64 overflow-y-auto">
+            <!-- 商品项 1 -->
+            <div class="bg-white rounded-lg p-4">
+                <div class="flex items-start space-x-3">
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=80&h=80&fit=crop" 
+                         alt="商品图片" class="w-16 h-16 rounded-lg object-cover">
+                    <div class="flex-1">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-1">
+                                <h3 class="font-medium text-gray-800 mb-1">香辣鸡腿堡套餐</h3>
+                                <p class="text-xs text-gray-500 mb-2">包含：鸡腿堡+薯条+可乐</p>
+                                <div class="flex items-center space-x-4">
+                                    <span class="text-red-500 font-bold">¥28.8</span>
+                                    <span class="text-xs text-gray-500">销量: 156</span>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-end space-y-2">
+                                <span class="bg-green-100 text-green-600 px-2 py-1 rounded-full text-xs">在售中</span>
+                                <div class="flex space-x-1">
+                                    <button onclick="editProduct(1)" class="text-blue-500 text-xs">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button onclick="manageSpecs(1)" class="text-orange-500 text-xs">
+                                        <i class="fas fa-cog"></i>
+                                    </button>
+                                    <button onclick="toggleProduct(1)" class="text-gray-500 text-xs">
+                                        <i class="fas fa-eye-slash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 型号信息 -->
+                        <div class="mt-3 pt-3 border-t border-gray-100">
+                            <div class="flex items-center justify-between text-xs text-gray-500">
+                                <span>型号: 多级型号 (辣度/配菜)</span>
+                                <span>库存: 充足</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 商品项 2 -->
+            <div class="bg-white rounded-lg p-4">
+                <div class="flex items-start space-x-3">
+                    <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?w=80&h=80&fit=crop" 
+                         alt="商品图片" class="w-16 h-16 rounded-lg object-cover">
+                    <div class="flex-1">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-1">
+                                <h3 class="font-medium text-gray-800 mb-1">珍珠奶茶</h3>
+                                <p class="text-xs text-gray-500 mb-2">经典台式珍珠奶茶</p>
+                                <div class="flex items-center space-x-4">
+                                    <span class="text-red-500 font-bold">¥12.0</span>
+                                    <span class="text-xs text-gray-500">销量: 89</span>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-end space-y-2">
+                                <span class="bg-orange-100 text-orange-600 px-2 py-1 rounded-full text-xs">待审核</span>
+                                <div class="flex space-x-1">
+                                    <button onclick="editProduct(2)" class="text-blue-500 text-xs">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button onclick="manageSpecs(2)" class="text-orange-500 text-xs">
+                                        <i class="fas fa-cog"></i>
+                                    </button>
+                                    <button onclick="toggleProduct(2)" class="text-gray-500 text-xs">
+                                        <i class="fas fa-eye-slash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 型号信息 -->
+                        <div class="mt-3 pt-3 border-t border-gray-100">
+                            <div class="flex items-center justify-between text-xs text-gray-500">
+                                <span>型号: 单级型号 (杯型)</span>
+                                <span>库存: 紧张</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 商品项 3 -->
+            <div class="bg-white rounded-lg p-4">
+                <div class="flex items-start space-x-3">
+                    <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=80&h=80&fit=crop" 
+                         alt="商品图片" class="w-16 h-16 rounded-lg object-cover">
+                    <div class="flex-1">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-1">
+                                <h3 class="font-medium text-gray-800 mb-1">学习文具套装</h3>
+                                <p class="text-xs text-gray-500 mb-2">包含笔记本、圆珠笔等</p>
+                                <div class="flex items-center space-x-4">
+                                    <span class="text-red-500 font-bold">¥15.5</span>
+                                    <span class="text-xs text-gray-500">销量: 23</span>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-end space-y-2">
+                                <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded-full text-xs">已下架</span>
+                                <div class="flex space-x-1">
+                                    <button onclick="editProduct(3)" class="text-blue-500 text-xs">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button onclick="manageSpecs(3)" class="text-orange-500 text-xs">
+                                        <i class="fas fa-cog"></i>
+                                    </button>
+                                    <button onclick="toggleProduct(3)" class="text-green-500 text-xs">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 型号信息 -->
+                        <div class="mt-3 pt-3 border-t border-gray-100">
+                            <div class="flex items-center justify-between text-xs text-gray-500">
+                                <span>型号: 统一型号</span>
+                                <span>库存: 缺货</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
