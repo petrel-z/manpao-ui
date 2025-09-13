@@ -1,6 +1,6 @@
 <!-- 圈子页面 -->
 <div class="page" id="community">
-    <div class="min-h-full bg-gray-100 pb-16 relative h-[86vh]">
+    <div class="min-h-full bg-gray-100 pb-16 relative h-full">
         <!-- 顶部导航栏 -->
         <div class="bg-white flex items-center p-3 shadow-sm">
             <div onclick="showPage('profile')" class="w-8 h-8 flex items-center justify-center cursor-pointer">
@@ -112,20 +112,21 @@
             </div>
         </div>
         
-        <!-- 圈子专用底部导航 -->
-        <div class=" flex items-center justify-around absolute bottom-0 left-0 right-0 bg-white border-t py-2 shadow-md w-full z-10">
-            <div id="circle-nav-square" class="nav-item text-center cursor-pointer" onclick="switchCircleNav('circle-nav-square')">
-                <i class="fas fa-th-large text-xl mb-1"></i>
-                <div class="text-caption">广场</div>
-            </div>
-            <div id="circle-nav-message" class="nav-item text-center text-gray-500 cursor-pointer" onclick="switchCircleNav('circle-nav-message')">
-                <i class="fas fa-comment-dots text-xl mb-1"></i>
-                <div class="text-caption">消息</div>
-            </div>
-            <div id="circle-nav-profile" class="nav-item text-center text-gray-500 cursor-pointer" onclick="switchCircleNav('circle-nav-profile')">
-                <i class="fas fa-user text-xl mb-1"></i>
-                <div class="text-caption">我的</div>
-            </div>
+    </div>
+    
+    <!-- 圈子专用底部导航 -->
+    <div class="circle-bottom-nav flex items-center justify-around absolute bottom-0 left-0 right-0 bg-white border-t py-2 shadow-md w-full z-10">
+        <div id="circle-nav-square" class="nav-item text-center cursor-pointer" onclick="switchCircleNav('circle-nav-square')">
+            <i class="fas fa-th-large text-xl mb-1"></i>
+            <div class="text-caption">广场</div>
+        </div>
+        <div id="circle-nav-message" class="nav-item text-center text-gray-500 cursor-pointer" onclick="switchCircleNav('circle-nav-message')">
+            <i class="fas fa-comment-dots text-xl mb-1"></i>
+            <div class="text-caption">消息</div>
+        </div>
+        <div id="circle-nav-profile" class="nav-item text-center text-gray-500 cursor-pointer" onclick="switchCircleNav('circle-nav-profile')">
+            <i class="fas fa-user text-xl mb-1"></i>
+            <div class="text-caption">我的</div>
         </div>
     </div>
 </div>
