@@ -1,47 +1,59 @@
 <!-- 个人信息编辑页 -->
 <div class="page" id="profile-edit">
-    <div class="min-h-full bg-gray-50 pb-16">
-        <!-- 头部 -->
-        <div class="primary-red p-3">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-3">
-                    <i onclick="showPage('profile')" class="fas fa-arrow-left text-white cursor-pointer"></i>
-                    <span class="text-white font-semibold">个人信息</span>
-                </div>
-                <button class="text-white font-semibold text-sm">保存</button>
-            </div>
+  <div class="min-h-full bg-gray-50 pb-16">
+    <!-- 头部 -->
+    <div class="primary-red p-3">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+          <i
+            onclick="showPage('profile')"
+            class="fas fa-arrow-left text-white cursor-pointer"
+          ></i>
+          <span class="text-white font-semibold">个人信息</span>
         </div>
-        <div class="h-[78vh] overflow-y-auto">
-        <!-- 头像编辑 -->
-        <div class="p-3">
-            <div class="bg-white rounded-lg p-4">
-                <h3 class="font-bold mb-3 text-sm">头像设置</h3>
-                <div class="flex items-center space-x-3">
-                    <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" 
-                             alt="用户头像" class="w-16 h-16 rounded-full object-cover">
-                        <div class="absolute bottom-0 right-0 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center cursor-pointer">
-                            <i class="fas fa-camera text-white text-xs"></i>
-                        </div>
-                    </div>
-                    <div>
-                        <p class="font-medium text-sm">点击头像更换</p>
-                        <p class="text-gray-500 text-xs">支持JPG、PNG格式，不超过2MB</p>
-                    </div>
-                </div>
+        <button class="text-white font-semibold text-sm">保存</button>
+      </div>
+    </div>
+    <div class="h-[78vh] overflow-y-auto">
+      <!-- 头像编辑 -->
+      <div class="p-3">
+        <div class="bg-white rounded-lg p-4">
+          <h3 class="font-bold mb-3 text-sm">头像设置</h3>
+          <div class="flex items-center space-x-3">
+            <div class="relative">
+              <img
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face"
+                alt="用户头像"
+                class="w-16 h-16 rounded-full object-cover"
+              />
+              <div
+                class="absolute bottom-0 right-0 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center cursor-pointer"
+              >
+                <i class="fas fa-camera text-white text-xs"></i>
+              </div>
             </div>
+            <div>
+              <p class="font-medium text-sm">点击头像更换</p>
+              <p class="text-gray-500 text-xs">支持JPG、PNG格式，不超过2MB</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 基本信息编辑 -->
+      <div class="px-3 space-y-3">
+        <div class="bg-white rounded-lg p-3">
+          <div class="flex items-center">
+            <label class="text-sm font-medium text-gray-700 w-24">昵称</label>
+            <input
+              type="text"
+              value="张同学"
+              class="flex-1 p-2.5 border border-gray-200 rounded-lg focus:border-red-400 focus:outline-none transition-colors text-sm"
+            />
+          </div>
         </div>
 
-        <!-- 基本信息编辑 -->
-        <div class="px-3 space-y-3">
-            <div class="bg-white rounded-lg p-3">
-                <div class="flex items-center">
-                    <label class="text-sm font-medium text-gray-700 w-24">昵称</label>
-                    <input type="text" value="张同学" class="flex-1 p-2.5 border border-gray-200 rounded-lg focus:border-red-400 focus:outline-none transition-colors text-sm">
-                </div>
-            </div>
-            
-            <!-- <div class="bg-white rounded-lg p-3">
+        <!-- <div class="bg-white rounded-lg p-3">
                 <div class="flex items-center">
                     <label class="text-sm font-medium text-gray-700 w-24">性别</label>
                     <div class="flex space-x-4 flex-1">
@@ -56,68 +68,84 @@
                     </div>
                 </div>
             </div> -->
-        </div>
+      </div>
 
-        <!-- 认证状态 -->
-        <div class="px-3 mt-4">
-            <div class="bg-white rounded-lg p-3">
-                <h3 class="font-bold mb-3 text-sm">认证状态</h3>
-                <div class="space-y-3">
-                    <div class="flex items-center">
-                        <div class="flex items-center space-x-3 w-3/4">
-                            <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                                <i class="fas fa-check text-green-500 text-xs"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-sm">手机认证</h4>
-                                <p class="text-gray-600 text-xs">138****8888</p>
-                            </div>
-                        </div>
-                        <span class="text-green-600 text-xs font-medium ml-auto">已认证</span>
-                    </div>
-                    
-                    <div class="flex items-center">
-                        <div class="flex items-center space-x-3 w-3/4">
-                            <div class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
-                                <i class="fas fa-shield-alt text-gray-400 text-xs"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-sm">实名认证</h4>
-                                <p class="text-gray-600 text-xs">提高账户安全性</p>
-                            </div>
-                        </div>
-                        <div class="flex space-x-2 ml-auto">
-                            <button onclick="showPage('real-name-auth')" class="text-red-500 text-xs font-medium">去认证</button>
-                        </div>
-                    </div>
+      <!-- 认证状态 -->
+      <div class="px-3 mt-4">
+        <div class="bg-white rounded-lg p-3">
+          <h3 class="font-bold mb-3 text-sm">认证状态</h3>
+          <div class="space-y-3">
+            <div class="flex items-center">
+              <div class="flex items-center space-x-3 w-3/4">
+                <div
+                  class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center"
+                >
+                  <i class="fas fa-check text-green-500 text-xs"></i>
                 </div>
+                <div>
+                  <h4 class="font-semibold text-sm">手机认证</h4>
+                  <p class="text-gray-600 text-xs">138****8888</p>
+                </div>
+              </div>
+              <span class="text-green-600 text-xs font-medium ml-auto"
+                >已认证</span
+              >
             </div>
-        </div>
 
-        <!-- 账户设置 -->
-        <div class="px-3 mt-4">
-            <div class="bg-white rounded-lg p-3">
-                <h3 class="font-bold mb-3 text-sm">账户设置</h3>
-                <div class="space-y-4">
-                    
-                    <div onclick="showPage('privacy-policy')" class="flex items-center py-2 cursor-pointer">
-                        <div class="flex items-center space-x-3 w-3/4">
-                            <i class="fas fa-user-shield text-gray-600 text-sm"></i>
-                            <span class="text-sm">隐私政策</span>
-                        </div>
-                        <i class="fas fa-chevron-right text-gray-400 text-xs ml-auto"></i>
-                    </div>
-                    
-                    <div onclick="showPage('user-agreement')" class="flex items-center py-2 cursor-pointer">
-                        <div class="flex items-center space-x-3 w-3/4">
-                            <i class="fas fa-file-contract text-gray-600 text-sm"></i>
-                            <span class="text-sm">用户服务协议</span>
-                        </div>
-                        <i class="fas fa-chevron-right text-gray-400 text-xs ml-auto"></i>
-                    </div>
+            <div class="flex items-center">
+              <div class="flex items-center space-x-3 w-3/4">
+                <div
+                  class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center"
+                >
+                  <i class="fas fa-shield-alt text-gray-400 text-xs"></i>
                 </div>
+                <div>
+                  <h4 class="font-semibold text-sm">实名认证</h4>
+                  <p class="text-gray-600 text-xs">提高账户安全性</p>
+                </div>
+              </div>
+              <div class="flex space-x-2 ml-auto">
+                <button
+                  onclick="showPage('real-name-auth')"
+                  class="text-red-500 text-xs font-medium"
+                >
+                  去认证
+                </button>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
+
+      <!-- 账户设置 -->
+      <div class="px-3 mt-4">
+        <div class="bg-white rounded-lg p-3">
+          <h3 class="font-bold mb-3 text-sm">账户设置</h3>
+          <div class="space-y-4">
+            <div
+              onclick="showPage('privacy-policy')"
+              class="flex items-center py-2 cursor-pointer"
+            >
+              <div class="flex items-center space-x-3 w-3/4">
+                <i class="fas fa-user-shield text-gray-600 text-sm"></i>
+                <span class="text-sm">隐私政策</span>
+              </div>
+              <i class="fas fa-chevron-right text-gray-400 text-xs ml-auto"></i>
+            </div>
+
+            <div
+              onclick="showPage('user-agreement')"
+              class="flex items-center py-2 cursor-pointer"
+            >
+              <div class="flex items-center space-x-3 w-3/4">
+                <i class="fas fa-file-contract text-gray-600 text-sm"></i>
+                <span class="text-sm">用户服务协议</span>
+              </div>
+              <i class="fas fa-chevron-right text-gray-400 text-xs ml-auto"></i>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    </div>
+  </div>
 </div>

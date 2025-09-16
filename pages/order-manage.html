@@ -1,0 +1,326 @@
+<!-- 订单管理 -->
+<div class="page" id="order-manage">
+    <div class="min-h-full bg-gray-50 pb-20">
+        <!-- 头部导航 -->
+        <div class="primary-red p-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <i onclick="showPage('my-store')" class="fas fa-arrow-left text-white cursor-pointer"></i>
+                    <h1 class="text-white text-lg font-medium">订单管理</h1>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <button onclick="exportOrders()" class="bg-white bg-opacity-20 text-white px-3 py-1.5 rounded-full text-sm font-medium">
+                        <i class="fas fa-download mr-1"></i>导出
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 统计卡片 -->
+        <div class="p-4">
+            <div class="grid grid-cols-4 gap-2">
+                <div class="bg-white rounded-lg p-3 text-center">
+                    <div class="text-xl font-bold text-blue-500">8</div>
+                    <div class="text-xs text-gray-500 mt-1">待核销</div>
+                </div>
+                <div class="bg-white rounded-lg p-3 text-center">
+                    <div class="text-xl font-bold text-green-500">25</div>
+                    <div class="text-xs text-gray-500 mt-1">已核销</div>
+                </div>
+                <div class="bg-white rounded-lg p-3 text-center">
+                    <div class="text-xl font-bold text-red-500">2</div>
+                    <div class="text-xs text-gray-500 mt-1">已退款</div>
+                </div>
+                <div class="bg-white rounded-lg p-3 text-center">
+                    <div class="text-xl font-bold text-gray-500">1</div>
+                    <div class="text-xs text-gray-500 mt-1">已过期</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 筛选栏 -->
+        <div class="px-4 mb-4">
+            <div class="bg-white rounded-lg p-3">
+                <div class="flex items-center space-x-3">
+                    <select id="statusFilter" class="flex-1 p-2 border border-gray-200 rounded-lg text-sm" onchange="filterOrders()">
+                        <option value="all">全部状态</option>
+                        <option value="pending">待核销</option>
+                        <option value="verified">已核销</option>
+                        <option value="refunded">已退款</option>
+                        <option value="expired">已过期</option>
+                    </select>
+                    <select id="timeFilter" class="flex-1 p-2 border border-gray-200 rounded-lg text-sm" onchange="filterOrders()">
+                        <option value="all">全部时间</option>
+                        <option value="today">今天</option>
+                        <option value="week">本周</option>
+                        <option value="month">本月</option>
+                    </select>
+                    <button onclick="searchOrders()" class="bg-red-500 text-white px-4 py-2 rounded-lg text-sm">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 订单列表 -->
+        <div class="px-4 space-y-3 h-[477px] overflow-y-auto" id="orderList">
+            <!-- 订单项 1 - 待核销 -->
+            <div class="bg-white rounded-lg p-4 order-item" data-status="pending">
+                <div class="flex items-start justify-between mb-3">
+                    <div class="flex-1">
+                        <div class="flex items-center space-x-2 mb-2">
+                            <span class="text-sm font-medium text-gray-800">订单号: TG202412150001</span>
+                            <span class="bg-blue-100 text-blue-600 px-2 py-1 rounded-full text-xs">待核销</span>
+                        </div>
+                        <div class="text-xs text-gray-500 mb-1">下单时间: 2024-12-15 14:30</div>
+                        <div class="text-xs text-gray-500">有效期至: 2024-12-22 23:59</div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-lg font-bold text-red-500">¥28.8</div>
+                        <div class="text-xs text-gray-500">数量: 1</div>
+                    </div>
+                </div>
+                
+                <div class="border-t border-gray-100 pt-3">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=50&h=50&fit=crop" 
+                             alt="商品图片" class="w-12 h-12 rounded-lg object-cover">
+                        <div class="flex-1">
+                            <h4 class="text-sm font-medium text-gray-800">香辣鸡腿堡套餐</h4>
+                            <p class="text-xs text-gray-500">规格: 中辣 + 薯条 + 可乐</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-user text-gray-400 text-xs"></i>
+                            <span class="text-xs text-gray-600">张三 (138****5678)</span>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button onclick="showVerifyModal('TG202412150001')" class="bg-green-500 text-white px-3 py-1.5 rounded-lg text-xs font-medium">
+                                <i class="fas fa-check mr-1"></i>核销
+                            </button>
+                            <button onclick="showOrderDetail('TG202412150001')" class="bg-gray-100 text-gray-600 px-3 py-1.5 rounded-lg text-xs">
+                                详情
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 订单项 2 - 已核销 -->
+            <div class="bg-white rounded-lg p-4 order-item" data-status="verified">
+                <div class="flex items-start justify-between mb-3">
+                    <div class="flex-1">
+                        <div class="flex items-center space-x-2 mb-2">
+                            <span class="text-sm font-medium text-gray-800">订单号: TG202412150002</span>
+                            <span class="bg-green-100 text-green-600 px-2 py-1 rounded-full text-xs">已核销</span>
+                        </div>
+                        <div class="text-xs text-gray-500 mb-1">下单时间: 2024-12-15 12:15</div>
+                        <div class="text-xs text-gray-500">核销时间: 2024-12-15 18:30</div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-lg font-bold text-red-500">¥12.0</div>
+                        <div class="text-xs text-gray-500">数量: 2</div>
+                    </div>
+                </div>
+                
+                <div class="border-t border-gray-100 pt-3">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?w=50&h=50&fit=crop" 
+                             alt="商品图片" class="w-12 h-12 rounded-lg object-cover">
+                        <div class="flex-1">
+                            <h4 class="text-sm font-medium text-gray-800">珍珠奶茶</h4>
+                            <p class="text-xs text-gray-500">规格: 大杯 + 正常糖 + 去冰</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-user text-gray-400 text-xs"></i>
+                            <span class="text-xs text-gray-600">李四 (139****1234)</span>
+                        </div>
+                        <div class="flex space-x-2">
+                            <span class="text-xs text-green-600">
+                                <i class="fas fa-check-circle mr-1"></i>已完成
+                            </span>
+                            <button onclick="showOrderDetail('TG202412150002')" class="bg-gray-100 text-gray-600 px-3 py-1.5 rounded-lg text-xs">
+                                详情
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 订单项 3 - 已退款 -->
+            <div class="bg-white rounded-lg p-4 order-item" data-status="refunded">
+                <div class="flex items-start justify-between mb-3">
+                    <div class="flex-1">
+                        <div class="flex items-center space-x-2 mb-2">
+                            <span class="text-sm font-medium text-gray-800">订单号: TG202412140003</span>
+                            <span class="bg-red-100 text-red-600 px-2 py-1 rounded-full text-xs">已退款</span>
+                        </div>
+                        <div class="text-xs text-gray-500 mb-1">下单时间: 2024-12-14 16:45</div>
+                        <div class="text-xs text-gray-500">退款时间: 2024-12-14 20:10</div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-lg font-bold text-gray-400">¥15.5</div>
+                        <div class="text-xs text-gray-500">数量: 1</div>
+                    </div>
+                </div>
+                
+                <div class="border-t border-gray-100 pt-3">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=50&h=50&fit=crop" 
+                             alt="商品图片" class="w-12 h-12 rounded-lg object-cover">
+                        <div class="flex-1">
+                            <h4 class="text-sm font-medium text-gray-800">芝士蛋糕</h4>
+                            <p class="text-xs text-gray-500">规格: 6寸 + 草莓口味</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-user text-gray-400 text-xs"></i>
+                            <span class="text-xs text-gray-600">王五 (137****9876)</span>
+                        </div>
+                        <div class="flex space-x-2">
+                            <span class="text-xs text-red-600">
+                                <i class="fas fa-undo mr-1"></i>已退款
+                            </span>
+                            <button onclick="showOrderDetail('TG202412140003')" class="bg-gray-100 text-gray-600 px-3 py-1.5 rounded-lg text-xs">
+                                详情
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 核销确认弹窗 -->
+    <div id="verifyModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div class="flex items-center justify-center h-full p-4">
+            <div class="bg-white rounded-lg p-6 w-full max-w-sm">
+                <div class="text-center mb-4">
+                    <i class="fas fa-qrcode text-4xl text-blue-500 mb-3"></i>
+                    <h3 class="text-lg font-medium text-gray-800 mb-2">订单核销</h3>
+                    <p class="text-sm text-gray-600">请确认顾客出示的核销码</p>
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">核销码</label>
+                    <input type="text" id="verifyCode" placeholder="请输入6位核销码" 
+                           class="w-full p-3 border border-gray-300 rounded-lg text-center text-lg font-mono" 
+                           maxlength="6">
+                </div>
+                
+                <div class="flex space-x-3">
+                    <button onclick="closeVerifyModal()" class="flex-1 bg-gray-100 text-gray-600 py-3 rounded-lg font-medium">
+                        取消
+                    </button>
+                    <button onclick="confirmVerify()" class="flex-1 bg-green-500 text-white py-3 rounded-lg font-medium">
+                        确认核销
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// 订单管理相关函数
+window.currentOrderId = null;
+
+// 显示核销弹窗
+window.showVerifyModal = function(orderId) {
+    window.currentOrderId = orderId;
+    document.getElementById('verifyModal').classList.remove('hidden');
+    document.getElementById('verifyCode').focus();
+};
+
+// 关闭核销弹窗
+window.closeVerifyModal = function() {
+    document.getElementById('verifyModal').classList.add('hidden');
+    document.getElementById('verifyCode').value = '';
+    window.currentOrderId = null;
+};
+
+// 确认核销
+window.confirmVerify = function() {
+    const verifyCode = document.getElementById('verifyCode').value;
+    if (!verifyCode || verifyCode.length !== 6) {
+        alert('请输入6位核销码');
+        return;
+    }
+    
+    // 模拟核销成功
+    alert(`订单 ${window.currentOrderId} 核销成功！`);
+    
+    // 更新订单状态
+    const orderElement = document.querySelector(`[data-order-id="${window.currentOrderId}"]`);
+    if (orderElement) {
+        // 这里可以更新订单显示状态
+        location.reload(); // 简单刷新页面
+    }
+    
+    closeVerifyModal();
+};
+
+// 筛选订单
+window.filterOrders = function() {
+    const statusFilter = document.getElementById('statusFilter').value;
+    const timeFilter = document.getElementById('timeFilter').value;
+    const orderItems = document.querySelectorAll('.order-item');
+    
+    orderItems.forEach(item => {
+        let showItem = true;
+        
+        // 状态筛选
+        if (statusFilter !== 'all' && item.dataset.status !== statusFilter) {
+            showItem = false;
+        }
+        
+        // 时间筛选逻辑可以根据需要添加
+        
+        item.style.display = showItem ? 'block' : 'none';
+    });
+};
+
+// 搜索订单
+window.searchOrders = function() {
+    const searchTerm = prompt('请输入订单号或顾客手机号:');
+    if (searchTerm) {
+        // 这里可以实现搜索逻辑
+        alert('搜索功能开发中...');
+    }
+};
+
+// 显示订单详情
+window.showOrderDetail = function(orderId) {
+    alert(`显示订单 ${orderId} 的详细信息`);
+    // 这里可以跳转到订单详情页面或显示详情弹窗
+};
+
+// 导出订单
+window.exportOrders = function() {
+    alert('订单导出功能开发中...');
+};
+
+// 核销码输入框自动格式化
+document.addEventListener('DOMContentLoaded', function() {
+    const verifyCodeInput = document.getElementById('verifyCode');
+    if (verifyCodeInput) {
+        verifyCodeInput.addEventListener('input', function(e) {
+            // 只允许输入数字
+            e.target.value = e.target.value.replace(/[^0-9]/g, '');
+        });
+        
+        verifyCodeInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && e.target.value.length === 6) {
+                confirmVerify();
+            }
+        });
+    }
+});
+</script>

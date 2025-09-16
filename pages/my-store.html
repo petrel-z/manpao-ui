@@ -1,6 +1,6 @@
 <!-- 我的小店 -->
 <div class="page" id="my-store">
-    <div class="min-h-full bg-gray-50 pb-20 h-[65vh] overflow-y-auto">
+    <div class="min-h-full bg-gray-50 pb-20 h-[710px] overflow-y-auto">
         <!-- 头部背景区域 -->
         <div class="relative h-100 overflow-hidden">
             <!-- 背景头像虚化效果 -->
@@ -76,7 +76,7 @@
             
             <!-- 订单管理 -->
             <div 
-            onclick="showPage('order-magene')"
+            onclick="showPage('order-manage')"
             class="bg-white rounded-xl p-4 shadow-sm flex items-center justify-between hover:bg-gray-50 transition-colors cursor-pointer">
                 <div class="flex items-center space-x-3">
                     <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
@@ -99,7 +99,9 @@
             </div>
             
             <!-- 商品管理 -->
-            <div class="bg-white rounded-xl p-4 shadow-sm flex items-center justify-between hover:bg-gray-50 transition-colors cursor-pointer">
+            <div 
+            onclick="showPage('goods-manage')"
+            class="bg-white rounded-xl p-4 shadow-sm flex items-center justify-between hover:bg-gray-50 transition-colors cursor-pointer">
                 <div class="flex items-center space-x-3">
                     <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
                         <i class="fas fa-box text-green-500 text-lg"></i>
