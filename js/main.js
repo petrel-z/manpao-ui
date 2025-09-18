@@ -888,3 +888,396 @@ function addToCart() {
         searchInput.value = '';
         document.getElementById('clear-search-btn').classList.add('hidden');
     }
+
+// 学校选择页面相关功能
+const provinceData = {
+    'A': {
+        '安徽省': ['合肥市', '芜湖市', '蚌埠市', '淮南市', '马鞍山市', '淮北市', '铜陵市', '安庆市']
+    },
+    'B': {
+        '北京市': ['北京市'],
+        '北京': ['北京市']
+    },
+    'C': {
+        '重庆市': ['重庆市']
+    },
+    'F': {
+        '福建省': ['福州市', '厦门市', '莆田市', '三明市', '泉州市', '漳州市', '南平市', '龙岩市', '宁德市']
+    },
+    'G': {
+        '广东省': ['广州市', '韶关市', '深圳市', '珠海市', '汕头市', '佛山市', '江门市', '湛江市', '茂名市', '肇庆市', '惠州市', '梅州市', '汕尾市', '河源市', '阳江市', '清远市', '东莞市', '中山市', '潮州市', '揭阳市', '云浮市'],
+        '广西壮族自治区': ['南宁市', '柳州市', '桂林市', '梧州市', '北海市', '防城港市', '钦州市', '贵港市', '玉林市', '百色市', '贺州市', '河池市', '来宾市', '崇左市'],
+        '贵州省': ['贵阳市', '六盘水市', '遵义市', '安顺市', '毕节市', '铜仁市']
+    },
+    'H': {
+        '河北省': ['石家庄市', '唐山市', '秦皇岛市', '邯郸市', '邢台市', '保定市', '张家口市', '承德市', '沧州市', '廊坊市', '衡水市'],
+        '河南省': ['郑州市', '开封市', '洛阳市', '平顶山市', '安阳市', '鹤壁市', '新乡市', '焦作市', '濮阳市', '许昌市', '漯河市', '三门峡市', '南阳市', '商丘市', '信阳市', '周口市', '驻马店市'],
+        '黑龙江省': ['哈尔滨市', '齐齐哈尔市', '鸡西市', '鹤岗市', '双鸭山市', '大庆市', '伊春市', '佳木斯市', '七台河市', '牡丹江市', '黑河市', '绥化市'],
+        '湖北省': ['武汉市', '黄石市', '十堰市', '宜昌市', '襄阳市', '鄂州市', '荆门市', '孝感市', '荆州市', '黄冈市', '咸宁市', '随州市'],
+        '湖南省': ['长沙市', '株洲市', '湘潭市', '衡阳市', '邵阳市', '岳阳市', '常德市', '张家界市', '益阳市', '郴州市', '永州市', '怀化市', '娄底市'],
+        '海南省': ['海口市', '三亚市', '三沙市', '儋州市']
+    },
+    'J': {
+        '江苏省': ['南京市', '无锡市', '徐州市', '常州市', '苏州市', '南通市', '连云港市', '淮安市', '盐城市', '扬州市', '镇江市', '泰州市', '宿迁市'],
+        '江西省': ['南昌市', '景德镇市', '萍乡市', '九江市', '新余市', '鹰潭市', '赣州市', '吉安市', '宜春市', '抚州市', '上饶市'],
+        '吉林省': ['长春市', '吉林市', '四平市', '辽源市', '通化市', '白山市', '松原市', '白城市']
+    },
+    'L': {
+        '辽宁省': ['沈阳市', '大连市', '鞍山市', '抚顺市', '本溪市', '丹东市', '锦州市', '营口市', '阜新市', '辽阳市', '盘锦市', '铁岭市', '朝阳市', '葫芦岛市']
+    },
+    'S': {
+        '上海市': ['上海市'],
+        '山东省': ['济南市', '青岛市', '淄博市', '枣庄市', '东营市', '烟台市', '潍坊市', '济宁市', '泰安市', '威海市', '日照市', '临沂市', '德州市', '聊城市', '滨州市', '菏泽市'],
+        '山西省': ['太原市', '大同市', '阳泉市', '长治市', '晋城市', '朔州市', '晋中市', '运城市', '忻州市', '临汾市', '吕梁市'],
+        '陕西省': ['西安市', '铜川市', '宝鸡市', '咸阳市', '渭南市', '延安市', '汉中市', '榆林市', '安康市', '商洛市'],
+        '四川省': ['成都市', '自贡市', '攀枝花市', '泸州市', '德阳市', '绵阳市', '广元市', '遂宁市', '内江市', '乐山市', '南充市', '眉山市', '宜宾市', '广安市', '达州市', '雅安市', '巴中市', '资阳市']
+    },
+    'T': {
+        '天津市': ['天津市']
+    },
+    'X': {
+        '新疆维吾尔自治区': ['乌鲁木齐市', '克拉玛依市', '吐鲁番市', '哈密市']
+    },
+    'Y': {
+        '云南省': ['昆明市', '曲靖市', '玉溪市', '保山市', '昭通市', '丽江市', '普洱市', '临沧市']
+    },
+    'Z': {
+        '浙江省': ['杭州市', '宁波市', '温州市', '嘉兴市', '湖州市', '绍兴市', '金华市', '衢州市', '舟山市', '台州市', '丽水市']
+    }
+};
+
+const schoolData = {
+    '北京市': [
+        { name: '北京大学', address: '海淀区颐和园路5号' },
+        { name: '清华大学', address: '海淀区清华园1号' },
+        { name: '中国人民大学', address: '海淀区中关村大街59号' },
+        { name: '北京师范大学', address: '海淀区新街口外大街19号' },
+        { name: '北京理工大学', address: '海淀区中关村南大街5号' }
+    ],
+    '上海市': [
+        { name: '复旦大学', address: '杨浦区邯郸路220号' },
+        { name: '上海交通大学', address: '闵行区东川路800号' },
+        { name: '同济大学', address: '杨浦区四平路1239号' },
+        { name: '华东师范大学', address: '闵行区东川路500号' }
+    ],
+    '广州市': [
+        { name: '中山大学', address: '新港西路135号' },
+        { name: '华南理工大学', address: '天河区五山路381号' },
+        { name: '暨南大学', address: '天河区黄埔大道西601号' }
+    ],
+    '深圳市': [
+        { name: '深圳大学', address: '南山区南海大道3688号' },
+        { name: '南方科技大学', address: '南山区学苑大道1088号' }
+    ],
+    '杭州市': [
+        { name: '浙江大学', address: '西湖区余杭塘路866号' },
+        { name: '浙江工业大学', address: '拱墅区朝晖六区潮王路18号' }
+    ],
+    '南京市': [
+        { name: '南京大学', address: '鼓楼区汉口路22号' },
+        { name: '东南大学', address: '玄武区四牌楼2号' }
+    ]
+};
+
+// 当前选中的城市和学校
+let currentCity = '北京市';
+let currentSelectedSchool = {
+    name: '北京大学',
+    address: '海淀区颐和园路5号'
+};
+
+// 显示城市选择弹窗
+function showCitySelector() {
+    const modal = document.getElementById('city-selector-modal');
+    modal.style.display = 'block';
+    
+    // 生成省份列表
+    generateProvinceList();
+}
+
+// 隐藏城市选择弹窗
+function hideCitySelector() {
+    const modal = document.getElementById('city-selector-modal');
+    modal.style.display = 'none';
+}
+
+// 生成省份列表
+function generateProvinceList() {
+    const provinceList = document.getElementById('province-list');
+    let html = '';
+    
+    Object.keys(provinceData).sort().forEach(letter => {
+        html += `<div class="px-3 py-1 text-xs text-gray-400 font-medium">${letter}</div>`;
+        
+        Object.keys(provinceData[letter]).forEach(province => {
+            html += `
+                <div onclick="selectProvince('${province}')" 
+                     class="px-3 py-2 text-sm cursor-pointer hover:bg-gray-100 border-b border-gray-50">
+                    ${province}
+                </div>
+            `;
+        });
+    });
+    
+    provinceList.innerHTML = html;
+}
+
+// 选择省份
+function selectProvince(province) {
+    // 移除之前的选中状态
+    document.querySelectorAll('#province-list > div').forEach(div => {
+        div.classList.remove('bg-blue-50', 'text-blue-600');
+    });
+    
+    // 添加选中状态
+    event.target.classList.add('bg-blue-50', 'text-blue-600');
+    
+    // 生成城市列表
+    generateCityList(province);
+}
+
+// 生成城市列表
+// 汉字转拼音首字母的映射表
+const chineseToPinyinFirstLetter = {
+    '中': 'Z', '重': 'C', '珠': 'Z', '株': 'Z', '湘': 'X', '西': 'X', '武': 'W', '温': 'W', '威': 'W', '潍': 'W', '渭': 'W',
+    '乌': 'W', '无': 'W', '芜': 'W', '吴': 'W', '梧': 'W', '五': 'W', '舞': 'W', '务': 'W', '雾': 'W', '物': 'W', '勿': 'W',
+    '太': 'T', '泰': 'T', '台': 'T', '唐': 'T', '天': 'T', '铁': 'T', '通': 'T', '铜': 'T', '图': 'T', '土': 'T', '吐': 'T',
+    '三': 'S', '沈': 'S', '深': 'S', '石': 'S', '苏': 'S', '宿': 'S', '随': 'S', '遂': 'S', '绥': 'S', '松': 'S', '四': 'S',
+    '南': 'N', '宁': 'N', '牛': 'N', '内': 'N', '宁': 'N', '怒': 'N', '那': 'N', '纳': 'N', '乃': 'N', '奶': 'N', '男': 'N',
+    '马': 'M', '茂': 'M', '梅': 'M', '蒙': 'M', '绵': 'M', '牡': 'M', '木': 'M', '目': 'M', '母': 'M', '墓': 'M', '慕': 'M',
+    '拉': 'L', '来': 'L', '兰': 'L', '廊': 'L', '乐': 'L', '雷': 'L', '类': 'L', '冷': 'L', '离': 'L', '里': 'L', '理': 'L',
+    '克': 'K', '昆': 'K', '库': 'K', '快': 'K', '宽': 'K', '矿': 'K', '框': 'K', '况': 'K', '亏': 'K', '葵': 'K', '魁': 'K',
+    '济': 'J', '佳': 'J', '嘉': 'J', '江': 'J', '焦': 'J', '揭': 'J', '金': 'J', '锦': 'J', '晋': 'J', '京': 'J', '荆': 'J',
+    '哈': 'H', '海': 'H', '汉': 'H', '杭': 'H', '合': 'H', '河': 'H', '鹤': 'H', '黑': 'H', '衡': 'H', '红': 'H', '呼': 'H',
+    '广': 'G', '贵': 'G', '桂': 'G', '赣': 'G', '甘': 'G', '高': 'G', '格': 'G', '个': 'G', '根': 'G', '更': 'G', '工': 'G',
+    '福': 'F', '抚': 'F', '阜': 'F', '富': 'F', '复': 'F', '府': 'F', '父': 'F', '付': 'F', '妇': 'F', '负': 'F', '附': 'F',
+    '鄂': 'E', '恩': 'E', '额': 'E', '儿': 'E', '而': 'E', '尔': 'E', '耳': 'E', '二': 'E', '发': 'F', '法': 'F', '反': 'F',
+    '大': 'D', '丹': 'D', '德': 'D', '定': 'D', '东': 'D', '都': 'D', '端': 'D', '对': 'D', '多': 'D', '达': 'D', '打': 'D',
+    '成': 'C', '承': 'C', '城': 'C', '池': 'C', '赤': 'C', '崇': 'C', '川': 'C', '春': 'C', '慈': 'C', '从': 'C', '村': 'C',
+    '北': 'B', '本': 'B', '蚌': 'B', '保': 'B', '包': 'B', '宝': 'B', '白': 'B', '百': 'B', '班': 'B', '板': 'B', '半': 'B',
+    '安': 'A', '鞍': 'A', '澳': 'A', '奥': 'A', '阿': 'A', '爱': 'A', '艾': 'A', '按': 'A', '岸': 'A', '案': 'A', '暗': 'A'
+};
+
+// 获取汉字或英文字符的首字母
+function getFirstLetter(char) {
+    if (chineseToPinyinFirstLetter[char]) {
+        return chineseToPinyinFirstLetter[char];
+    }
+    return char.toUpperCase();
+}
+
+function generateCityList(province) {
+    const cityList = document.getElementById('city-list');
+    let html = '';
+    
+    // 找到对应省份的城市
+    let cities = [];
+    Object.keys(provinceData).forEach(letter => {
+        if (provinceData[letter][province]) {
+            cities = provinceData[letter][province];
+        }
+    });
+    
+    if (cities.length > 0) {
+        // 按首字母分组
+        const cityGroups = {};
+        cities.forEach(city => {
+            const firstLetter = getFirstLetter(city.charAt(0));
+            if (!cityGroups[firstLetter]) {
+                cityGroups[firstLetter] = [];
+            }
+            cityGroups[firstLetter].push(city);
+        });
+        
+        // 生成HTML
+        Object.keys(cityGroups).sort().forEach(letter => {
+            // html += `<div class="px-3 py-1 text-xs text-gray-400 font-medium">${letter}</div>`;
+            
+            cityGroups[letter].forEach(city => {
+                html += `
+                    <div onclick="selectCity('${city}')" 
+                         class="px-3 py-2 text-sm cursor-pointer hover:bg-gray-100 border-b border-gray-50">
+                        ${city}
+                    </div>
+                `;
+            });
+        });
+    } else {
+        html = '<div class="p-4 text-gray-400 text-sm text-center">该省份暂无城市数据</div>';
+    }
+    
+    cityList.innerHTML = html;
+}
+
+// 选择城市
+function selectCity(city) {
+    currentCity = city;
+    
+    // 更新当前城市显示
+    document.getElementById('current-city').textContent = city;
+    
+    // 更新学校列表
+    updateSchoolList();
+    
+    // 关闭弹窗
+    hideCitySelector();
+}
+
+// 更新学校列表
+function updateSchoolList() {
+    const schoolsContainer = document.getElementById('schools-container');
+    const schools = schoolData[currentCity] || [];
+    
+    if (schools.length > 0) {
+        // 按首字母分组
+        const schoolGroups = {};
+        schools.forEach(school => {
+            const firstLetter = getFirstLetter(school.name.charAt(0));
+            if (!schoolGroups[firstLetter]) {
+                schoolGroups[firstLetter] = [];
+            }
+            schoolGroups[firstLetter].push(school);
+        });
+        
+        // 生成HTML
+        let html = '';
+        Object.keys(schoolGroups).sort().forEach(letter => {
+            html += `<div class="px-3 py-1 text-xs text-gray-400 font-medium">${letter}</div>`;
+            
+            schoolGroups[letter].forEach(school => {
+                html += `
+                    <div onclick="selectSchool('${school.name}', '${school.address}')" 
+                         class="flex items-center justify-between p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100 mb-2">
+                        <div>
+                            <h5 class="text-sm font-medium">${school.name}</h5>
+                            <p class="text-xs text-gray-500">${school.address}</p>
+                        </div>
+                    </div>
+                `;
+            });
+        });
+        
+        schoolsContainer.innerHTML = html;
+    } else {
+        schoolsContainer.innerHTML = '<div class="p-4 text-gray-400 text-sm text-center">该城市暂无学校数据</div>';
+    }
+}
+
+// 搜索学校
+function searchSchools() {
+    const query = document.getElementById('school-search').value.toLowerCase().trim();
+    const searchResults = document.getElementById('search-results');
+    const clearBtn = document.getElementById('clear-search');
+    const schoolList = document.getElementById('school-list');
+    
+    // 显示/隐藏清除按钮
+    if (query) {
+        clearBtn.style.display = 'block';
+    } else {
+        clearBtn.style.display = 'none';
+        searchResults.style.display = 'none';
+        schoolList.style.display = 'block';
+        return;
+    }
+    
+    const results = [];
+    
+    // 搜索当前城市的学校
+    const schools = schoolData[currentCity] || [];
+    schools.forEach(school => {
+        if (school.name.toLowerCase().includes(query)) {
+            results.push(school);
+        }
+    });
+    
+    // 显示搜索结果
+    if (results.length > 0) {
+        // 按首字母分组
+        const schoolGroups = {};
+        results.forEach(school => {
+            const firstLetter = getFirstLetter(school.name.charAt(0));
+            if (!schoolGroups[firstLetter]) {
+                schoolGroups[firstLetter] = [];
+            }
+            schoolGroups[firstLetter].push(school);
+        });
+        
+        // 生成HTML
+        let html = '<div class="text-gray-500 text-sm mb-2">搜索结果</div><div id="search-list" class="space-y-2">';
+        Object.keys(schoolGroups).sort().forEach(letter => {
+            html += `<div class="px-3 py-1 text-xs text-gray-400 font-medium">${letter}</div>`;
+            
+            schoolGroups[letter].forEach(school => {
+                html += `
+                    <div onclick="selectSchool('${school.name}', '${school.address}')" 
+                         class="flex items-center justify-between p-3 bg-white border rounded-lg cursor-pointer hover:bg-gray-50 mb-2">
+                        <div>
+                            <h5 class="text-sm font-medium">${school.name}</h5>
+                            <p class="text-xs text-gray-500">${school.address}</p>
+                        </div>
+                    </div>
+                `;
+            });
+        });
+        html += '</div>';
+        
+        searchResults.innerHTML = html;
+        searchResults.style.display = 'block';
+        schoolList.style.display = 'none';
+    } else {
+        searchResults.innerHTML = '<div class="text-gray-500 text-sm mb-2">搜索结果</div><div class="p-3 text-gray-500 text-sm text-center">未找到相关学校</div>';
+        searchResults.style.display = 'block';
+        schoolList.style.display = 'none';
+    }
+}
+
+// 清空搜索
+function clearSchoolSearch() {
+    document.getElementById('school-search').value = '';
+    document.getElementById('search-results').style.display = 'none';
+    document.getElementById('clear-search').style.display = 'none';
+    document.getElementById('school-list').style.display = 'block';
+}
+
+// 选择学校
+function selectSchool(name, address) {
+    currentSelectedSchool = { name, address };
+    updateSelectedSchoolDisplay();
+    
+    // 隐藏搜索结果
+    const searchResults = document.getElementById('search-results');
+    if (searchResults) {
+        searchResults.style.display = 'none';
+    }
+    const searchInput = document.getElementById('school-search');
+    if (searchInput) {
+        searchInput.value = '';
+    }
+}
+
+// 更新选中学校的显示
+function updateSelectedSchoolDisplay() {
+    const selectedSchoolElement = document.querySelector('#school-list .bg-red-50');
+    if (selectedSchoolElement) {
+        selectedSchoolElement.innerHTML = `
+            <div>
+                <h4 class="font-semibold text-sm text-red-600">${currentSelectedSchool.name}</h4>
+                <p class="text-gray-600 text-xs">${currentSelectedSchool.address}</p>
+            </div>
+            <i class="fas fa-check-circle text-red-500"></i>
+        `;
+    }
+}
+
+// 页面加载时初始化
+if (typeof initializeSchoolSelect === 'undefined') {
+    window.initializeSchoolSelect = function() {
+        updateSelectedSchoolDisplay();
+        updateSchoolList();
+    };
+    
+    // 如果当前页面是学校选择页面，则初始化
+    if (document.getElementById('school-list')) {
+        initializeSchoolSelect();
+    }
+}

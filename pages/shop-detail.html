@@ -1,6 +1,6 @@
 <!-- 商家详情页 -->
 <div class="page" id="shop-detail">
-    <div class="min-h-full bg-gray-50 pb-16">
+    <div class="relative h-[730px] bg-gray-50 ">
         <!-- 头部店铺信息 -->
         <div class="bg-white">
             <!-- 返回按钮和收藏 -->
@@ -20,17 +20,32 @@
                             <span class="text-orange-500 font-bold text-sm">★ 4.8</span>
                             <span class="text-gray-500 text-xs">月售2000+</span>
                         </div>
-                        <p class="text-gray-600 text-xs mt-1">配送时间：约30分钟 | 距离200m</p>
+                        <div class="text-gray-500 text-xs mt-1">
+                            营业时间：06:00-24:00
+                        </div>
                     </div>
                 </div>
                 
-                <!-- 优惠信息 -->
-                <div class="mt-3 bg-red-50 rounded-lg p-2">
-                    <div class="flex items-center space-x-2">
-                        <span class="bg-red-500 text-white text-xs px-1 rounded">优惠</span>
-                        <span class="text-red-500 text-xs">新用户下单立减5元</span>
+                <!-- 商家地址和联系信息 -->
+                <div class="mt-3 bg-white rounded-lg p-3 shadow-sm border border-gray-100">
+                    <div class="flex items-center justify-between">
+                        <div class="flex-1">
+                            <div class="text-gray-700 text-sm">北京大学燕园美食广场1层</div>
+                            <div class="text-gray-500 text-xs mt-1">
+                                距离200m · 预计驾车2分钟
+                            </div>
+                        </div>
+                        <div class="flex space-x-2 items-center">
+                            <button class="w-8 h-8 bg-gray-100 text-gray-600 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors">
+                                <i class="fas fa-location-arrow text-xs"></i>
+                            </button>
+                            <button class="w-8 h-8 bg-gray-100 text-gray-600 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors">
+                                <i class="fas fa-phone text-xs"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
+
             </div>
         </div>
         
@@ -41,14 +56,14 @@
                     商品列表
                 </div>
                 <div id="tab-info" class="flex-1 text-center py-3 font-medium text-gray-500" onclick="switchTab('info')">
-                    商家信息
+                    评价
                 </div>
             </div>
         </div>
         
         <!-- 商品列表内容 -->
         <div id="content-menu" class="bg-white">
-            <div class="flex">
+            <div class="flex h-[420px] overflow-y-auto">
                 <!-- 左侧分类列表 -->
                 <div class="w-1/4 bg-gray-100 max-h-[calc(100vh-250px)] overflow-y-auto custom-scrollbar">
                     <div class="category-item active py-3 px-2 text-center text-sm font-medium border-l-4 border-red-500 bg-white" onclick="categoryClick(this)">
@@ -127,52 +142,144 @@
             </div>
         </div>
         
-        <!-- 商家信息内容 -->
+        <!-- 评价 -->
         <div id="content-info" class="bg-white hidden">
-            <div class="p-4 space-y-4">
-                <!-- 地址 -->
-                <div>
-                    <h3 class="font-bold mb-2 flex items-center">
-                        <i class="fas fa-map-marker-alt text-red-500 mr-2"></i>
-                        地址
-                    </h3>
-                    <p class="text-gray-600 text-sm ml-6">北京市海淀区北京大学燕园校区附近</p>
-                </div>
-                
-                <!-- 食品安全档案 -->
-                <div>
-                    <h3 class="font-bold mb-2 flex items-center">
-                        <i class="fas fa-shield-alt text-red-500 mr-2"></i>
-                        食品安全档案
-                    </h3>
-                    <div class="text-sm ml-6 flex items-center justify-between">
-                        <span class="text-gray-600">查看食品安全档案</span>
-                        <i class="fas fa-chevron-right text-gray-400" onclick="showFoodSafetyInfo()"></i>
+            <div class="p-4 h-[420px] overflow-y-auto">
+                <!-- 评价概览 -->
+                <div class="mb-4 pb-4 border-b border-gray-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="font-bold text-lg">用户评价</h3>
+                        <span class="text-gray-500 text-sm">共126条</span>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-orange-500">4.8</div>
+                            <div class="text-xs text-gray-500">综合评分</div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center mb-1">
+                                <span class="text-xs text-gray-600 w-8">5星</span>
+                                <div class="flex-1 bg-gray-200 rounded-full h-2 mx-2">
+                                    <div class="bg-orange-500 h-2 rounded-full" style="width: 85%"></div>
+                                </div>
+                                <span class="text-xs text-gray-500">85%</span>
+                            </div>
+                            <div class="flex items-center mb-1">
+                                <span class="text-xs text-gray-600 w-8">4星</span>
+                                <div class="flex-1 bg-gray-200 rounded-full h-2 mx-2">
+                                    <div class="bg-orange-500 h-2 rounded-full" style="width: 12%"></div>
+                                </div>
+                                <span class="text-xs text-gray-500">12%</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="text-xs text-gray-600 w-8">3星</span>
+                                <div class="flex-1 bg-gray-200 rounded-full h-2 mx-2">
+                                    <div class="bg-orange-500 h-2 rounded-full" style="width: 3%"></div>
+                                </div>
+                                <span class="text-xs text-gray-500">3%</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                
-                <!-- 商家电话 -->
-                <div>
-                    <h3 class="font-bold mb-2 flex items-center">
-                        <i class="fas fa-phone text-red-500 mr-2"></i>
-                        商家电话
-                    </h3>
-                    <p class="text-gray-600 text-sm ml-6">010-12345678</p>
+
+                <!-- 评价标签 -->
+                <div class="mb-4 pb-4 border-b border-gray-100">
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-orange-50 text-orange-600 text-xs rounded-full">味道好(89)</span>
+                        <span class="px-3 py-1 bg-orange-50 text-orange-600 text-xs rounded-full">分量足(76)</span>
+                        <span class="px-3 py-1 bg-orange-50 text-orange-600 text-xs rounded-full">送餐快(65)</span>
+                        <span class="px-3 py-1 bg-orange-50 text-orange-600 text-xs rounded-full">包装好(43)</span>
+                    </div>
                 </div>
-                
-                <!-- 营业时间 -->
-                <div>
-                    <h3 class="font-bold mb-2 flex items-center">
-                        <i class="fas fa-clock text-red-500 mr-2"></i>
-                        营业时间
-                    </h3>
-                    <p class="text-gray-600 text-sm ml-6">周一至周日 10:00-22:00</p>
+
+                <!-- 评价列表 -->
+                <div class="space-y-4">
+                    <!-- 评价项1 -->
+                    <div class="border-b border-gray-100 pb-4">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white text-sm font-bold">张</div>
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="font-medium text-sm">张***</span>
+                                    <span class="text-xs text-gray-500">2024-01-15</span>
+                                </div>
+                                <div class="flex items-center mb-2">
+                                    <div class="flex text-orange-400 text-xs mr-2">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <span class="text-xs text-gray-500">麻辣香锅(大份)</span>
+                                </div>
+                                <p class="text-sm text-gray-700 mb-2">味道很不错，分量也很足，配菜很新鲜，辣度刚好，下次还会再点的！</p>
+                                <div class="flex space-x-2">
+                                    <img src="../images/logo-bg.png" class="w-16 h-16 rounded object-cover">
+                                    <img src="../images/logo-bg.png" class="w-16 h-16 rounded object-cover">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 评价项2 -->
+                    <div class="border-b border-gray-100 pb-4">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-sm font-bold">李</div>
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="font-medium text-sm">李***</span>
+                                    <span class="text-xs text-gray-500">2024-01-14</span>
+                                </div>
+                                <div class="flex items-center mb-2">
+                                    <div class="flex text-orange-400 text-xs mr-2">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <span class="text-xs text-gray-500">水煮鱼</span>
+                                </div>
+                                <p class="text-sm text-gray-700">鱼肉很嫩，汤底很香，送餐速度也很快，包装很仔细，没有洒漏。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 评价项3 -->
+                    <div class="pb-4">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-sm font-bold">王</div>
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="font-medium text-sm">王***</span>
+                                    <span class="text-xs text-gray-500">2024-01-13</span>
+                                </div>
+                                <div class="flex items-center mb-2">
+                                    <div class="flex text-orange-400 text-xs mr-2">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
+                                    <span class="text-xs text-gray-500">宫保鸡丁</span>
+                                </div>
+                                <p class="text-sm text-gray-700">整体还不错，就是稍微有点咸，其他都挺好的。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 查看更多 -->
+                <div class="text-center pt-4">
+                    <button class="text-orange-500 text-sm">加载更多 <i class="fas fa-angle-double-down"></i></button>
                 </div>
             </div>
         </div>
         
         <!-- 底部购物车 -->
-        <div class="fixed bottom-0 left-0 right-0 bg-white border-t p-3 flex items-center justify-between">
+        <div class="absolute bottom-0 left-0 right-0 bg-white border-t p-3 flex items-center justify-between">
             <div class="flex items-center space-x-3">
                 <div class="relative">
                     <i class="fas fa-shopping-cart text-xl text-gray-600"></i>
@@ -185,89 +292,4 @@
             </button>
         </div>
     </div>
-    <!-- 食品安全档案弹窗 -->
-<div id="food-safety-popup" class="absolute inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
-    <div class="bg-white rounded-lg w-4/5 max-w-md p-4">
-        <div class="flex justify-between items-center mb-4">
-            <h3 class="font-bold">食品安全档案</h3>
-            <i class="fas fa-times text-gray-500" onclick="closeFoodSafetyInfo()"></i>
-        </div>
-        <div class="space-y-3">
-            <div>
-                <h4 class="font-medium text-sm">食品经营许可证</h4>
-                <p class="text-gray-600 text-xs">证书编号：JY11108123456789</p>
-                <p class="text-gray-600 text-xs">有效期至：2025-12-31</p>
-            </div>
-            <div>
-                <h4 class="font-medium text-sm">餐饮服务许可证</h4>
-                <p class="text-gray-600 text-xs">证书编号：CS11108123456789</p>
-                <p class="text-gray-600 text-xs">有效期至：2025-12-31</p>
-            </div>
-            <div>
-                <h4 class="font-medium text-sm">卫生检查</h4>
-                <p class="text-gray-600 text-xs">最近检查日期：2023-06-15</p>
-                <p class="text-gray-600 text-xs">检查结果：合格</p>
-            </div>
-        </div>
-        <button onclick="closeFoodSafetyInfo()" class="mt-4 w-full bg-red-500 text-white py-2 rounded-lg text-sm">
-            关闭
-        </button>
-    </div>
-</div>
-
-<!-- 商品详情弹窗 -->
-<div id="product-detail-popup" class="absolute inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
-    <div class="bg-white rounded-lg w-11/12 max-w-md overflow-hidden max-h-[90vh] flex flex-col">
-        <!-- 商品图片 -->
-        <div class="relative">
-            <img id="product-detail-img" src="" alt="商品图片" class="w-full h-48 object-cover">
-            <div class="absolute top-3 right-3 w-8 h-8 bg-black bg-opacity-30 rounded-full flex items-center justify-center cursor-pointer" onclick="closeProductDetail()">
-                <i class="fas fa-times text-white"></i>
-            </div>
-        </div>
-        
-        <!-- 商品信息 -->
-        <div class="p-4 overflow-y-auto flex-1">
-            <h3 id="product-detail-name" class="font-bold text-lg mb-2">商品名称</h3>
-            <p id="product-detail-desc" class="text-gray-600 text-sm mb-3">商品描述</p>
-            
-            <!-- 月售和好评 -->
-            <div class="flex items-center space-x-3 text-xs text-gray-500 mb-4">
-                <span>月售 <span id="product-detail-sales">200</span>+</span>
-                <span>好评率 <span id="product-detail-rating">98</span>%</span>
-            </div>
-            
-            <!-- 规格选择 -->
-            <div class="mb-4">
-                <h4 class="font-medium text-sm mb-2">规格</h4>
-                <div class="flex flex-wrap gap-2">
-                    <div class="spec-option selected px-3 py-1 border border-red-500 text-red-500 rounded-full text-xs cursor-pointer">标准</div>
-                    <div class="spec-option px-3 py-1 border border-gray-300 text-gray-600 rounded-full text-xs cursor-pointer">大份</div>
-                    <div class="spec-option px-3 py-1 border border-gray-300 text-gray-600 rounded-full text-xs cursor-pointer">超大份</div>
-                </div>
-            </div>
-            
-            <!-- 价格和数量 -->
-            <div class="flex items-center justify-between">
-                <div class="text-red-500 font-bold text-xl">¥<span id="product-detail-price">20</span></div>
-                <div class="flex items-center space-x-2">
-                    <button class="w-7 h-7 rounded-full border border-gray-300 flex items-center justify-center quantity-btn" data-action="decrease">
-                        <i class="fas fa-minus text-gray-500 text-xs"></i>
-                    </button>
-                    <span class="text-sm quantity-value">0</span>
-                    <button class="w-7 h-7 rounded-full bg-red-500 flex items-center justify-center quantity-btn" data-action="increase">
-                        <i class="fas fa-plus text-white text-xs"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-        
-        <!-- 加入购物车按钮 -->
-        <div class="p-4 border-t border-gray-100">
-            <button class="w-full bg-red-500 text-white py-3 rounded-lg font-medium" onclick="addToCart()">
-                加入购物车
-            </button>
-        </div>
-    </div>
-</div>
 </div>

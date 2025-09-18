@@ -9,33 +9,84 @@
             </div>
             <div class="bg-white rounded-lg p-2.5 flex items-center space-x-2">
                 <i class="fas fa-search text-gray-400 text-sm"></i>
-                <input type="text" placeholder="搜索学校名称" class="flex-1 outline-none text-sm">
+                <input type="text" id="school-search" placeholder="搜索省份、城市或学校" class="flex-1 outline-none text-sm" oninput="searchSchools()">
+                <i onclick="clearSchoolSearch()" class="fas fa-times text-gray-400 text-sm cursor-pointer" id="clear-search" style="display: none;"></i>
             </div>
         </div>
 
-        <!-- 城市选择 -->
-        <div class="p-3">
-            <div class="space-y-2">
-                <div onclick="showPage('home')" class="flex items-center justify-between p-3 bg-gray-50 rounded-lg cursor-pointer">
+        <!-- 城市切换 -->
+        <div class="p-3 border-b border-gray-100">
+            <div class="flex items-center justify-between">
+                <span class="text-gray-600 text-sm">当前城市</span>
+                <button onclick="showCitySelector()" class="flex items-center space-x-2 px-3 py-2 bg-blue-50 text-blue-600 rounded-lg text-sm">
+                    <span id="current-city">北京市</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- 搜索结果 -->
+        <div id="search-results" class="p-3" style="display: none;">
+            <div class="text-gray-500 text-sm mb-2">搜索结果</div>
+            <div id="search-list" class="space-y-2"></div>
+        </div>
+
+        <!-- 当前城市学校列表 -->
+        <div id="school-list" class="p-3">
+            <!-- 当前选中的学校 -->
+            <div class="mb-4">
+                <div class="text-gray-500 text-sm mb-2">当前选择</div>
+                <div class="flex items-center justify-between p-3 bg-red-50 border border-red-200 rounded-lg">
                     <div>
-                        <h4 class="font-semibold text-sm">北京大学</h4>
+                        <h4 class="font-semibold text-sm text-red-600">北京大学</h4>
                         <p class="text-gray-600 text-xs">海淀区颐和园路5号</p>
                     </div>
                     <i class="fas fa-check-circle text-red-500"></i>
                 </div>
-                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                    <div>
-                        <h4 class="font-semibold text-sm">清华大学</h4>
-                        <p class="text-gray-600 text-xs">海淀区清华园1号</p>
-                    </div>
+            </div>
+
+            <!-- 学校列表 -->
+            <div class="mb-2">
+                <div class="text-gray-500 text-sm mb-2">选择学校</div>
+            </div>
+            <div id="schools-container" class="space-y-2">
+                <!-- 学校列表将通过JavaScript动态生成 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 城市选择弹窗 -->
+    <div id="city-selector-modal" class="absolute inset-0 bg-black bg-opacity-50 z-50" style="display: none;">
+        <div class="flex items-end justify-center h-full">
+            <div class="bg-white rounded-t-2xl w-full max-h-96 overflow-hidden">
+                <!-- 弹窗头部 -->
+                <div class="flex items-center justify-between p-4 border-b">
+                    <h3 class="text-lg font-semibold">选择城市</h3>
+                    <button onclick="hideCitySelector()" class="text-gray-400 hover:text-gray-600">
+                        <i class="fas fa-times"></i>
+                    </button>
                 </div>
-                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                    <div>
-                        <h4 class="font-semibold text-sm">中国人民大学</h4>
-                        <p class="text-gray-600 text-xs">海淀区中关村大街59号</p>
+                
+                <!-- 省份城市选择 -->
+                <div class="flex h-80">
+                    <!-- 省份列表 -->
+                    <div class="w-1/2 border-r">
+                        <div class="p-3 bg-gray-50 text-sm font-medium text-gray-600">省份</div>
+                        <div id="province-list" class="overflow-y-auto h-full pb-16">
+                            <!-- 省份列表将通过JavaScript生成 -->
+                        </div>
+                    </div>
+                    
+                    <!-- 城市列表 -->
+                    <div class="w-1/2">
+                        <div class="p-3 bg-gray-50 text-sm font-medium text-gray-600">城市</div>
+                        <div id="city-list" class="overflow-y-auto h-full pb-16">
+                            <div class="p-4 text-gray-400 text-sm text-center">请先选择省份</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </div>
