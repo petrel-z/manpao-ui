@@ -1,0 +1,77 @@
+<!-- 评价页面 -->
+<div class="page" id="evaluate">
+    <div class="min-h-full bg-gray-50 pb-16">
+        <!-- 顶部标题 -->
+        <div class="bg-white p-4 sticky top-0 z-10 shadow-sm">
+            <div class="flex items-center">
+                <button onclick="goBack()" class="mr-3 text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                </button>
+                <h2 class="text-center font-bold text-heading-md flex-1">评价</h2>
+                <div class="w-6"></div>
+            </div>
+        </div>
+
+        <!-- 主要内容 -->
+        <div class="px-4 py-4">
+            <!-- 商家信息 -->
+            <div class="bg-white rounded-lg p-4 mb-4 shadow-sm">
+                <div class="flex items-center">
+                    <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?w=60&h=60&fit=crop" alt="商家logo" class="w-12 h-12 rounded-full mr-3">
+                    <div>
+                        <h3 class="font-medium text-body-md">麦当劳</h3>
+                        <p class="text-gray-500 text-caption">巨无霸套餐</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 评分区域 -->
+            <div class="bg-white rounded-lg p-4 mb-4 shadow-sm">
+                <h3 class="font-medium text-body-md mb-3">评分</h3>
+                <div class="flex items-center justify-center space-x-2">
+                    <div class="flex space-x-1 mx-4">
+                        <i class="fas fa-star text-yellow-400 text-2xl"></i>
+                        <i class="fas fa-star text-yellow-400 text-2xl"></i>
+                        <i class="fas fa-star text-yellow-400 text-2xl"></i>
+                        <i class="fas fa-star text-yellow-400 text-2xl"></i>
+                        <i class="fas fa-star text-gray-300 text-2xl"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 评价输入区域 -->
+            <div class="bg-white rounded-lg p-4 mb-4 shadow-sm">
+                <h3 class="font-medium text-body-md mb-3">详细评价</h3>
+                <textarea 
+                    class="w-full h-24 p-3 border border-gray-200 rounded-lg resize-none focus:outline-none focus:border-orange-400 text-body-sm" 
+                    placeholder="这家店环境、服务如何？食物口味如何？发起您的宝贵评论吧"
+                    maxlength="200"
+                    id="review-text"></textarea>
+                <div class="flex justify-between items-center mt-2">
+                    <span class="text-gray-400 text-caption">分享您的用餐体验</span>
+                    <span class="text-gray-400 text-caption" id="char-count">0/200</span>
+                </div>
+            </div>
+
+
+            <div class="bg-white rounded-lg p-4 mb-6 shadow-sm">
+                <h3 class="font-medium text-body-md mb-3">上传图片/视频 (最多5张)</h3>
+                <div class="grid grid-cols-3 gap-3" id="upload-grid">
+                    <div class="upload-item aspect-square border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center cursor-pointer hover:border-orange-400 transition-colors">
+                        <div class="text-center">
+                            <i class="fas fa-plus text-gray-400 text-2xl mx-auto mb-1"></i>
+                        </div>
+                        <input type="file" class="hidden" accept="image/*,video/*" multiple>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 提交按钮 -->
+            <button class="w-full h-[50px] bg-gradient-to-r from-orange-400 to-red-500 text-white py-3 rounded-lg font-medium text-body-md hover:from-orange-500 hover:to-red-600 transition-all shadow-lg">
+                提交评价
+            </button>
+        </div>
+    </div>
+</div>

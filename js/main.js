@@ -734,32 +734,49 @@ function addToCart() {
 
     // 初始化搜索页面
     document.addEventListener('DOMContentLoaded', function() {
-        // 显示历史搜索记录
-        renderSearchHistory();
-        
-        // 监听搜索输入框变化
-        const searchInput = document.getElementById('search-input');
-        const clearBtn = document.getElementById('clear-search-btn');
-        
-        searchInput.addEventListener('input', function() {
-            if (this.value.length > 0) {
-                clearBtn.classList.remove('hidden');
-            } else {
-                clearBtn.classList.add('hidden');
+        // 只在搜索页面执行搜索相关初始化
+        if (document.getElementById('search-history-list')) {
+            // 显示历史搜索记录
+            renderSearchHistory();
+            
+            // 监听搜索输入框变化
+            const searchInput = document.getElementById('search-input');
+            const clearBtn = document.getElementById('clear-search-btn');
+            
+            if (searchInput) {
+                searchInput.addEventListener('input', function() {
+                    if (clearBtn) {
+                        if (this.value.length > 0) {
+                            clearBtn.classList.remove('hidden');
+                        } else {
+                            clearBtn.classList.add('hidden');
+                        }
+                    }
+                });
+                
+                // 监听回车键搜索
+                searchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        performSearch();
+                    }
+                });
             }
-        });
-        
-        // 监听回车键搜索
-        searchInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                performSearch();
+            
+            if (clearBtn) {
+                clearBtn.addEventListener('click', function() {
+                    clearSearchInput();
+                });
             }
-        });
+        }
     });
 
     // 渲染搜索历史
     function renderSearchHistory() {
         const historyList = document.getElementById('search-history-list');
+        if (!historyList) {
+            return; // 如果元素不存在，直接返回
+        }
+        
         historyList.innerHTML = '';
         
         searchHistory.forEach(term => {
