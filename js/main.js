@@ -1298,3 +1298,20 @@ if (typeof initializeSchoolSelect === 'undefined') {
         initializeSchoolSelect();
     }
 }
+
+// 金豆使用规则弹窗功能
+function showGoldBeanRules() {
+
+    const modal = document.getElementById('goldBeanRulesModal');
+        console.log("show gold bean rules", modal);
+    if (modal) {
+        modal.style.display = 'block';
+    }
+}
+
+function hideGoldBeanRules() {
+    const modal = document.getElementById('goldBeanRulesModal');
+    if (modal) {
+        modal.style.display = 'none';
+    }
+}
