@@ -653,6 +653,9 @@ function showProductDetail(img, name, desc, price) {
     document.querySelector('.quantity-value').textContent = '0';
     updateQuantityButtonState();
     
+    // 重置规格选择
+    resetSpecSelection();
+    
     // 显示弹窗
     document.getElementById('product-detail-popup').classList.remove('hidden');
     document.body.style.overflow = 'hidden'; // 禁止背景滚动
@@ -661,6 +664,40 @@ function showProductDetail(img, name, desc, price) {
 function closeProductDetail() {
     document.getElementById('product-detail-popup').classList.add('hidden');
     document.body.style.overflow = ''; // 恢复背景滚动
+}
+
+// 重置规格选择
+function resetSpecSelection() {
+    const specOptions = document.querySelectorAll('.spec-option');
+    specOptions.forEach((option, index) => {
+        if (index === 0) {
+            // 默认选中第一个规格
+            option.classList.add('bg-red-50', 'border-red-500', 'text-red-500');
+            option.classList.remove('text-gray-600');
+        } else {
+            option.classList.remove('bg-red-50', 'border-red-500', 'text-red-500');
+            option.classList.add('text-gray-600');
+        }
+    });
+}
+
+// 规格选择事件处理
+function handleSpecSelection(event) {
+    if (event.target.classList.contains('spec-option')) {
+        // 移除所有规格的选中状态
+        document.querySelectorAll('.spec-option').forEach(option => {
+            option.classList.remove('bg-red-50', 'border-red-500', 'text-red-500');
+            option.classList.add('text-gray-600');
+        });
+        
+        // 设置当前选中的规格
+        event.target.classList.add('bg-red-50', 'border-red-500', 'text-red-500');
+        event.target.classList.remove('text-gray-600');
+        
+        // 更新价格
+        const newPrice = event.target.dataset.price;
+        document.getElementById('product-detail-price').textContent = newPrice;
+    }
 }
 
 // 初始化数量按钮事件
@@ -683,6 +720,9 @@ document.addEventListener('DOMContentLoaded', function() {
             updateQuantityButtonState();
         });
     });
+    
+    // 为规格选择按钮添加点击事件
+    document.addEventListener('click', handleSpecSelection);
 });
 
 // 更新数量按钮状态
