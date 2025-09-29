@@ -1,0 +1,138 @@
+<!-- 金豆详情页面 -->
+<div class="page" id="gold-bean">
+  <div class="min-h-full bg-gray-50 pb-16">
+    <!-- 头部 -->
+    <div class="primary-red p-3">
+      <div class="flex items-center space-x-3">
+        <i
+          onclick="showPage('profile')"
+          class="fas fa-arrow-left text-white cursor-pointer"
+        ></i>
+        <span class="text-white font-semibold">金豆明细</span>
+      </div>
+    </div>
+
+    <div class="h-[625px]">
+      <!-- 金豆概览 -->
+      <div class="p-3">
+        <div class="bg-white rounded-lg p-4 mb-3">
+          <div class="flex justify-between items-center mb-4">
+            <div class="text-center flex-1">
+              <h2 class="text-2xl font-bold text-orange-500 mb-1">2,580</h2>
+              <p class="text-gray-600 text-sm">可用金豆</p>
+            </div>
+            <div class="w-px h-12 bg-gray-200 mx-4"></div>
+            <div class="text-center flex-1">
+              <h2 class="text-2xl font-bold text-gray-700 mb-1">8,350</h2>
+              <p class="text-gray-600 text-sm">累计获得</p>
+            </div>
+          </div>
+
+          <div class="flex space-x-2">
+            <button
+              onclick="showGoldBeanRules()"
+              class="flex-1 bg-gray-200 text-gray-700 p-2.5 rounded-lg font-semibold text-sm"
+            >
+              详细规则
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 明细列表 -->
+      <div class="px-3">
+        <h3 class="font-bold mb-2 text-sm">金豆明细</h3>
+        <div class="space-y-2">
+          <div
+            class="bg-white rounded-lg p-3 cursor-pointer hover:bg-gray-50 transition-colors"
+            onclick="showPage('gold-bean-detail')"
+          >
+            <div class="flex justify-between items-center">
+              <div>
+                <h4 class="font-semibold text-sm">下单返现奖励</h4>
+                <p class="text-gray-600 text-xs">2024-06-10 14:30</p>
+              </div>
+              <div class="flex items-center">
+                <span class="text-orange-500 font-bold text-sm mr-2">+50</span>
+                <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="bg-white rounded-lg p-3 cursor-pointer hover:bg-gray-50 transition-colors"
+            onclick="showPage('gold-bean-detail')"
+          >
+            <div class="flex justify-between items-center">
+              <div>
+                <h4 class="font-semibold text-sm">推广者下单返现奖励</h4>
+                <p class="text-gray-600 text-xs">2024-06-10 08:00</p>
+              </div>
+              <div class="flex items-center">
+                <span class="text-orange-500 font-bold text-sm mr-2">+10</span>
+                <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="bg-white rounded-lg p-3 cursor-pointer hover:bg-gray-50 transition-colors"
+            onclick="showPage('gold-bean-detail')"
+          >
+            <div class="flex justify-between items-center">
+              <div>
+                <h4 class="font-semibold text-sm">消费抵扣</h4>
+                <p class="text-gray-600 text-xs">2024-06-10 08:00</p>
+              </div>
+              <div class="flex items-center">
+                <span class="text-orange-500 font-bold text-sm mr-2">-500</span>
+                <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 金豆使用规则弹窗 -->
+  <div
+    id="goldBeanRulesModal"
+    class="h-[740px] absolute bottom-0 inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+    style="display: none"
+  >
+    <div class="absolute top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] w-[90%] bg-white rounded-lg max-w-sm">
+      <!-- 弹窗内容 -->
+      <div class="p-6 text-center">
+        <div class="mb-4">
+          <div
+            class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3"
+          >
+            <i class="fas fa-coins text-orange-500 text-2xl"></i>
+          </div>
+          <h3 class="text-lg font-semibold text-gray-800 mb-2">金豆使用规则</h3>
+        </div>
+
+        <div class="text-sm text-gray-600 space-y-2 mb-6">
+          <p>• 金豆可以在购买商品时抵消全部金额</p>
+          <p>• 1金豆 = 0.01元人民币</p>
+          <p>
+            •
+            当该账户推广的用户进行购物消费时，该账户可获得1%的分佣，并以金豆的形式返现到该账户上
+          </p>
+          <p>• 金豆不可转让，仅限本账户使用</p>
+        </div>
+      </div>
+
+      <!-- 关闭按钮 -->
+      <div class="px-6 pb-6">
+        <button
+          onclick="hideGoldBeanRules()"
+          class="w-full bg-orange-500 hover:bg-orange-600 text-white font-medium py-3 px-4 rounded-lg transition-colors"
+        >
+          我知道了
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

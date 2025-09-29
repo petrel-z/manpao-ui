@@ -1,342 +1,525 @@
 <!-- 首页 -->
 <div class="page" id="home">
-    <div class="bg-gray-50 min-h-full pb-16">
-        <!-- 头部搜索栏 -->
-        <div class="header-curve relative">
-            <div class="w-[90%] flex flex-row items-center justify-between relative z-10">
-                <div class="flex-1">
-                    <div onclick="showPage('school-select')" class="flex items-center space-x-2 cursor-pointer px-3 py-1.5">
-                        <i class="fas fa-university text-white text-sm"></i>
-                        <span class="text-white font-medium text-body-sm">北京大学</span>
-                        <i class="fas fa-chevron-down text-white text-xs"></i>
-                    </div>
-                </div>
-                <div class="bg-gray-100 rounded-full p-2 flex items-center space-x-2 shadow-sm cursor-pointer w-40" onclick="showPage('search')">
-                    <i class="fas fa-search text-red-500 text-sm ml-2"></i>
-                    <div class="flex-1 text-gray-500 text-xs truncate">输入商家名称查询</div>
-                </div>
-            </div>
+  <div class="bg-gray-50 min-h-full pb-16">
+    <!-- 头部搜索栏 -->
+    <div class="header-curve relative">
+      <div
+        class="w-[90%] flex flex-row items-center justify-between relative z-10"
+      >
+        <div class="flex-1">
+          <div
+            onclick="showPage('school-select')"
+            class="flex items-center space-x-2 cursor-pointer px-3 py-1.5"
+          >
+            <i class="fas fa-university text-white text-sm"></i>
+            <span class="text-white font-medium text-body-sm">北京大学</span>
+            <i class="fas fa-chevron-down text-white text-xs"></i>
+          </div>
         </div>
-
-        <!-- 轮播图 -->
-        <div class="px-3 -mt-2 mb-3 relative z-10">
-            <div class="relative rounded-lg overflow-hidden h-28">
-                <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&h=200&fit=crop" 
-                     alt="校园美食" class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
-                    <span class="text-white font-bold text-heading-md">校园美食节</span>
-                </div>
-            </div>
+        <div
+          class="bg-gray-100 rounded-full p-2 flex items-center space-x-2 shadow-sm cursor-pointer w-40"
+          onclick="showPage('search')"
+        >
+          <i class="fas fa-search text-red-500 text-sm ml-2"></i>
+          <div class="flex-1 text-gray-500 text-xs truncate">
+            输入商家名称查询
+          </div>
         </div>
-
-        <!-- 分类导航 -->
-        <div class="px-3 mb-4">
-            <div class="grid grid-cols-4 gap-3">
-                <div class="text-center">
-                    <div class="w-14 flex items-center justify-center mx-auto mb-1">
-                        <i class="fas fa-print text-red-500 text-3xl"></i>
-                    </div>
-                    <span class="text-caption text-gray-700">打印资料</span>
-                </div>
-                <div class="text-center">
-                    <div class="w-14 flex items-center justify-center mx-auto mb-1">
-                        <i class="fas fa-motorcycle text-red-500 text-3xl"></i>
-                    </div>
-                    <span class="text-caption text-gray-700">申请骑手</span>
-                </div>
-                <div class="text-center">
-                    <div class="w-14 flex items-center justify-center mx-auto mb-1">
-                        <i class="fas fa-briefcase text-red-500 text-3xl"></i>
-                    </div>
-                    <span class="text-caption text-gray-700">校园兼职</span>
-                </div>
-                <div class="text-center">
-                    <div class="w-14 flex items-center justify-center mx-auto mb-1">
-                        <i class="fas fa-trophy text-red-500 text-3xl"></i>
-                    </div>
-                    <span class="text-caption text-gray-700">校园赛事</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- 商家列表 -->
-        <div class="px-3">
-            <div class="flex items-center justify-between mb-3">
-                <h3 class="font-bold text-heading-md-small">附近商家</h3>
-                <div class="flex items-center space-x-2">
-                    <div class="flex items-center space-x-1 bg-white rounded-full px-3 py-1.5 text-sm text-gray-700 shadow-sm" onclick="toggleFilterOptions()">
-                        <i class="fas fa-filter text-gray-500"></i>
-                        <span>筛选</span>
-                    </div>
-                    <div class="flex items-center space-x-1 bg-white rounded-full px-3 py-1.5 text-sm text-gray-700 shadow-sm" onclick="toggleSortOptions()">
-                        <i class="fas fa-random text-gray-500"></i>
-                        <span>综合排序</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 筛选选项 -->
-            <div id="filter-options" class="bg-white rounded-lg p-3 mb-3 hidden">
-                <div class="text-sm font-medium mb-2">商家类型</div>
-                <div class="flex flex-wrap gap-2 mb-3">
-                    <div class="filter-tag active">全部</div>
-                    <div class="filter-tag">快餐</div>
-                    <div class="filter-tag">咖啡</div>
-                    <div class="filter-tag">川菜</div>
-                    <div class="filter-tag">甜品</div>
-                </div>
-                <div class="text-sm font-medium mb-2">配送范围</div>
-                <div class="flex flex-wrap gap-2">
-                    <div class="filter-tag active">全部</div>
-                    <div class="filter-tag">500m内</div>
-                    <div class="filter-tag">1km内</div>
-                    <div class="filter-tag">2km内</div>
-                </div>
-            </div>
-            
-            <!-- 排序选项 -->
-            <div id="sort-options" class="bg-white rounded-lg p-3 mb-3 hidden">
-                <div class="sort-option active">综合排序</div>
-                <div class="sort-option">距离最近</div>
-                <div class="sort-option">评分最高</div>
-                <div class="sort-option">起送价最低</div>
-            </div>
-            
-            <div class="space-y-3">
-                <!-- 麦当劳 -->
-                <div class="bg-white rounded-lg p-3 card-hover cursor-pointer" onclick="showPage('shop-detail')">
-                    <div class="flex space-x-3 mb-3">
-                        <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=80&h=80&fit=crop" 
-                             alt="麦当劳" class="w-14 h-14 rounded-lg object-cover">
-                        <div class="flex-1">
-                            <div class="flex items-start justify-between">
-                                <div>
-                                    <h4 class="font-semibold text-body-md">麦当劳（北大店）</h4>
-                                    <p class="text-gray-600 text-caption">快餐 | 距离200m</p>
-                                    <div class="flex items-center mt-1">
-                                        <span class="text-orange-500 font-bold text-caption">★ 4.8</span>
-                                    </div>
-                                </div>
-                                <span class="bg-green-500 text-white text-xs px-2 py-1 rounded-full">校内</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 商品展示区域 -->
-                    <div class="overflow-x-auto py-3">
-                        <div class="flex space-x-3 pb-2">
-                            <div class="flex-shrink-0 w-24 relative">
-                                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=96&h=96&fit=crop" 
-                                     alt="巨无霸" class="w-20 h-20 rounded-lg object-cover mx-auto">
-                                <p class="text-xs text-center mt-1 text-gray-700">巨无霸</p>
-                                <div class="text-xs text-center">
-                                    <span class="text-red-500 font-bold">￥22</span>
-                                    <span class="text-gray-400 line-through ml-1">￥25</span>
-                                </div>
-                                <button class="absolute -top-1 -right-1 w-6 h-6 bg-orange-500 text-white rounded-full flex items-center justify-center text-sm font-bold hover:bg-orange-600 transition-colors">
-                                    +
-                                </button>
-                            </div>
-                            <div class="flex-shrink-0 w-24 relative">
-                                <img src="https://images.unsplash.com/photo-1571091655789-405eb7a3a3a8?w=96&h=96&fit=crop" 
-                                     alt="薯条" class="w-20 h-20 rounded-lg object-cover mx-auto">
-                                <p class="text-xs text-center mt-1 text-gray-700">薯条</p>
-                                <div class="text-xs text-center">
-                                    <span class="text-red-500 font-bold">￥10</span>
-                                    <span class="text-gray-400 line-through ml-1">￥12</span>
-                                </div>
-                                <button class="absolute -top-1 -right-1 w-6 h-6 bg-orange-500 text-white rounded-full flex items-center justify-center text-sm font-bold hover:bg-orange-600 transition-colors">
-                                    +
-                                </button>
-                            </div>
-                            <div class="flex-shrink-0 w-24 relative">
-                                <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?w=96&h=96&fit=crop" 
-                                     alt="可乐" class="w-20 h-20 rounded-lg object-cover mx-auto">
-                                <p class="text-xs text-center mt-1 text-gray-700">可乐</p>
-                                <div class="text-xs text-center">
-                                    <span class="text-red-500 font-bold">￥6</span>
-                                    <span class="text-gray-400 line-through ml-1">￥8</span>
-                                </div>
-                                <button class="absolute -top-1 -right-1 w-6 h-6 bg-orange-500 text-white rounded-full flex items-center justify-center text-sm font-bold hover:bg-orange-600 transition-colors">
-                                    +
-                                </button>
-                            </div>
-                            <div class="flex-shrink-0 w-24 relative">
-                                <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=96&h=96&fit=crop" 
-                                     alt="鸡块" class="w-20 h-20 rounded-lg object-cover mx-auto">
-                                <p class="text-xs text-center mt-1 text-gray-700">鸡块</p>
-                                <div class="text-xs text-center">
-                                    <span class="text-red-500 font-bold">￥15</span>
-                                    <span class="text-gray-400 line-through ml-1">￥18</span>
-                                </div>
-                                <button class="absolute -top-1 -right-1 w-6 h-6 bg-orange-500 text-white rounded-full flex items-center justify-center text-sm font-bold hover:bg-orange-600 transition-colors">
-                                    +
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- 星巴克 -->
-                <div class="bg-white rounded-lg p-3 card-hover">
-                    <div class="flex space-x-3 mb-3">
-                        <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=80&h=80&fit=crop" 
-                             alt="星巴克" class="w-14 h-14 rounded-lg object-cover">
-                        <div class="flex-1">
-                            <div class="flex items-start justify-between">
-                                <div>
-                                    <h4 class="font-semibold text-body-md">星巴克咖啡</h4>
-                                    <p class="text-gray-600 text-caption">咖啡 | 距离150m</p>
-                                    <div class="flex items-center justify-between mt-1">
-                                        <span class="text-orange-500 font-bold text-caption">★ 4.9</span>
-                                    </div>
-                                </div>
-                                <span class="bg-blue-500 text-white text-xs px-2 py-1 rounded-full">校外</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 商品展示区域 -->
-                    <div class="overflow-x-auto">
-                        <div class="flex space-x-3 pb-2">
-                            <div class="flex-shrink-0 w-24">
-                                <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=96&h=96&fit=crop" 
-                                     alt="拿铁" class="w-20 h-20 rounded-lg object-cover mx-auto">
-                                <p class="text-xs text-center mt-1 text-gray-700">拿铁</p>
-                                <p class="text-xs text-center text-red-500 font-bold">￥32</p>
-                            </div>
-                            <div class="flex-shrink-0 w-24">
-                                <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=96&h=96&fit=crop" 
-                                     alt="卡布奇诺" class="w-20 h-20 rounded-lg object-cover mx-auto">
-                                <p class="text-xs text-center mt-1 text-gray-700">卡布奇诺</p>
-                                <p class="text-xs text-center text-red-500 font-bold">￥30</p>
-                            </div>
-                            <div class="flex-shrink-0 w-24">
-                                <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=96&h=96&fit=crop" 
-                                     alt="芝士蛋糕" class="w-20 h-20 rounded-lg object-cover mx-auto">
-                                <p class="text-xs text-center mt-1 text-gray-700">芝士蛋糕</p>
-                                <p class="text-xs text-center text-red-500 font-bold">￥28</p>
-                            </div>
-                            <div class="flex-shrink-0 w-24">
-                                <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=96&h=96&fit=crop" 
-                                     alt="马卡龙" class="w-20 h-20 rounded-lg object-cover mx-auto">
-                                <p class="text-xs text-center mt-1 text-gray-700">马卡龙</p>
-                                <p class="text-xs text-center text-red-500 font-bold">￥15</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- 蜀香川菜馆 -->
-                <div class="bg-white rounded-lg p-3 card-hover">
-                    <div class="flex space-x-3 mb-3">
-                        <img src="http://images.unsplash.com/photo-1739193878147-c3c4aada8756?q=80&w=2070&auto=format&fit=crop" 
-                             alt="川菜馆" class="w-14 h-14 rounded-lg object-cover">
-                        <div class="flex-1">
-                            <h4 class="font-semibold text-body-md">蜀香川菜馆</h4>
-                            <p class="text-gray-600 text-caption">川菜 | 距离300m</p>
-                            <div class="flex items-center justify-between mt-1">
-                                <span class="text-orange-500 font-bold text-caption">★ 4.7</span>
-                                <span class="text-red-500 font-bold text-caption">￥25起送</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 商品展示区域 -->
-                    <div class="overflow-x-auto">
-                        <div class="flex space-x-3 pb-2">
-                            <div class="flex-shrink-0 w-24">
-                                <img src="https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=96&h=96&fit=crop" 
-                                     alt="麻婆豆腐" class="w-20 h-20 rounded-lg object-cover mx-auto">
-                                <p class="text-xs text-center mt-1 text-gray-700">麻婆豆腐</p>
-                                <p class="text-xs text-center text-red-500 font-bold">￥22</p>
-                            </div>
-                            <div class="flex-shrink-0 w-24">
-                                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=96&h=96&fit=crop" 
-                                     alt="宫保鸡丁" class="w-20 h-20 rounded-lg object-cover mx-auto">
-                                <p class="text-xs text-center mt-1 text-gray-700">宫保鸡丁</p>
-                                <p class="text-xs text-center text-red-500 font-bold">￥28</p>
-                            </div>
-                            <div class="flex-shrink-0 w-24">
-                                <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=96&h=96&fit=crop" 
-                                     alt="水煮鱼" class="w-20 h-20 rounded-lg object-cover mx-auto">
-                                <p class="text-xs text-center mt-1 text-gray-700">水煮鱼</p>
-                                <p class="text-xs text-center text-red-500 font-bold">￥45</p>
-                            </div>
-                            <div class="flex-shrink-0 w-24">
-                                <img src="https://images.unsplash.com/photo-1574484284002-952d92456975?w=96&h=96&fit=crop" 
-                                     alt="回锅肉" class="w-20 h-20 rounded-lg object-cover mx-auto">
-                                <p class="text-xs text-center mt-1 text-gray-700">回锅肉</p>
-                                <p class="text-xs text-center text-red-500 font-bold">￥32</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
-</div>
 
-<script>
-    // 筛选和排序功能
-    function toggleFilterOptions() {
-        const filterOptions = document.getElementById('filter-options');
-        const sortOptions = document.getElementById('sort-options');
-        
-        // 隐藏排序选项
-        sortOptions.classList.add('hidden');
-        
-        // 切换筛选选项的显示状态
-        filterOptions.classList.toggle('hidden');
-    }
-    
-    function toggleSortOptions() {
-        const filterOptions = document.getElementById('filter-options');
-        const sortOptions = document.getElementById('sort-options');
-        
-        // 隐藏筛选选项
-        filterOptions.classList.add('hidden');
-        
-        // 切换排序选项的显示状态
-        sortOptions.classList.toggle('hidden');
-    }
-    
-    // 页面加载完成后初始化筛选和排序功能
-    document.addEventListener('DOMContentLoaded', function() {
-        // 初始化筛选标签点击事件
-        const filterTags = document.querySelectorAll('.filter-tag');
-        filterTags.forEach(tag => {
-            tag.addEventListener('click', function() {
-                // 同一组中只能有一个标签处于激活状态
-                const siblings = Array.from(this.parentNode.children);
-                siblings.forEach(sibling => {
-                    sibling.classList.remove('active');
-                });
-                
-                // 激活当前点击的标签
-                this.classList.add('active');
-                
-                // 模拟筛选效果（实际应用中应该根据筛选条件过滤数据）
-                console.log('筛选条件：', this.textContent);
-            });
-        });
-        
-        // 初始化排序选项点击事件
-        const sortOptions = document.querySelectorAll('.sort-option');
-        sortOptions.forEach(option => {
-            option.addEventListener('click', function() {
-                // 只能有一个排序选项处于激活状态
-                const siblings = Array.from(this.parentNode.children);
-                siblings.forEach(sibling => {
-                    sibling.classList.remove('active');
-                });
-                
-                // 激活当前点击的选项
-                this.classList.add('active');
-                
-                // 隐藏排序选项面板
-                document.getElementById('sort-options').classList.add('hidden');
-                
-                // 模拟排序效果（实际应用中应该根据排序条件对数据进行排序）
-                console.log('排序条件：', this.textContent);
-            });
-        });
-    });
-</script>
+    <!-- 轮播图 -->
+    <div class="px-3 -mt-2 mb-3 relative z-10">
+      <div class="relative rounded-lg overflow-hidden h-28">
+        <img
+          src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&h=200&fit=crop"
+          alt="校园美食"
+          class="w-full h-full object-cover"
+        />
+        <div
+          class="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center"
+        >
+          <span class="text-white font-bold text-heading-md">校园美食节</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 分类导航 -->
+    <div class="px-3 mb-4">
+      <div class="grid grid-cols-4 gap-3">
+        <div class="text-center">
+          <div class="w-14 flex items-center justify-center mx-auto mb-1">
+            <i class="fas fa-print text-red-500 text-3xl"></i>
+          </div>
+          <span class="text-caption text-gray-700">打印资料</span>
+        </div>
+        <div class="text-center">
+          <div class="w-14 flex items-center justify-center mx-auto mb-1">
+            <i class="fas fa-motorcycle text-red-500 text-3xl"></i>
+          </div>
+          <span class="text-caption text-gray-700">申请骑手</span>
+        </div>
+        <div class="text-center">
+          <div class="w-14 flex items-center justify-center mx-auto mb-1">
+            <i class="fas fa-briefcase text-red-500 text-3xl"></i>
+          </div>
+          <span class="text-caption text-gray-700">校园兼职</span>
+        </div>
+        <div class="text-center">
+          <div class="w-14 flex items-center justify-center mx-auto mb-1">
+            <i class="fas fa-trophy text-red-500 text-3xl"></i>
+          </div>
+          <span class="text-caption text-gray-700">校园赛事</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 商家列表 -->
+    <div class="px-3 h-[426px] overflow-y-auto scrollbar-hide">
+      <div class="flex items-center justify-between mb-3">
+        <h3 class="font-bold text-heading-md-small">附近商家</h3>
+        <div class="flex items-center space-x-2">
+          <div
+            class="flex items-center space-x-1 bg-white rounded-full px-3 py-1.5 text-sm text-gray-700 shadow-sm"
+            onclick="toggleSortOptions()"
+          >
+            <i class="fas fa-random text-gray-500"></i>
+            <span>综合排序</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 排序选项 -->
+      <div
+        id="sort-options"
+        class="absolute right-[10px] top-[280px] bg-white rounded-lg p-3 mb-3 hidden"
+      >
+        <div class="sort-option active">综合排序</div>
+        <div class="sort-option">评分</div>
+        <div class="sort-option">销量</div>
+        <div class="sort-option">距离远近</div>
+      </div>
+
+      <!-- 店铺类别 -->
+      <div class="bg-white rounded-lg p-4 mb-3">
+        <div class="flex overflow-x-auto scrollbar-hide space-x-3 pb-2">
+          <div class="flex-shrink-0 text-center">
+            <span class="text-xs text-gray-600">蛋糕店</span>
+          </div>
+          <div class="flex-shrink-0 text-center">
+            <span class="text-xs text-gray-600">奶茶店</span>
+          </div>
+          <div class="flex-shrink-0 text-center">
+            <span class="text-xs text-gray-600">火锅店</span>
+          </div>
+          <div class="flex-shrink-0 text-center">
+            <span class="text-xs text-gray-600">粥食店</span>
+          </div>
+          <div class="flex-shrink-0 text-center">
+            <span class="text-xs text-gray-600">小吃店</span>
+          </div>
+          <div class="flex-shrink-0 text-center">
+            <span class="text-xs text-gray-600">中餐厅</span>
+          </div>
+          <div class="flex-shrink-0 text-center">
+            <span class="text-xs text-gray-600">西餐厅</span>
+          </div>
+          <div class="flex-shrink-0 text-center">
+            <span class="text-xs text-gray-600">日料店</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-3">
+        <!-- 麦当劳 -->
+        <div
+          class="bg-white rounded-lg p-3 card-hover cursor-pointer"
+          onclick="showPage('merchant-detail')"
+        >
+          <div class="flex space-x-3 mb-3">
+            <img
+              src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=80&h=80&fit=crop"
+              alt="麦当劳"
+              class="w-20 h-20 rounded-lg object-cover flex-shrink-0"
+            />
+            <div class="flex-1 flex flex-col justify-between h-20">
+              <div class="flex items-start justify-between">
+                <div class="flex-1">
+                  <h4 class="font-semibold text-sm leading-tight">麦当劳（北大店）</h4>
+                  <p class="text-gray-600 text-xs mt-0.5">快餐 | 距离200m</p>
+                  <div class="flex items-center mt-1">
+                    <span class="text-orange-500 font-bold text-xs"
+                      >★ 4.8</span
+                    >
+                    <span class="text-gray-500 text-xs ml-2"
+                      >近一周销量 1.2k</span
+                    >
+                  </div>
+                  <!-- 热门信息 -->
+                  <div
+                    class="bg-orange-50 border border-orange-200 rounded px-1.5 py-0.5 mt-1 inline-block"
+                  >
+                    <span class="text-orange-600 text-xs font-medium"
+                      >🔥 热门 · 31人给了好评</span
+                    >
+                  </div>
+                </div>
+                <div class="flex flex-col items-end justify-start h-full">
+                  <span
+                    class="bg-green-500 text-white text-xs px-2 py-1 rounded-full"
+                    >校内</span
+                  >
+                  <p class="text-gray-500 text-xs mt-1">人均 ¥25</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 商品展示区域 -->
+          <div class="overflow-x-auto py-3">
+            <div class="flex space-x-3 pb-2">
+              <div class="flex-shrink-0 w-24 relative">
+                <img
+                  src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=96&h=96&fit=crop"
+                  alt="巨无霸"
+                  class="w-20 h-20 rounded-lg object-cover mx-auto"
+                />
+                <!-- 商品标签 -->
+                <span class="absolute top-0 left-0 bg-red-500 text-white text-xs px-1 py-0.5 rounded-br-lg rounded-tl-lg font-medium">招牌</span>
+                <p class="text-xs text-center mt-1 text-gray-700">巨无霸</p>
+                <div class="text-xs text-center flex items-center justify-center space-x-2">
+                  <div>
+                    <span class="text-red-500 font-bold">￥22</span>
+                    <span class="text-gray-400 line-through ml-1">￥25</span>
+                  </div>
+                  <button
+                    class="w-5 h-5 bg-orange-500 text-white rounded-full flex items-center justify-center text-xs font-bold hover:bg-orange-600 transition-colors"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+              <div class="flex-shrink-0 w-24 relative">
+                <img
+                  src="https://images.unsplash.com/photo-1571091655789-405eb7a3a3a8?w=96&h=96&fit=crop"
+                  alt="薯条"
+                  class="w-20 h-20 rounded-lg object-cover mx-auto"
+                />
+                <!-- 商品标签 -->
+                <span class="absolute top-0 left-0 bg-orange-500 text-white text-xs px-1 py-0.5 rounded-br-lg rounded-tl-lg font-medium">热销</span>
+                <p class="text-xs text-center mt-1 text-gray-700">薯条</p>
+                <div class="text-xs text-center flex items-center justify-center space-x-2">
+                  <div>
+                    <span class="text-red-500 font-bold">￥10</span>
+                    <span class="text-gray-400 line-through ml-1">￥12</span>
+                  </div>
+                  <button
+                    class="w-5 h-5 bg-orange-500 text-white rounded-full flex items-center justify-center text-xs font-bold hover:bg-orange-600 transition-colors"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+              <div class="flex-shrink-0 w-24 relative">
+                <img
+                  src="https://images.unsplash.com/photo-1551024506-0bccd828d307?w=96&h=96&fit=crop"
+                  alt="可乐"
+                  class="w-20 h-20 rounded-lg object-cover mx-auto"
+                />
+                <!-- 商品标签 -->
+                <span class="absolute top-0 left-0 bg-green-500 text-white text-xs px-1 py-0.5 rounded-br-lg rounded-tl-lg font-medium">精选</span>
+                <p class="text-xs text-center mt-1 text-gray-700">可乐</p>
+                <div class="text-xs text-center flex items-center justify-center space-x-2">
+                  <div>
+                    <span class="text-red-500 font-bold">￥6</span>
+                    <span class="text-gray-400 line-through ml-1">￥8</span>
+                  </div>
+                  <button
+                    class="w-5 h-5 bg-orange-500 text-white rounded-full flex items-center justify-center text-xs font-bold hover:bg-orange-600 transition-colors"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+              <div class="flex-shrink-0 w-24 relative">
+                <img
+                  src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=96&h=96&fit=crop"
+                  alt="鸡块"
+                  class="w-20 h-20 rounded-lg object-cover mx-auto"
+                />
+                <p class="text-xs text-center mt-1 text-gray-700">鸡块</p>
+                <div class="text-xs text-center flex items-center justify-center space-x-2">
+                  <div>
+                    <span class="text-red-500 font-bold">￥15</span>
+                    <span class="text-gray-400 line-through ml-1">￥18</span>
+                  </div>
+                  <button
+                    class="w-5 h-5 bg-orange-500 text-white rounded-full flex items-center justify-center text-xs font-bold hover:bg-orange-600 transition-colors"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 星巴克 -->
+        <div class="bg-white rounded-lg p-3 card-hover">
+          <div class="flex space-x-3 mb-3">
+            <img
+              src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=80&h=80&fit=crop"
+              alt="星巴克"
+              class="w-20 h-20 rounded-lg object-cover flex-shrink-0"
+            />
+            <div class="flex-1 flex flex-col justify-between h-20">
+              <div class="flex items-start justify-between">
+                <div class="flex-1">
+                  <h4 class="font-semibold text-sm leading-tight">星巴克咖啡</h4>
+                  <p class="text-gray-600 text-xs mt-0.5">咖啡 | 距离150m</p>
+                  <div class="flex items-center mt-1">
+                    <span class="text-orange-500 font-bold text-xs"
+                      >★ 4.9</span
+                    >
+                    <span class="text-gray-500 text-xs ml-2"
+                      >近一周销量 856</span
+                    >
+                  </div>
+                  <!-- 热门信息 -->
+                  <div
+                    class="bg-orange-50 border border-orange-200 rounded px-1.5 py-0.5 mt-1 inline-block"
+                  >
+                    <span class="text-orange-600 text-xs font-medium"
+                      >🔥 热门 · 28人给了好评</span
+                    >
+                  </div>
+                </div>
+                <div class="flex flex-col items-end justify-between h-full">
+                  <span
+                    class="bg-blue-500 text-white text-xs px-2 py-1 rounded-full"
+                    >校外</span
+                  >
+                  <p class="text-gray-500 text-xs">人均 ¥35</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 商品展示区域 -->
+          <div class="overflow-x-auto py-3">
+            <div class="flex space-x-3 pb-2">
+              <div class="flex-shrink-0 w-24 relative">
+                <img
+                  src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=96&h=96&fit=crop"
+                  alt="拿铁"
+                  class="w-20 h-20 rounded-lg object-cover mx-auto"
+                />
+                <!-- 商品标签 -->
+                <span class="absolute top-0 left-0 bg-blue-500 text-white text-xs px-1 py-0.5 rounded-br-lg rounded-tl-lg font-medium">精选</span>
+                <p class="text-xs text-center mt-1 text-gray-700">拿铁</p>
+                <div class="text-xs text-center flex items-center justify-center space-x-2">
+                  <div>
+                    <span class="text-red-500 font-bold">￥28</span>
+                    <span class="text-gray-400 line-through ml-1">￥32</span>
+                  </div>
+                  <button
+                    class="w-5 h-5 bg-orange-500 text-white rounded-full flex items-center justify-center text-xs font-bold hover:bg-orange-600 transition-colors"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+              <div class="flex-shrink-0 w-24 relative">
+                <img
+                  src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=96&h=96&fit=crop"
+                  alt="卡布奇诺"
+                  class="w-20 h-20 rounded-lg object-cover mx-auto"
+                />
+                <!-- 商品标签 -->
+                <span class="absolute top-0 left-0 bg-orange-500 text-white text-xs px-1 py-0.5 rounded-br-lg rounded-tl-lg font-medium">热销</span>
+                <p class="text-xs text-center mt-1 text-gray-700">卡布奇诺</p>
+                <div class="text-xs text-center flex items-center justify-center space-x-2">
+                  <div>
+                    <span class="text-red-500 font-bold">￥26</span>
+                    <span class="text-gray-400 line-through ml-1">￥30</span>
+                  </div>
+                  <button
+                    class="w-5 h-5 bg-orange-500 text-white rounded-full flex items-center justify-center text-xs font-bold hover:bg-orange-600 transition-colors"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+              <div class="flex-shrink-0 w-24 relative">
+                <img
+                  src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=96&h=96&fit=crop"
+                  alt="芝士蛋糕"
+                  class="w-20 h-20 rounded-lg object-cover mx-auto"
+                />
+                <p class="text-xs text-center mt-1 text-gray-700">芝士蛋糕</p>
+                <div class="text-xs text-center flex items-center justify-center space-x-2">
+                  <div>
+                    <span class="text-red-500 font-bold">￥24</span>
+                    <span class="text-gray-400 line-through ml-1">￥28</span>
+                  </div>
+                  <button
+                    class="w-5 h-5 bg-orange-500 text-white rounded-full flex items-center justify-center text-xs font-bold hover:bg-orange-600 transition-colors"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+              <div class="flex-shrink-0 w-24 relative">
+                <img
+                  src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=96&h=96&fit=crop"
+                  alt="马卡龙"
+                  class="w-20 h-20 rounded-lg object-cover mx-auto"
+                />
+                <!-- 商品标签 -->
+                <span class="absolute top-0 left-0 bg-green-500 text-white text-xs px-1 py-0.5 rounded-br-lg rounded-tl-lg font-medium">好评</span>
+                <p class="text-xs text-center mt-1 text-gray-700">马卡龙</p>
+                <div class="text-xs text-center flex items-center justify-center space-x-2">
+                  <div>
+                    <span class="text-red-500 font-bold">￥12</span>
+                    <span class="text-gray-400 line-through ml-1">￥15</span>
+                  </div>
+                  <button
+                    class="w-5 h-5 bg-orange-500 text-white rounded-full flex items-center justify-center text-xs font-bold hover:bg-orange-600 transition-colors"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 蜀香川菜馆 -->
+        <div class="bg-white rounded-lg p-3 card-hover">
+          <div class="flex space-x-3 mb-3">
+            <img
+              src="http://images.unsplash.com/photo-1739193878147-c3c4aada8756?q=80&w=2070&auto=format&fit=crop"
+              alt="川菜馆"
+              class="w-20 h-20 rounded-lg object-cover flex-shrink-0"
+            />
+            <div class="flex-1 flex flex-col justify-between h-20">
+              <div class="flex items-start justify-between">
+                <div class="flex-1">
+                  <h4 class="font-semibold text-sm leading-tight">蜀香川菜馆</h4>
+                  <p class="text-gray-600 text-xs mt-0.5">川菜 | 距离300m</p>
+                  <div class="flex items-center mt-1">
+                    <span class="text-orange-500 font-bold text-xs"
+                      >★ 4.7</span
+                    >
+                    <span class="text-gray-500 text-xs ml-2"
+                      >近一周销量 642</span
+                    >
+                  </div>
+                  <!-- 热门信息 -->
+                  <div
+                    class="bg-orange-50 border border-orange-200 rounded px-1.5 py-0.5 mt-1 inline-block"
+                  >
+                    <span class="text-orange-600 text-xs font-medium"
+                      >🔥 热门 · 45人给了好评</span
+                    >
+                  </div>
+                </div>
+                <div class="flex flex-col items-end justify-between h-full">
+                  <span class="text-red-500 font-bold text-xs"
+                    >￥25起送</span
+                  >
+                  <p class="text-gray-500 text-xs">人均 ¥42</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 商品展示区域 -->
+          <div class="overflow-x-auto py-3">
+            <div class="flex space-x-3 pb-2">
+              <div class="flex-shrink-0 w-24 relative">
+                <img
+                  src="https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=96&h=96&fit=crop"
+                  alt="麻婆豆腐"
+                  class="w-20 h-20 rounded-lg object-cover mx-auto"
+                />
+                <!-- 商品标签 -->
+                <span class="absolute top-0 left-0 bg-red-500 text-white text-xs px-1 py-0.5 rounded-br-lg rounded-tl-lg font-medium">招牌</span>
+                <p class="text-xs text-center mt-1 text-gray-700">麻婆豆腐</p>
+                <div class="text-xs text-center flex items-center justify-center space-x-2">
+                  <div>
+                    <span class="text-red-500 font-bold">￥18</span>
+                    <span class="text-gray-400 line-through ml-1">￥22</span>
+                  </div>
+                  <button
+                    class="w-5 h-5 bg-orange-500 text-white rounded-full flex items-center justify-center text-xs font-bold hover:bg-orange-600 transition-colors"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+              <div class="flex-shrink-0 w-24 relative">
+                <img
+                  src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=96&h=96&fit=crop"
+                  alt="宫保鸡丁"
+                  class="w-20 h-20 rounded-lg object-cover mx-auto"
+                />
+                <!-- 商品标签 -->
+                <span class="absolute top-0 left-0 bg-orange-500 text-white text-xs px-1 py-0.5 rounded-br-lg rounded-tl-lg font-medium">热销</span>
+                <p class="text-xs text-center mt-1 text-gray-700">宫保鸡丁</p>
+                <div class="text-xs text-center flex items-center justify-center space-x-2">
+                  <div>
+                    <span class="text-red-500 font-bold">￥25</span>
+                    <span class="text-gray-400 line-through ml-1">￥28</span>
+                  </div>
+                  <button
+                    class="w-5 h-5 bg-orange-500 text-white rounded-full flex items-center justify-center text-xs font-bold hover:bg-orange-600 transition-colors"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+              <div class="flex-shrink-0 w-24 relative">
+                <img
+                  src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=96&h=96&fit=crop"
+                  alt="水煮鱼"
+                  class="w-20 h-20 rounded-lg object-cover mx-auto"
+                />
+                <!-- 商品标签 -->
+                <span class="absolute top-0 left-0 bg-green-500 text-white text-xs px-1 py-0.5 rounded-br-lg rounded-tl-lg font-medium">好评</span>
+                <p class="text-xs text-center mt-1 text-gray-700">水煮鱼</p>
+                <div class="text-xs text-center flex items-center justify-center space-x-2">
+                  <div>
+                    <span class="text-red-500 font-bold">￥35</span>
+                    <span class="text-gray-400 line-through ml-1">￥45</span>
+                  </div>
+                  <button
+                    class="w-5 h-5 bg-orange-500 text-white rounded-full flex items-center justify-center text-xs font-bold hover:bg-orange-600 transition-colors"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+              <div class="flex-shrink-0 w-24 relative">
+                <img
+                  src="https://images.unsplash.com/photo-1574484284002-952d92456975?w=96&h=96&fit=crop"
+                  alt="回锅肉"
+                  class="w-20 h-20 rounded-lg object-cover mx-auto"
+                />
+                <p class="text-xs text-center mt-1 text-gray-700">回锅肉</p>
+                <div class="text-xs text-center flex items-center justify-center space-x-2">
+                  <div>
+                    <span class="text-red-500 font-bold">￥28</span>
+                    <span class="text-gray-400 line-through ml-1">￥32</span>
+                  </div>
+                  <button
+                    class="w-5 h-5 bg-orange-500 text-white rounded-full flex items-center justify-center text-xs font-bold hover:bg-orange-600 transition-colors"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

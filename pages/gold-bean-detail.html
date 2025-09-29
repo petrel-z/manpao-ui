@@ -4,186 +4,86 @@
         <!-- 头部 -->
         <div class="primary-red p-3">
             <div class="flex items-center space-x-3">
-                <i onclick="showPage('profile')" class="fas fa-arrow-left text-white cursor-pointer"></i>
-                <span class="text-white font-semibold">金豆明细</span>
+                <i onclick="showPage('gold-bean')" class="fas fa-arrow-left text-white cursor-pointer"></i>
+                <span class="text-white font-semibold">金豆详情</span>
             </div>
         </div>
 
-        <!-- 金豆概览 -->
+        <!-- 金豆详情信息 -->
         <div class="p-3">
+            <!-- 基本信息卡片 -->
             <div class="bg-white rounded-lg p-4 mb-3">
-                <div class="text-center">
-                    <h2 class="text-2xl font-bold text-orange-500 mb-1">2,580</h2>
-                    <p class="text-gray-600 text-sm">当前金豆</p>
+                <div class="text-center mb-4">
+                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-coins text-orange-500 text-2xl"></i>
+                    </div>
+                    <h2 class="text-xl font-bold text-gray-800 mb-1">下单返现奖励</h2>
+                    <p class="text-gray-600 text-sm">2024-06-10 14:30</p>
                 </div>
                 
-                <div class="flex space-x-2 mt-4">
-                    <!-- <button class="flex-1 bg-orange-500 text-white p-2.5 rounded-lg font-semibold text-sm">
-                        兑换商品
-                    </button> -->
-                    <button onclick="showGoldBeanRules()" class="flex-1 bg-gray-200 text-gray-700 p-2.5 rounded-lg font-semibold text-sm">
-                        使用规则 
-                    </button>
+                <div class="border-t pt-4">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-gray-600">获得金豆</span>
+                        <span class="text-orange-500 font-bold text-lg">+50</span>
+                    </div>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-gray-600">流水号</span>
+                        <span class="text-gray-800 font-medium">MP202406101430001</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-600">类型</span>
+                        <span class="text-green-600 font-medium">消费</span>
+                    </div>
+                    <!-- <div class="flex justify-between items-center">
+                        <span class="text-gray-600">状态</span>
+                        <span class="text-green-600 font-medium">已完成</span>
+                    </div> -->
                 </div>
             </div>
-        </div>
 
-        <!-- 明细列表 -->
-        <div class="px-3">
-            <h3 class="font-bold mb-2 text-sm">金豆明细</h3>
-            <div class="space-y-2">
-                <div class="bg-white rounded-lg p-3">
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <h4 class="font-semibold text-sm">完成跑腿订单</h4>
-                            <p class="text-gray-600 text-xs">2024-06-10 14:30</p>
-                        </div>
-                        <span class="text-orange-500 font-bold text-sm">+50</span>
+            <!-- 订单详情卡片 -->
+            <div class="bg-white rounded-lg p-4 mb-3">
+                <h3 class="font-semibold text-gray-800 mb-3 flex items-center">
+                    <i class="fas fa-shopping-cart text-orange-500 mr-2"></i>
+                    订单详情
+                </h3>
+                <div class="space-y-3">
+                    <div class="flex justify-between">
+                        <span class="text-gray-600">商品名称</span>
+                        <span class="text-gray-800 text-right max-w-48">麻辣香锅套餐</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-600">订单金额</span>
+                        <span class="text-gray-800">¥58.00</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-600">返现比例</span>
+                        <span class="text-gray-800">1%</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-600">金豆生效时间</span>
+                        <span class="text-gray-800">2024-06-10 14:25</span>
+                    </div>
+                      <div class="flex justify-between">
+                        <span class="text-gray-600">金豆过期时间</span>
+                        <span class="text-gray-800">2024-09-10 14:25</span>
                     </div>
                 </div>
-                
-                <div class="bg-white rounded-lg p-3">
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <h4 class="font-semibold text-sm">每日签到奖励</h4>
-                            <p class="text-gray-600 text-xs">2024-06-10 08:00</p>
-                        </div>
-                        <span class="text-orange-500 font-bold text-sm">+10</span>
-                    </div>
-                </div>
-                
-                <div class="bg-white rounded-lg p-3">
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <h4 class="font-semibold text-sm">兑换优惠券</h4>
-                            <p class="text-gray-600 text-xs">2024-06-09 16:45</p>
-                        </div>
-                        <span class="text-red-600 font-bold text-sm">-200</span>
-                    </div>
-                </div>
-                
-                <div class="bg-white rounded-lg p-3">
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <h4 class="font-semibold text-sm">推荐好友奖励</h4>
-                            <p class="text-gray-600 text-xs">2024-06-09 12:10</p>
-                        </div>
-                        <span class="text-orange-500 font-bold text-sm">+100</span>
-                    </div>
-                </div>
-                
-                <div class="bg-white rounded-lg p-3">
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <h4 class="font-semibold text-sm">团购订单奖励</h4>
-                            <p class="text-gray-600 text-xs">2024-06-08 20:30</p>
-                        </div>
-                        <span class="text-orange-500 font-bold text-sm">+30</span>
-                    </div>
-                </div>
-                
-                <div class="bg-white rounded-lg p-3">
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <h4 class="font-semibold text-sm">兑换实物商品</h4>
-                            <p class="text-gray-600 text-xs">2024-06-08 15:20</p>
-                        </div>
-                        <span class="text-red-600 font-bold text-sm">-500</span>
-                    </div>
-                </div>
-                
-                <div class="bg-white rounded-lg p-3">
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <h4 class="font-semibold text-sm">完成跑腿订单</h4>
-                            <p class="text-gray-600 text-xs">2024-06-08 11:45</p>
-                        </div>
-                        <span class="text-orange-500 font-bold text-sm">+80</span>
-                    </div>
-                </div>
-                
-                <div class="bg-white rounded-lg p-3">
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <h4 class="font-semibold text-sm">活动参与奖励</h4>
-                            <p class="text-gray-600 text-xs">2024-06-07 19:00</p>
-                        </div>
-                        <span class="text-orange-500 font-bold text-sm">+150</span>
-                    </div>
+            </div>
+
+            <!-- 金豆规则说明 -->
+            <div class="bg-white rounded-lg p-4">
+                <h3 class="font-semibold text-gray-800 mb-3 flex items-center">
+                    <i class="fas fa-info-circle text-orange-500 mr-2"></i>
+                    获得规则
+                </h3>
+                <div class="space-y-2 text-sm text-gray-600">
+                    <p>• 下单成功后可获得金豆返现奖励</p>
+                    <p>• 返现金豆数量根据订单金额和返现比例计算</p>
+                    <p>• 订单完成后金豆自动到账</p>
+                    <p>• 金豆可用于全额抵扣商品</p>
                 </div>
             </div>
         </div>
     </div>
-    <!-- 金豆使用规则弹窗 -->
-    <div id="goldBeanRulesModal" class="modal" style="display: none;">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>金豆使用规则</h3>
-                <span class="close" onclick="hideGoldBeanRules()">&times;</span>
-            </div>
-            <div class="modal-body">
-                <p>金豆可以在购买商品时抵消部分金额</p>
-            </div>
-        </div>
-    </div>
-
 </div>
-
-
-
-<style>
-.modal {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.5);
-    /* display: flex; */
-    /* justify-content: center; */
-    /* align-items: center; */
-}
-
-.modal-content {
-    background-color: white;
-    padding: 0;
-    border-radius: 8px;
-    width: 90%;
-    max-width: 400px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px 20px;
-    border-bottom: 1px solid #eee;
-}
-
-.modal-header h3 {
-    margin: 0;
-    font-size: 18px;
-    font-weight: 600;
-}
-
-.close {
-    font-size: 24px;
-    font-weight: bold;
-    cursor: pointer;
-    color: #999;
-}
-
-.close:hover {
-    color: #333;
-}
-
-.modal-body {
-    padding: 20px;
-}
-
-.modal-body p {
-    margin: 0;
-    font-size: 16px;
-    line-height: 1.5;
-    color: #333;
-}
-</style>

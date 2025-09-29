@@ -9,7 +9,7 @@
             </div>
             <div class="bg-white rounded-lg p-2.5 flex items-center space-x-2">
                 <i class="fas fa-search text-gray-400 text-sm"></i>
-                <input type="text" id="school-search" placeholder="搜索省份、城市或学校" class="flex-1 outline-none text-sm" oninput="searchSchools()">
+                <input type="text" id="school-search" placeholder="搜索城市或学校" class="flex-1 outline-none text-sm" oninput="searchSchools()">
                 <i onclick="clearSchoolSearch()" class="fas fa-times text-gray-400 text-sm cursor-pointer" id="clear-search" style="display: none;"></i>
             </div>
         </div>
@@ -17,8 +17,8 @@
         <!-- 城市切换 -->
         <div class="p-3 border-b border-gray-100">
             <div class="flex items-center justify-between">
-                <span class="text-gray-600 text-sm">当前城市</span>
-                <button onclick="showCitySelector()" class="flex items-center space-x-2 px-3 py-2 bg-blue-50 text-blue-600 rounded-lg text-sm">
+                <span class="text-gray-600 text-sm">切换城市</span>
+                <button onclick="showPage('change-city')" class="flex items-center space-x-2 px-3 py-2 bg-blue-50 text-blue-600 rounded-lg text-sm">
                     <span id="current-city">北京市</span>
                     <i class="fas fa-chevron-down"></i>
                 </button>

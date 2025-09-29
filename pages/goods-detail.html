@@ -1,0 +1,278 @@
+<!-- 商品详情页 -->
+<div class="page" id="goods-detail">
+    <div class="relative h-[730px] bg-gray-50">
+        <!-- 头部导航 -->
+        <div class="absolute top-0 left-0 right-0 z-10 p-3 flex items-center justify-between">
+            <i onclick="showPage('merchant-detail')" class="fas fa-arrow-left text-white cursor-pointer bg-black bg-opacity-30 w-8 h-8 rounded-full flex items-center justify-center"></i>
+            <i class="far fa-heart text-white cursor-pointer bg-black bg-opacity-30 w-8 h-8 rounded-full flex items-center justify-center"></i>
+        </div>
+
+        <!-- 商品图片轮播 -->
+        <div class="relative h-80 bg-white">
+            <div class="carousel-container h-full overflow-hidden">
+                <div class="carousel-track flex transition-transform duration-300 ease-in-out h-full" id="carousel-track">
+                    <div class="carousel-slide min-w-full h-full">
+                        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=320&fit=crop" 
+                             alt="巨无霸" class="w-full h-full object-cover">
+                    </div>
+                    <div class="carousel-slide min-w-full h-full">
+                        <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400&h=320&fit=crop" 
+                             alt="巨无霸侧面" class="w-full h-full object-cover">
+                    </div>
+                    <div class="carousel-slide min-w-full h-full">
+                        <img src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=400&h=320&fit=crop" 
+                             alt="巨无霸配菜" class="w-full h-full object-cover">
+                    </div>
+                    <div class="carousel-slide min-w-full h-full">
+                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=400&h=320&fit=crop" 
+                             alt="巨无霸套餐" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 轮播指示器 -->
+            <div class="absolute bottom-4 right-4 bg-black bg-opacity-50 text-white px-2 py-1 rounded-full text-xs">
+                <span id="current-slide">1</span>/<span id="total-slides">4</span>
+            </div>
+            
+            <!-- 轮播导航点 -->
+            <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                <div class="carousel-dot w-2 h-2 bg-white bg-opacity-50 rounded-full cursor-pointer active" data-slide="0"></div>
+                <div class="carousel-dot w-2 h-2 bg-white bg-opacity-50 rounded-full cursor-pointer" data-slide="1"></div>
+                <div class="carousel-dot w-2 h-2 bg-white bg-opacity-50 rounded-full cursor-pointer" data-slide="2"></div>
+                <div class="carousel-dot w-2 h-2 bg-white bg-opacity-50 rounded-full cursor-pointer" data-slide="3"></div>
+            </div>
+        </div>
+
+        <!-- 商品信息 -->
+        <div class="bg-white p-4 border-b-8 border-gray-100">
+            <h1 class="text-xl font-bold text-gray-800 mb-2">巨无霸</h1>
+            <p class="text-gray-600 text-sm mb-3">经典美味，双层牛肉饼配生菜、洋葱、酸黄瓜和特制酱料，口感丰富层次分明</p>
+            
+            <!-- 价格信息 -->
+            <div class="flex items-center space-x-2 mb-3">
+                <span class="text-gray-400 text-sm line-through">¥25</span>
+                <span class="text-red-500 font-bold text-2xl">¥20</span>
+            </div>
+            
+            <!-- 销量和使用须知 -->
+            <div class="flex items-center justify-between text-sm text-gray-500 mb-3">
+                <span>已售128份</span>
+                <span>周一到周五可用</span>
+            </div>
+        </div>
+
+        <!-- 商品评价 -->
+        <div class="bg-white">
+            <!-- 评价标题 -->
+            <div class="p-4 border-b border-gray-100">
+                <div class="flex items-center justify-between">
+                    <h3 class="font-bold text-lg">商品评价</h3>
+                    <span class="text-gray-500 text-sm cursor-pointer">查看全部 <i class="fas fa-angle-right"></i></span>
+                </div>
+            </div>
+
+            <!-- 评价标签 -->
+            <div class="px-4 py-3 border-b border-gray-100">
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 bg-orange-50 text-orange-600 text-xs rounded-full">味道好(45)</span>
+                    <span class="px-3 py-1 bg-orange-50 text-orange-600 text-xs rounded-full">分量足(38)</span>
+                    <span class="px-3 py-1 bg-orange-50 text-orange-600 text-xs rounded-full">包装好(25)</span>
+                    <span class="px-3 py-1 bg-orange-50 text-orange-600 text-xs rounded-full">有图/视频(18)</span>
+                </div>
+            </div>
+
+            <!-- 评价列表 -->
+            <div class="px-4 py-3 space-y-4">
+                <!-- 评价项1 -->
+                <div class="border-b border-gray-100 pb-4">
+                    <div class="flex items-start space-x-3">
+                        <div class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white text-sm font-bold">张</div>
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="font-medium text-sm">张***</span>
+                                <span class="text-xs text-gray-500">2024-01-15</span>
+                            </div>
+                            <div class="flex items-center mb-2">
+                                <div class="flex text-orange-400 text-xs mr-2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-700 mb-2">巨无霸真的很好吃，双层牛肉饼很香，配菜也很新鲜，特制酱料味道刚好，下次还会点！</p>
+                            <div class="flex space-x-2">
+                                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=60&h=60&fit=crop" class="w-16 h-16 rounded object-cover">
+                                <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=60&h=60&fit=crop" class="w-16 h-16 rounded object-cover">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 评价项2 -->
+                <div class="border-b border-gray-100 pb-4">
+                    <div class="flex items-start space-x-3">
+                        <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-sm font-bold">李</div>
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="font-medium text-sm">李***</span>
+                                <span class="text-xs text-gray-500">2024-01-14</span>
+                            </div>
+                            <div class="flex items-center mb-2">
+                                <div class="flex text-orange-400 text-xs mr-2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-700">分量很足，味道也不错，包装很仔细，送餐速度也很快，整体满意。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 评价项3 -->
+                <div class="pb-4">
+                    <div class="flex items-start space-x-3">
+                        <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-sm font-bold">王</div>
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="font-medium text-sm">王***</span>
+                                <span class="text-xs text-gray-500">2024-01-13</span>
+                            </div>
+                            <div class="flex items-center mb-2">
+                                <div class="flex text-orange-400 text-xs mr-2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-700">整体还不错，就是稍微有点咸，其他都挺好的，性价比还可以。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部操作栏 -->
+        <div class="sticky bottom-[-10px] left-0 right-0 bg-white border-t border-gray-200 p-4">
+            <div class="flex items-center space-x-3">
+                <div class="flex items-center space-x-2">
+                    <button class="quantity-btn w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center" onclick="decreaseGoodsQuantity()">
+                        <i class="fas fa-minus text-gray-600 text-xs"></i>
+                    </button>
+                    <span class="quantity-value text-lg font-medium min-w-[2rem] text-center" id="goods-quantity">1</span>
+                    <button class="quantity-btn w-8 h-8 bg-red-500 rounded-full flex items-center justify-center" onclick="increaseGoodsQuantity()">
+                        <i class="fas fa-plus text-white text-xs"></i>
+                    </button>
+                </div>
+                
+                <button onclick="addGoodsToCart()" class="flex-1 bg-red-500 text-white py-3 rounded-lg font-medium">
+                    加入购物车 ¥<span id="total-price">20</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// 商品详情页轮播图功能
+let currentSlideIndex = 0;
+const totalSlides = 4;
+
+// 初始化轮播图
+function initCarousel() {
+    const dots = document.querySelectorAll('.carousel-dot');
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => goToSlide(index));
+    });
+    
+    // 自动轮播
+    setInterval(() => {
+        nextSlide();
+    }, 5000);
+}
+
+// 跳转到指定幻灯片
+function goToSlide(index) {
+    currentSlideIndex = index;
+    updateCarousel();
+}
+
+// 下一张幻灯片
+function nextSlide() {
+    currentSlideIndex = (currentSlideIndex + 1) % totalSlides;
+    updateCarousel();
+}
+
+// 更新轮播图显示
+function updateCarousel() {
+    const track = document.getElementById('carousel-track');
+    const currentSlideSpan = document.getElementById('current-slide');
+    const dots = document.querySelectorAll('.carousel-dot');
+    
+    if (track) {
+        track.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+    }
+    
+    if (currentSlideSpan) {
+        currentSlideSpan.textContent = currentSlideIndex + 1;
+    }
+    
+    // 更新导航点状态
+    dots.forEach((dot, index) => {
+        if (index === currentSlideIndex) {
+            dot.classList.add('active');
+            dot.style.backgroundColor = 'white';
+        } else {
+            dot.classList.remove('active');
+            dot.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
+        }
+    });
+}
+
+// 商品数量控制
+let goodsQuantity = 1;
+const unitPrice = 20;
+
+function increaseGoodsQuantity() {
+    goodsQuantity++;
+    updateGoodsQuantity();
+}
+
+function decreaseGoodsQuantity() {
+    if (goodsQuantity > 1) {
+        goodsQuantity--;
+        updateGoodsQuantity();
+    }
+}
+
+function updateGoodsQuantity() {
+    const quantityElement = document.getElementById('goods-quantity');
+    const totalPriceElement = document.getElementById('total-price');
+    
+    if (quantityElement) {
+        quantityElement.textContent = goodsQuantity;
+    }
+    
+    if (totalPriceElement) {
+        totalPriceElement.textContent = (goodsQuantity * unitPrice).toFixed(0);
+    }
+}
+
+function addGoodsToCart() {
+    alert(`已添加 ${goodsQuantity} 个巨无霸到购物车，总价：¥${(goodsQuantity * unitPrice).toFixed(0)}`);
+}
+
+// 页面加载完成后初始化
+document.addEventListener('DOMContentLoaded', function() {
+    if (document.getElementById('goods-detail')) {
+        initCarousel();
+    }
+});
+</script>

@@ -1,0 +1,504 @@
+<!-- 城市选择页 -->
+<div class="page" id="change-city">
+    <div class="min-h-full bg-white pb-16 relative">
+        <!-- 头部 -->
+        <div class="primary-red p-3 pb-4">
+            <div class="flex items-center space-x-3 mb-3">
+                <i onclick="showPage('school-select')" class="fas fa-arrow-left text-white cursor-pointer"></i>
+                <span class="text-white font-semibold">选择城市</span>
+            </div>
+            <div class="bg-white rounded-lg p-2.5 flex items-center space-x-2">
+                <i class="fas fa-search text-gray-400 text-sm"></i>
+                <input type="text" id="city-search" placeholder="搜索城市" class="flex-1 outline-none text-sm" oninput="searchCities()">
+                <i onclick="clearCitySearch()" class="fas fa-times text-gray-400 text-sm cursor-pointer" id="clear-city-search" style="display: none;"></i>
+            </div>
+        </div>
+
+        <!-- 搜索结果 -->
+        <div id="city-search-results" class="p-3" style="display: none;">
+            <div class="text-gray-500 text-sm mb-2">搜索结果</div>
+            <div id="city-search-list" class="space-y-2"></div>
+        </div>
+
+        <!-- 主要内容区域 -->
+        <div id="main-content" class="mr-6">
+            <!-- 当前定位 -->
+            <div class="p-3 border-b border-gray-100">
+                <div class="text-gray-500 text-sm mb-2">当前定位</div>
+                <div class="flex items-center justify-between p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-location-dot text-blue-500"></i>
+                        <div>
+                            <h4 class="font-semibold text-sm text-blue-600">北京市</h4>
+                            <p class="text-gray-600 text-xs">当前定位城市</p>
+                        </div>
+                    </div>
+                    <button onclick="selectCity('北京市')" class="text-blue-500 text-sm px-3 py-1 border border-blue-500 rounded-lg hover:bg-blue-50">
+                        选择
+                    </button>
+                </div>
+            </div>
+
+            <!-- 热门城市 -->
+            <div class="p-3 border-b border-gray-100">
+                <div class="text-gray-500 text-sm mb-3">热门城市</div>
+                <div class="grid grid-cols-3 gap-2">
+                    <button onclick="selectCity('北京市')" class="p-3 border border-gray-200 rounded-lg text-center text-sm hover:border-red-300 hover:bg-red-50">
+                        北京市
+                    </button>
+                    <button onclick="selectCity('上海市')" class="p-3 border border-gray-200 rounded-lg text-center text-sm hover:border-red-300 hover:bg-red-50">
+                        上海市
+                    </button>
+                    <button onclick="selectCity('广州市')" class="p-3 border border-gray-200 rounded-lg text-center text-sm hover:border-red-300 hover:bg-red-50">
+                        广州市
+                    </button>
+                    <button onclick="selectCity('深圳市')" class="p-3 border border-gray-200 rounded-lg text-center text-sm hover:border-red-300 hover:bg-red-50">
+                        深圳市
+                    </button>
+                    <button onclick="selectCity('杭州市')" class="p-3 border border-gray-200 rounded-lg text-center text-sm hover:border-red-300 hover:bg-red-50">
+                        杭州市
+                    </button>
+                    <button onclick="selectCity('南京市')" class="p-3 border border-gray-200 rounded-lg text-center text-sm hover:border-red-300 hover:bg-red-50">
+                        南京市
+                    </button>
+                </div>
+            </div>
+
+            <!-- 城市列表 -->
+            <div class="flex-1 relative">
+                <div class="p-3 pb-0">
+                    <div class="text-gray-500 text-sm mb-3">全部城市</div>
+                </div>
+                
+                <!-- 城市列表容器 -->
+                <div id="city-list-container" class="px-3 pb-20 overflow-y-auto" style="max-height: calc(100vh - 400px);">
+                    <!-- A -->
+                    <div class="city-group" data-letter="A">
+                        <div class="sticky top-0 bg-gray-50 py-2 px-3 text-sm font-medium text-gray-600 border-b border-gray-200" id="letter-A">
+                            A
+                        </div>
+                        <div class="space-y-1 py-2">
+                            <div onclick="selectCity('安庆市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">安庆市</span>
+                            </div>
+                            <div onclick="selectCity('安阳市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">安阳市</span>
+                            </div>
+                            <div onclick="selectCity('鞍山市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">鞍山市</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- B -->
+                    <div class="city-group" data-letter="B">
+                        <div class="sticky top-0 bg-gray-50 py-2 px-3 text-sm font-medium text-gray-600 border-b border-gray-200" id="letter-B">
+                            B
+                        </div>
+                        <div class="space-y-1 py-2">
+                            <div onclick="selectCity('北京市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">北京市</span>
+                            </div>
+                            <div onclick="selectCity('保定市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">保定市</span>
+                            </div>
+                            <div onclick="selectCity('包头市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">包头市</span>
+                            </div>
+                            <div onclick="selectCity('本溪市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">本溪市</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- C -->
+                    <div class="city-group" data-letter="C">
+                        <div class="sticky top-0 bg-gray-50 py-2 px-3 text-sm font-medium text-gray-600 border-b border-gray-200" id="letter-C">
+                            C
+                        </div>
+                        <div class="space-y-1 py-2">
+                            <div onclick="selectCity('长春市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">长春市</span>
+                            </div>
+                            <div onclick="selectCity('长沙市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">长沙市</span>
+                            </div>
+                            <div onclick="selectCity('成都市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">成都市</span>
+                            </div>
+                            <div onclick="selectCity('重庆市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">重庆市</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- D -->
+                    <div class="city-group" data-letter="D">
+                        <div class="sticky top-0 bg-gray-50 py-2 px-3 text-sm font-medium text-gray-600 border-b border-gray-200" id="letter-D">
+                            D
+                        </div>
+                        <div class="space-y-1 py-2">
+                            <div onclick="selectCity('大连市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">大连市</span>
+                            </div>
+                            <div onclick="selectCity('大庆市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">大庆市</span>
+                            </div>
+                            <div onclick="selectCity('东莞市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">东莞市</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- F -->
+                    <div class="city-group" data-letter="F">
+                        <div class="sticky top-0 bg-gray-50 py-2 px-3 text-sm font-medium text-gray-600 border-b border-gray-200" id="letter-F">
+                            F
+                        </div>
+                        <div class="space-y-1 py-2">
+                            <div onclick="selectCity('福州市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">福州市</span>
+                            </div>
+                            <div onclick="selectCity('佛山市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">佛山市</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- G -->
+                    <div class="city-group" data-letter="G">
+                        <div class="sticky top-0 bg-gray-50 py-2 px-3 text-sm font-medium text-gray-600 border-b border-gray-200" id="letter-G">
+                            G
+                        </div>
+                        <div class="space-y-1 py-2">
+                            <div onclick="selectCity('广州市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">广州市</span>
+                            </div>
+                            <div onclick="selectCity('贵阳市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">贵阳市</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- H -->
+                    <div class="city-group" data-letter="H">
+                        <div class="sticky top-0 bg-gray-50 py-2 px-3 text-sm font-medium text-gray-600 border-b border-gray-200" id="letter-H">
+                            H
+                        </div>
+                        <div class="space-y-1 py-2">
+                            <div onclick="selectCity('杭州市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">杭州市</span>
+                            </div>
+                            <div onclick="selectCity('哈尔滨市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">哈尔滨市</span>
+                            </div>
+                            <div onclick="selectCity('合肥市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">合肥市</span>
+                            </div>
+                            <div onclick="selectCity('呼和浩特市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">呼和浩特市</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- J -->
+                    <div class="city-group" data-letter="J">
+                        <div class="sticky top-0 bg-gray-50 py-2 px-3 text-sm font-medium text-gray-600 border-b border-gray-200" id="letter-J">
+                            J
+                        </div>
+                        <div class="space-y-1 py-2">
+                            <div onclick="selectCity('济南市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">济南市</span>
+                            </div>
+                            <div onclick="selectCity('金华市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">金华市</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- K -->
+                    <div class="city-group" data-letter="K">
+                        <div class="sticky top-0 bg-gray-50 py-2 px-3 text-sm font-medium text-gray-600 border-b border-gray-200" id="letter-K">
+                            K
+                        </div>
+                        <div class="space-y-1 py-2">
+                            <div onclick="selectCity('昆明市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">昆明市</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- L -->
+                    <div class="city-group" data-letter="L">
+                        <div class="sticky top-0 bg-gray-50 py-2 px-3 text-sm font-medium text-gray-600 border-b border-gray-200" id="letter-L">
+                            L
+                        </div>
+                        <div class="space-y-1 py-2">
+                            <div onclick="selectCity('兰州市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">兰州市</span>
+                            </div>
+                            <div onclick="selectCity('洛阳市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">洛阳市</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- N -->
+                    <div class="city-group" data-letter="N">
+                        <div class="sticky top-0 bg-gray-50 py-2 px-3 text-sm font-medium text-gray-600 border-b border-gray-200" id="letter-N">
+                            N
+                        </div>
+                        <div class="space-y-1 py-2">
+                            <div onclick="selectCity('南京市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">南京市</span>
+                            </div>
+                            <div onclick="selectCity('南昌市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">南昌市</span>
+                            </div>
+                            <div onclick="selectCity('南宁市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">南宁市</span>
+                            </div>
+                            <div onclick="selectCity('宁波市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">宁波市</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q -->
+                    <div class="city-group" data-letter="Q">
+                        <div class="sticky top-0 bg-gray-50 py-2 px-3 text-sm font-medium text-gray-600 border-b border-gray-200" id="letter-Q">
+                            Q
+                        </div>
+                        <div class="space-y-1 py-2">
+                            <div onclick="selectCity('青岛市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">青岛市</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- S -->
+                    <div class="city-group" data-letter="S">
+                        <div class="sticky top-0 bg-gray-50 py-2 px-3 text-sm font-medium text-gray-600 border-b border-gray-200" id="letter-S">
+                            S
+                        </div>
+                        <div class="space-y-1 py-2">
+                            <div onclick="selectCity('上海市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">上海市</span>
+                            </div>
+                            <div onclick="selectCity('深圳市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">深圳市</span>
+                            </div>
+                            <div onclick="selectCity('沈阳市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">沈阳市</span>
+                            </div>
+                            <div onclick="selectCity('石家庄市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">石家庄市</span>
+                            </div>
+                            <div onclick="selectCity('苏州市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">苏州市</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- T -->
+                    <div class="city-group" data-letter="T">
+                        <div class="sticky top-0 bg-gray-50 py-2 px-3 text-sm font-medium text-gray-600 border-b border-gray-200" id="letter-T">
+                            T
+                        </div>
+                        <div class="space-y-1 py-2">
+                            <div onclick="selectCity('天津市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">天津市</span>
+                            </div>
+                            <div onclick="selectCity('太原市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">太原市</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- W -->
+                    <div class="city-group" data-letter="W">
+                        <div class="sticky top-0 bg-gray-50 py-2 px-3 text-sm font-medium text-gray-600 border-b border-gray-200" id="letter-W">
+                            W
+                        </div>
+                        <div class="space-y-1 py-2">
+                            <div onclick="selectCity('武汉市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">武汉市</span>
+                            </div>
+                            <div onclick="selectCity('无锡市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">无锡市</span>
+                            </div>
+                            <div onclick="selectCity('温州市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">温州市</span>
+                            </div>
+                            <div onclick="selectCity('乌鲁木齐市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">乌鲁木齐市</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- X -->
+                    <div class="city-group" data-letter="X">
+                        <div class="sticky top-0 bg-gray-50 py-2 px-3 text-sm font-medium text-gray-600 border-b border-gray-200" id="letter-X">
+                            X
+                        </div>
+                        <div class="space-y-1 py-2">
+                            <div onclick="selectCity('西安市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">西安市</span>
+                            </div>
+                            <div onclick="selectCity('厦门市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">厦门市</span>
+                            </div>
+                            <div onclick="selectCity('西宁市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">西宁市</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Y -->
+                    <div class="city-group" data-letter="Y">
+                        <div class="sticky top-0 bg-gray-50 py-2 px-3 text-sm font-medium text-gray-600 border-b border-gray-200" id="letter-Y">
+                            Y
+                        </div>
+                        <div class="space-y-1 py-2">
+                            <div onclick="selectCity('银川市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">银川市</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Z -->
+                    <div class="city-group" data-letter="Z">
+                        <div class="sticky top-0 bg-gray-50 py-2 px-3 text-sm font-medium text-gray-600 border-b border-gray-200" id="letter-Z">
+                            Z
+                        </div>
+                        <div class="space-y-1 py-2">
+                            <div onclick="selectCity('郑州市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">郑州市</span>
+                            </div>
+                            <div onclick="selectCity('珠海市')" class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                                <span class="text-sm">珠海市</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 右侧字母索引 -->
+        <div class="absolute right-0  top-1/3 transform -translate-y-1/2 z-10">
+            <div class="bg-white rounded-lg shadow-lg p-1 space-y-1">
+                <div onclick="scrollToLetter('A')" class="w-6 h-6 flex items-center justify-center text-xs text-gray-600 hover:bg-red-100 hover:text-red-600 rounded cursor-pointer">A</div>
+                <div onclick="scrollToLetter('B')" class="w-6 h-6 flex items-center justify-center text-xs text-gray-600 hover:bg-red-100 hover:text-red-600 rounded cursor-pointer">B</div>
+                <div onclick="scrollToLetter('C')" class="w-6 h-6 flex items-center justify-center text-xs text-gray-600 hover:bg-red-100 hover:text-red-600 rounded cursor-pointer">C</div>
+                <div onclick="scrollToLetter('D')" class="w-6 h-6 flex items-center justify-center text-xs text-gray-600 hover:bg-red-100 hover:text-red-600 rounded cursor-pointer">D</div>
+                <div onclick="scrollToLetter('F')" class="w-6 h-6 flex items-center justify-center text-xs text-gray-600 hover:bg-red-100 hover:text-red-600 rounded cursor-pointer">F</div>
+                <div onclick="scrollToLetter('G')" class="w-6 h-6 flex items-center justify-center text-xs text-gray-600 hover:bg-red-100 hover:text-red-600 rounded cursor-pointer">G</div>
+                <div onclick="scrollToLetter('H')" class="w-6 h-6 flex items-center justify-center text-xs text-gray-600 hover:bg-red-100 hover:text-red-600 rounded cursor-pointer">H</div>
+                <div onclick="scrollToLetter('J')" class="w-6 h-6 flex items-center justify-center text-xs text-gray-600 hover:bg-red-100 hover:text-red-600 rounded cursor-pointer">J</div>
+                <div onclick="scrollToLetter('K')" class="w-6 h-6 flex items-center justify-center text-xs text-gray-600 hover:bg-red-100 hover:text-red-600 rounded cursor-pointer">K</div>
+                <div onclick="scrollToLetter('L')" class="w-6 h-6 flex items-center justify-center text-xs text-gray-600 hover:bg-red-100 hover:text-red-600 rounded cursor-pointer">L</div>
+                <div onclick="scrollToLetter('N')" class="w-6 h-6 flex items-center justify-center text-xs text-gray-600 hover:bg-red-100 hover:text-red-600 rounded cursor-pointer">N</div>
+                <div onclick="scrollToLetter('Q')" class="w-6 h-6 flex items-center justify-center text-xs text-gray-600 hover:bg-red-100 hover:text-red-600 rounded cursor-pointer">Q</div>
+                <div onclick="scrollToLetter('S')" class="w-6 h-6 flex items-center justify-center text-xs text-gray-600 hover:bg-red-100 hover:text-red-600 rounded cursor-pointer">S</div>
+                <div onclick="scrollToLetter('T')" class="w-6 h-6 flex items-center justify-center text-xs text-gray-600 hover:bg-red-100 hover:text-red-600 rounded cursor-pointer">T</div>
+                <div onclick="scrollToLetter('W')" class="w-6 h-6 flex items-center justify-center text-xs text-gray-600 hover:bg-red-100 hover:text-red-600 rounded cursor-pointer">W</div>
+                <div onclick="scrollToLetter('X')" class="w-6 h-6 flex items-center justify-center text-xs text-gray-600 hover:bg-red-100 hover:text-red-600 rounded cursor-pointer">X</div>
+                <div onclick="scrollToLetter('Y')" class="w-6 h-6 flex items-center justify-center text-xs text-gray-600 hover:bg-red-100 hover:text-red-600 rounded cursor-pointer">Y</div>
+                <div onclick="scrollToLetter('Z')" class="w-6 h-6 flex items-center justify-center text-xs text-gray-600 hover:bg-red-100 hover:text-red-600 rounded cursor-pointer">Z</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// 搜索城市功能
+function searchCities() {
+    const searchInput = document.getElementById('city-search');
+    const searchResults = document.getElementById('city-search-results');
+    const searchList = document.getElementById('city-search-list');
+    const mainContent = document.getElementById('main-content');
+    const clearBtn = document.getElementById('clear-city-search');
+    
+    const query = searchInput.value.trim().toLowerCase();
+    
+    if (query === '') {
+        searchResults.style.display = 'none';
+        mainContent.style.display = 'block';
+        clearBtn.style.display = 'none';
+        return;
+    }
+    
+    clearBtn.style.display = 'block';
+    
+    // 模拟城市数据
+    const cities = [
+        '北京市', '上海市', '广州市', '深圳市', '杭州市', '南京市',
+        '成都市', '重庆市', '武汉市', '西安市', '天津市', '苏州市',
+        '长沙市', '郑州市', '青岛市', '大连市', '宁波市', '厦门市',
+        '福州市', '沈阳市', '长春市', '哈尔滨市', '石家庄市', '太原市',
+        '呼和浩特市', '兰州市', '西宁市', '银川市', '乌鲁木齐市', '拉萨市',
+        '昆明市', '贵阳市', '南宁市', '海口市', '三亚市', '合肥市',
+        '南昌市', '济南市', '温州市', '无锡市', '佛山市', '东莞市'
+    ];
+    
+    const filteredCities = cities.filter(city => city.toLowerCase().includes(query));
+    
+    searchList.innerHTML = '';
+    
+    if (filteredCities.length === 0) {
+        searchList.innerHTML = '<div class="p-3 text-gray-500 text-sm">未找到相关城市</div>';
+    } else {
+        filteredCities.forEach(city => {
+            const cityItem = document.createElement('div');
+            cityItem.className = 'p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100';
+            cityItem.innerHTML = `<span class="text-sm">${city}</span>`;
+            cityItem.onclick = () => selectCity(city);
+            searchList.appendChild(cityItem);
+        });
+    }
+    
+    searchResults.style.display = 'block';
+    mainContent.style.display = 'none';
+}
+
+// 清除搜索
+function clearCitySearch() {
+    const searchInput = document.getElementById('city-search');
+    const searchResults = document.getElementById('city-search-results');
+    const mainContent = document.getElementById('main-content');
+    const clearBtn = document.getElementById('clear-city-search');
+    
+    searchInput.value = '';
+    searchResults.style.display = 'none';
+    mainContent.style.display = 'block';
+    clearBtn.style.display = 'none';
+}
+
+// 选择城市
+function selectCity(cityName) {
+    // 更新学校选择页面的城市显示
+    const currentCityElement = document.getElementById('current-city');
+    if (currentCityElement) {
+        currentCityElement.textContent = cityName;
+    }
+    
+    // 返回到学校选择页面
+    showPage('school-select');
+    
+    // 可以在这里添加更多逻辑，比如保存到本地存储
+    console.log('选择的城市:', cityName);
+}
+
+// 滚动到指定字母
+function scrollToLetter(letter) {
+    const letterElement = document.getElementById('letter-' + letter);
+    if (letterElement) {
+        letterElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
+
+// 页面加载完成后的初始化
+document.addEventListener('DOMContentLoaded', function() {
+    // 可以在这里添加页面初始化逻辑
+});
+</script>

@@ -1,0 +1,139 @@
+<!-- 商家相册 -->
+<div class="page" id="merchant-image">
+    <div class="relative h-[730px] bg-gray-50">
+        <!-- 头部导航 -->
+        <div class="bg-white border-b border-gray-100">
+            <div class="p-3 flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <i onclick="showPage('merchant-detail')" class="fas fa-arrow-left text-gray-700 cursor-pointer"></i>
+                    <h1 class="text-lg font-semibold text-gray-800">商家相册</h1>
+                </div>
+                <div class="text-gray-500 text-sm">
+                    <span id="current-image">1</span> / <span id="total-images">6</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 商家名称 -->
+        <div class="bg-white px-3 py-2 border-b border-gray-100">
+            <h2 class="text-base font-medium text-gray-800">麦当劳（北大店）</h2>
+            <p class="text-gray-500 text-sm mt-1">店铺环境 · 真实拍摄</p>
+        </div>
+
+        <!-- 图片展示区域 -->
+        <div class="flex-1 overflow-y-auto bg-white">
+            <div class="p-3">
+                <!-- 两栏网格布局 -->
+                <div class="grid grid-cols-2 gap-3">
+                    <!-- 店铺门头照片 -->
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400&h=300&fit=crop" 
+                             alt="店铺门头" 
+                             class="w-full h-40 object-cover rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
+                             onclick="openImageModal(this.src, '店铺门头')">
+                    
+                    </div>
+
+                    <!-- 室内环境照片 -->
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=300&fit=crop" 
+                             alt="室内环境" 
+                             class="w-full h-40 object-cover rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
+                             onclick="openImageModal(this.src, '室内环境')">
+                    
+                    </div>
+
+                    <!-- 厨房环境照片 -->
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=300&fit=crop" 
+                             alt="厨房环境" 
+                             class="w-full h-40 object-cover rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
+                             onclick="openImageModal(this.src, '厨房环境')">
+                     
+                    </div>
+
+                    <!-- 用餐区域照片 -->
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&h=300&fit=crop" 
+                             alt="用餐区域" 
+                             class="w-full h-40 object-cover rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
+                             onclick="openImageModal(this.src, '用餐区域')">
+                       
+                    </div>
+
+                    <!-- 食物展示照片 -->
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=300&fit=crop" 
+                             alt="招牌美食" 
+                             class="w-full h-40 object-cover rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
+                             onclick="openImageModal(this.src, '招牌美食')">
+                       
+                    </div>
+
+                    <!-- 服务台照片 -->
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1559329007-40df8a9345d8?w=400&h=300&fit=crop" 
+                             alt="服务台" 
+                             class="w-full h-40 object-cover rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
+                             onclick="openImageModal(this.src, '服务台')">
+                    
+                    </div>
+                </div>
+
+                <!-- 图片说明 -->
+                <div class="mt-4 p-3 bg-gray-50 rounded-lg">
+                    <p class="text-gray-600 text-sm">
+                        <i class="fas fa-info-circle text-blue-500 mr-1"></i>
+                        以上图片均为店铺真实环境拍摄，仅供参考
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 图片预览模态框 -->
+    <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden flex items-center justify-center">
+        <div class="relative max-w-full max-h-full p-4">
+            <img id="modalImage" src="" alt="" class="max-w-full max-h-full object-contain">
+            <div class="absolute top-4 right-4">
+                <button onclick="closeImageModal()" class="text-white text-2xl hover:text-gray-300">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="absolute bottom-4 left-4 right-4 text-center">
+                <p id="modalImageTitle" class="text-white text-lg font-medium"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// 图片预览功能
+function openImageModal(src, title) {
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalTitle = document.getElementById('modalImageTitle');
+    
+    modalImage.src = src;
+    modalTitle.textContent = title;
+    modal.classList.remove('hidden');
+}
+
+function closeImageModal() {
+    const modal = document.getElementById('imageModal');
+    modal.classList.add('hidden');
+}
+
+// 点击模态框背景关闭
+document.getElementById('imageModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeImageModal();
+    }
+});
+
+// 更新图片计数
+document.addEventListener('DOMContentLoaded', function() {
+    const totalImages = document.querySelectorAll('.grid img').length;
+    document.getElementById('total-images').textContent = totalImages;
+});
+</script>

@@ -1,28 +1,46 @@
 <!-- 商家详情页 -->
-<div class="page" id="shop-detail">
+<div class="page" id="merchant-detail">
     <div class="relative h-[730px] bg-gray-50 ">
         <!-- 头部店铺信息 -->
         <div class="bg-white">
             <!-- 返回按钮和收藏 -->
             <div class="p-3 flex items-center justify-between">
                 <i onclick="showPage('home')" class="fas fa-arrow-left text-gray-700 cursor-pointer"></i>
-                <i class="far fa-heart text-gray-700"></i>
+                <!-- <i class="far fa-heart text-gray-700"></i> -->
             </div>
             
             <!-- 店铺基本信息 -->
             <div class="px-3 pb-3">
+                <!-- 第一行：图片和基本信息 -->
                 <div class="flex space-x-3">
                     <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=120&h=120&fit=crop" 
-                         alt="麦当劳" class="w-16 h-16 rounded-lg object-cover">
+                         alt="麦当劳" class="w-20 h-20 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity"
+                         onclick="showPage('merchant-image')">
                     <div class="flex-1">
-                        <h2 class="font-bold text-lg">麦当劳（北大店）</h2>
-                        <div class="flex items-center space-x-2 mt-1">
-                            <span class="text-orange-500 font-bold text-sm">★ 4.8</span>
-                            <span class="text-gray-500 text-xs">月售2000+</span>
+                        <div class="flex items-start justify-between h-20">
+                            <div class="flex-1">
+                                <h2 class="font-bold text-lg">麦当劳（北大店）</h2>
+                                <p class="text-gray-600 text-sm mt-1">快餐 | 距离200m</p>
+                                <div class="flex items-center space-x-2 mt-1">
+                                    <span class="text-orange-500 font-bold text-sm">★ 4.8</span>
+                                    <span class="text-gray-500 text-xs">近一周销量 1.2k</span>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-end">
+                                <span class="bg-green-500 text-white text-sm px-3 py-1 rounded-full">校内</span>
+                                <p class="text-gray-500 text-sm mt-2">人均 ¥25</p>
+                            </div>
                         </div>
-                        <div class="text-gray-500 text-xs mt-1">
-                            营业时间：06:00-24:00
-                        </div>
+                    </div>
+                </div>
+                
+                <!-- 第二行：热门信息和营业时间 -->
+                <div class="border border-gray-100 mt-3  flex flex-wrap items-center gap-3  rounded-lg p-3 shadow-sm ">
+                    <div class="bg-orange-50 border border-orange-200 rounded px-2 py-1">
+                        <span class="text-orange-600 text-sm font-medium">🔥 热门 · 31人给了好评</span>
+                    </div>
+                    <div class="text-gray-500 text-sm">
+                        营业时间：06:00-24:00
                     </div>
                 </div>
                 
@@ -63,7 +81,7 @@
         
         <!-- 商品列表内容 -->
         <div id="content-menu" class="bg-white">
-            <div class="flex h-[420px] overflow-y-auto">
+            <div class="flex h-[380px] overflow-y-auto">
                 <!-- 左侧分类列表 -->
                 <div class="w-1/4 bg-gray-100 max-h-[calc(100vh-250px)] overflow-y-auto custom-scrollbar">
                     <div class="category-item active py-3 px-2 text-center text-sm font-medium border-l-4 border-red-500 bg-white" onclick="categoryClick(this)">
@@ -93,47 +111,107 @@
                     <!-- 商品列表 -->
                     <div class="divide-y">
                         <!-- 商品项 -->
-                        <div class="p-3 flex space-x-2" onclick="productItemsClick(this)">
+                        <div class="p-3 flex space-x-2" onclick="showPage('goods-detail')">
                             <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=80&h=80&fit=crop" 
                                  alt="巨无霸" class="w-16 h-16 rounded-lg object-cover">
-                            <div class="flex-1">
-                                <h4 class="font-semibold text-sm">巨无霸</h4>
-                                <p class="text-gray-500 text-xs mt-1">美味多汁的牛肉汉堡</p>
-                                <div class="flex items-center justify-between mt-2">
-                                    <span class="text-red-500 font-bold">¥20</span>
-                                    <button class="bg-red-500 text-white w-6 h-6 rounded-full flex items-center justify-center">
-                                        <i class="fas fa-plus text-xs"></i>
-                                    </button>
+                            <div class="flex-1 h-16 flex flex-col justify-between">
+                                <div>
+                                    <h4 class="font-semibold text-sm">巨无霸</h4>
+                                    <p class="text-gray-500 text-xs mt-0.5">美味多汁汉堡王</p>
+                                </div>
+                                <div class="flex items-center justify-between text-xs">
+                                    <span class="text-gray-400 text-xs">周一到周五可用</span>
+                                    <span class="text-gray-500 text-xs">已售128份</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-1">
+                                        <span class="text-gray-400 text-xs line-through">¥25</span>
+                                        <span class="text-red-500 font-bold text-sm">¥20</span>
+                                    </div>
+                                    <div class="quantity-control" data-product="巨无霸">
+                                        <button class="add-btn bg-red-500 text-white w-5 h-5 rounded-full flex items-center justify-center" onclick="addProduct(event, '巨无霸')">
+                                            <i class="fas fa-plus text-xs"></i>
+                                        </button>
+                                        <div class="quantity-selector hidden flex items-center space-x-1">
+                                            <button class="minus-btn bg-gray-300 text-gray-600 w-5 h-5 rounded-full flex items-center justify-center" onclick="decreaseQuantity(event, '巨无霸')">
+                                                <i class="fas fa-minus text-xs"></i>
+                                            </button>
+                                            <span class="quantity-display text-sm font-medium min-w-[20px] text-center">1</span>
+                                            <button class="plus-btn bg-red-500 text-white w-5 h-5 rounded-full flex items-center justify-center" onclick="increaseQuantity(event, '巨无霸')">
+                                                <i class="fas fa-plus text-xs"></i>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="p-3 flex space-x-2" onclick="productItemsClick(this)">
+                        <div class="p-3 flex space-x-2" onclick="showPage('goods-detail')">
                             <img src="https://images.unsplash.com/photo-1585109649139-366815a0d713?w=80&h=80&fit=crop" 
                                  alt="麦辣鸡腿汉堡" class="w-16 h-16 rounded-lg object-cover">
-                            <div class="flex-1">
-                                <h4 class="font-semibold text-sm">麦辣鸡腿汉堡</h4>
-                                <p class="text-gray-500 text-xs mt-1">香辣酥脆的鸡腿汉堡</p>
-                                <div class="flex items-center justify-between mt-2">
-                                    <span class="text-red-500 font-bold">¥18</span>
-                                    <button class="bg-red-500 text-white w-6 h-6 rounded-full flex items-center justify-center">
-                                        <i class="fas fa-plus text-xs"></i>
-                                    </button>
+                            <div class="flex-1 h-16 flex flex-col justify-between">
+                                <div>
+                                    <h4 class="font-semibold text-sm">麦辣鸡腿汉堡</h4>
+                                    <p class="text-gray-500 text-xs mt-0.5">香辣酥脆鸡腿汉堡</p>
+                                </div>
+                                <div class="flex items-center justify-between text-xs">
+                                    <span class="text-gray-400 text-xs">全天可用</span>
+                                    <span class="text-gray-500 text-xs">已售96份</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-1">
+                                        <span class="text-gray-400 text-xs line-through">¥22</span>
+                                        <span class="text-red-500 font-bold text-sm">¥18</span>
+                                    </div>
+                                    <div class="quantity-control" data-product="麦辣鸡腿汉堡">
+                                        <button class="add-btn bg-red-500 text-white w-5 h-5 rounded-full flex items-center justify-center" onclick="addProduct(event, '麦辣鸡腿汉堡')">
+                                            <i class="fas fa-plus text-xs"></i>
+                                        </button>
+                                        <div class="quantity-selector hidden flex items-center space-x-1">
+                                            <button class="minus-btn bg-gray-300 text-gray-600 w-5 h-5 rounded-full flex items-center justify-center" onclick="decreaseQuantity(event, '麦辣鸡腿汉堡')">
+                                                <i class="fas fa-minus text-xs"></i>
+                                            </button>
+                                            <span class="quantity-display text-sm font-medium min-w-[20px] text-center">1</span>
+                                            <button class="plus-btn bg-red-500 text-white w-5 h-5 rounded-full flex items-center justify-center" onclick="increaseQuantity(event, '麦辣鸡腿汉堡')">
+                                                <i class="fas fa-plus text-xs"></i>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="p-3 flex space-x-2" onclick="productItemsClick(this)">
+                        <div class="p-3 flex space-x-2" onclick="showPage('goods-detail')">
                             <img src="https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?w=80&h=80&fit=crop" 
                                  alt="薯条" class="w-16 h-16 rounded-lg object-cover">
-                            <div class="flex-1">
-                                <h4 class="font-semibold text-sm">薯条（中）</h4>
-                                <p class="text-gray-500 text-xs mt-1">金黄酥脆的薯条</p>
-                                <div class="flex items-center justify-between mt-2">
-                                    <span class="text-red-500 font-bold">¥12</span>
-                                    <button class="bg-red-500 text-white w-6 h-6 rounded-full flex items-center justify-center">
-                                        <i class="fas fa-plus text-xs"></i>
-                                    </button>
+                            <div class="flex-1 h-16 flex flex-col justify-between">
+                                <div>
+                                    <h4 class="font-semibold text-sm">薯条（中）</h4>
+                                    <p class="text-gray-500 text-xs mt-0.5">金黄酥脆薯条</p>
+                                </div>
+                                <div class="flex items-center justify-between text-xs">
+                                    <span class="text-gray-400 text-xs">周一到周日可用</span>
+                                    <span class="text-gray-500 text-xs">已售203份</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-1">
+                                        <span class="text-gray-400 text-xs line-through">¥15</span>
+                                        <span class="text-red-500 font-bold text-sm">¥12</span>
+                                    </div>
+                                    <div class="quantity-control" data-product="薯条">
+                                        <button class="add-btn bg-red-500 text-white w-5 h-5 rounded-full flex items-center justify-center" onclick="addProduct(event, '薯条')">
+                                            <i class="fas fa-plus text-xs"></i>
+                                        </button>
+                                        <div class="quantity-selector hidden flex items-center space-x-1">
+                                            <button class="minus-btn bg-gray-300 text-gray-600 w-5 h-5 rounded-full flex items-center justify-center" onclick="decreaseQuantity(event, '薯条')">
+                                                <i class="fas fa-minus text-xs"></i>
+                                            </button>
+                                            <span class="quantity-display text-sm font-medium min-w-[20px] text-center">1</span>
+                                            <button class="plus-btn bg-red-500 text-white w-5 h-5 rounded-full flex items-center justify-center" onclick="increaseQuantity(event, '薯条')">
+                                                <i class="fas fa-plus text-xs"></i>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
