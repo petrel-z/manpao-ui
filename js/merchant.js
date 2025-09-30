@@ -561,6 +561,271 @@ function saveCategory() {
     hideAddCategoryModal();
 }
 
+// 创建新分类
+function createNewCategory() {
+    const categoryName = document.getElementById('new-category-input').value.trim();
+    if (!categoryName) {
+        alert('请输入分类名称');
+        return;
+    }
+    
+    // 检查分类名称是否已存在
+    const existingCategories = document.querySelectorAll('#sort .bg-white label');
+    for (let label of existingCategories) {
+        if (label.textContent === categoryName) {
+            alert('分类名称已存在');
+            return;
+        }
+    }
+    
+    // 创建新的分类项
+    const categoryList = document.querySelector('#sort .px-4.space-y-2');
+    const newCategoryDiv = document.createElement('div');
+    newCategoryDiv.className = 'bg-white rounded-lg p-4';
+    newCategoryDiv.innerHTML = `
+        <div class="flex items-center space-x-3">
+            <input type="checkbox" id="category-${categoryName.toLowerCase()}" class="w-5 h-5 text-orange-500 border-gray-300 rounded focus:ring-orange-500">
+            <label for="category-${categoryName.toLowerCase()}" class="flex-1 text-gray-800 font-medium cursor-pointer">${categoryName}</label>
+            <span class="text-sm text-gray-500">(0件商品)</span>
+        </div>
+    `;
+    
+    categoryList.appendChild(newCategoryDiv);
+    
+    // 清空输入框
+    document.getElementById('new-category-input').value = '';
+    
+    console.log('创建新分类:', categoryName);
+}
+
+// 确认分类选择
+function confirmCategorySelection() {
+    const selectedCategories = [];
+    const checkboxes = document.querySelectorAll('#sort input[type="checkbox"]:checked');
+    
+    checkboxes.forEach(checkbox => {
+        const label = document.querySelector(`label[for="${checkbox.id}"]`);
+        if (label) {
+            selectedCategories.push(label.textContent);
+        }
+    });
+    
+    if (selectedCategories.length === 0) {
+        alert('请选择至少一个分类');
+        return;
+    }
+    
+    // 更新新增商品页面的分类显示
+    const selectedCategoryElement = document.getElementById('selected-category');
+    if (selectedCategoryElement) {
+        if (selectedCategories.length === 1) {
+            selectedCategoryElement.textContent = selectedCategories[0];
+        } else {
+            selectedCategoryElement.textContent = `已选择${selectedCategories.length}个分类`;
+        }
+    }
+    
+    // 返回新增商品页面
+    showPage('add-goods');
+    
+    console.log('选择的分类:', selectedCategories);
+}
+
+// 初始化分类选择页面
+function initCategorySelection() {
+    // 确保只有一个分类可以被选中（单选行为）
+    const checkboxes = document.querySelectorAll('#sort input[type="checkbox"]');
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            if (this.checked) {
+                // 取消其他所有复选框的选中状态
+                checkboxes.forEach(otherCheckbox => {
+                    if (otherCheckbox !== this) {
+                        otherCheckbox.checked = false;
+                    }
+                });
+            }
+        });
+    });
+    
+    console.log('分类选择页面初始化完成');
+}
+
+// 初始化订单图表
+function initOrderChart() {
+    const canvas = document.getElementById('orderChart');
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    
+    // 生成近30天的模拟数据
+    const chartData = generateChartData();
+    
+    // 设置canvas尺寸
+    const rect = canvas.getBoundingClientRect();
+    canvas.width = rect.width * window.devicePixelRatio;
+    canvas.height = rect.height * window.devicePixelRatio;
+    ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+    
+    // 绘制图表
+    drawChart(ctx, chartData, rect.width, rect.height);
+    
+    // 添加点击事件
+    canvas.addEventListener('click', function(e) {
+        handleChartClick(e, chartData, rect.width, rect.height);
+    });
+}
+
+// 生成图表数据
+function generateChartData() {
+    const data = [];
+    const today = new Date();
+    
+    for (let i = 29; i >= 0; i--) {
+        const date = new Date(today);
+        date.setDate(date.getDate() - i);
+        
+        // 生成模拟数据
+        const orders = Math.floor(Math.random() * 50) + 10;
+        const amount = (Math.random() * 2000 + 500).toFixed(2);
+        
+        data.push({
+            date: date,
+            dateStr: `${date.getMonth() + 1}/${date.getDate()}`,
+            orders: orders,
+            amount: parseFloat(amount)
+        });
+    }
+    
+    return data;
+}
+
+// 绘制图表
+function drawChart(ctx, data, width, height) {
+    const padding = 40;
+    const chartWidth = width - padding * 2;
+    const chartHeight = height - padding * 2;
+    
+    // 清空画布
+    ctx.clearRect(0, 0, width, height);
+    
+    // 找出最大值用于缩放
+    const maxOrders = Math.max(...data.map(d => d.orders));
+    const maxAmount = Math.max(...data.map(d => d.amount));
+    
+    // 绘制网格线
+    ctx.strokeStyle = '#f0f0f0';
+    ctx.lineWidth = 1;
+    for (let i = 0; i <= 5; i++) {
+        const y = padding + (chartHeight / 5) * i;
+        ctx.beginPath();
+        ctx.moveTo(padding, y);
+        ctx.lineTo(width - padding, y);
+        ctx.stroke();
+    }
+    
+    // 绘制订单数折线
+    ctx.strokeStyle = '#3b82f6';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    data.forEach((point, index) => {
+        const x = padding + (chartWidth / (data.length - 1)) * index;
+        const y = padding + chartHeight - (point.orders / maxOrders) * chartHeight;
+        
+        if (index === 0) {
+            ctx.moveTo(x, y);
+        } else {
+            ctx.lineTo(x, y);
+        }
+    });
+    ctx.stroke();
+    
+    // 绘制金额折线
+    ctx.strokeStyle = '#f97316';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    data.forEach((point, index) => {
+        const x = padding + (chartWidth / (data.length - 1)) * index;
+        const y = padding + chartHeight - (point.amount / maxAmount) * chartHeight;
+        
+        if (index === 0) {
+            ctx.moveTo(x, y);
+        } else {
+            ctx.lineTo(x, y);
+        }
+    });
+    ctx.stroke();
+    
+    // 绘制数据点
+    data.forEach((point, index) => {
+        const x = padding + (chartWidth / (data.length - 1)) * index;
+        
+        // 订单数点
+        const ordersY = padding + chartHeight - (point.orders / maxOrders) * chartHeight;
+        ctx.fillStyle = '#3b82f6';
+        ctx.beginPath();
+        ctx.arc(x, ordersY, 3, 0, 2 * Math.PI);
+        ctx.fill();
+        
+        // 金额点
+        const amountY = padding + chartHeight - (point.amount / maxAmount) * chartHeight;
+        ctx.fillStyle = '#f97316';
+        ctx.beginPath();
+        ctx.arc(x, amountY, 3, 0, 2 * Math.PI);
+        ctx.fill();
+    });
+    
+    // 绘制X轴标签（每5天显示一次）
+    ctx.fillStyle = '#666';
+    ctx.font = '12px Arial';
+    ctx.textAlign = 'center';
+    data.forEach((point, index) => {
+        if (index % 5 === 0 || index === data.length - 1) {
+            const x = padding + (chartWidth / (data.length - 1)) * index;
+            ctx.fillText(point.dateStr, x, height - 10);
+        }
+    });
+}
+
+// 处理图表点击事件
+function handleChartClick(e, data, width, height) {
+    const rect = e.target.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    const padding = 40;
+    const chartWidth = width - padding * 2;
+    
+    // 计算点击的数据点索引
+    const clickIndex = Math.round(((x - padding) / chartWidth) * (data.length - 1));
+    
+    if (clickIndex >= 0 && clickIndex < data.length) {
+        const selectedData = data[clickIndex];
+        showSelectedDateInfo(selectedData);
+    }
+}
+
+// 显示选中日期的信息
+function showSelectedDateInfo(data) {
+    const infoDiv = document.getElementById('selectedDateInfo');
+    const dateSpan = document.getElementById('selectedDate');
+    const ordersSpan = document.getElementById('selectedOrders');
+    const amountSpan = document.getElementById('selectedAmount');
+    
+    if (infoDiv && dateSpan && ordersSpan && amountSpan) {
+        dateSpan.textContent = `${data.date.getFullYear()}年${data.date.getMonth() + 1}月${data.date.getDate()}日`;
+        ordersSpan.textContent = data.orders;
+        amountSpan.textContent = data.amount.toFixed(2);
+        
+        infoDiv.classList.remove('hidden');
+        
+        // 3秒后自动隐藏
+        setTimeout(() => {
+            infoDiv.classList.add('hidden');
+        }, 3000);
+    }
+}
+
 // 管理未分类商品
 function manageUncategorizedGoods() {
     console.log('管理未分类商品');

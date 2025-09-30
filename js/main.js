@@ -400,6 +400,16 @@ function showPage(pageId) {
 
   localStorage.setItem("currentPage", pageId);
 
+  // 数据展示页面处理（我的小店）
+  if (pageId === "my-store") {
+    // 延迟初始化图表，确保页面DOM已完全加载
+    setTimeout(() => {
+      if (typeof initOrderChart === "function") {
+        initOrderChart();
+      }
+    }, 200);
+  }
+
   // 触发自定义事件
   document.dispatchEvent(
     new CustomEvent("pageShown", {

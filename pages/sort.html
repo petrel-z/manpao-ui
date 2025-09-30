@@ -1,1 +1,88 @@
 <!-- 分类至 -->
+<div class="page" id="sort">
+    <div class="min-h-full bg-gray-50 pb-20 h-[640px]">
+        <!-- 头部导航 -->
+        <div class="primary-red p-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <i onclick="showPage('add-goods')" class="fas fa-arrow-left text-white cursor-pointer"></i>
+                    <h1 class="text-white text-lg font-medium">分类至</h1>
+                </div>
+            </div>
+        </div>
+
+        <!-- 新建分类区域 -->
+        <div class="p-4">
+            <div class="bg-white rounded-lg p-4">
+                <div class="flex items-center space-x-3">
+                    <input type="text" id="new-category-input" placeholder="请输入分类名称" class="flex-1 p-3 border border-gray-200 rounded-lg focus:border-orange-400 focus:outline-none" maxlength="20">
+                    <button onclick="createNewCategory()" class="px-3 py-3 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-lg font-medium hover:from-orange-600 hover:to-red-600 transition-all">
+                        新建
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 分类列表 -->
+        <div class="px-4 space-y-2">
+            <!-- 未分类
+            <div class="bg-white rounded-lg p-4">
+                <div class="flex items-center space-x-3">
+                    <input type="checkbox" id="category-uncategorized" class="w-5 h-5 text-orange-500 border-gray-300 rounded focus:ring-orange-500">
+                    <label for="category-uncategorized" class="flex-1 text-gray-800 font-medium cursor-pointer">未分类</label>
+                    <span class="text-sm text-gray-500">(23件商品)</span>
+                </div>
+            </div> -->
+
+            <!-- 饮料分类 -->
+            <div class="bg-white rounded-lg p-4">
+                <div class="flex items-center space-x-3">
+                    <input type="checkbox" id="category-drinks" class="w-5 h-5 text-orange-500 border-gray-300 rounded focus:ring-orange-500">
+                    <label for="category-drinks" class="flex-1 text-gray-800 font-medium cursor-pointer">饮料</label>
+                    <span class="text-sm text-gray-500">(12件商品)</span>
+                </div>
+            </div>
+
+            <!-- 小食分类 -->
+            <div class="bg-white rounded-lg p-4">
+                <div class="flex items-center space-x-3">
+                    <input type="checkbox" id="category-snacks" class="w-5 h-5 text-orange-500 border-gray-300 rounded focus:ring-orange-500">
+                    <label for="category-snacks" class="flex-1 text-gray-800 font-medium cursor-pointer">小食</label>
+                    <span class="text-sm text-gray-500">(8件商品)</span>
+                </div>
+            </div>
+
+            <!-- 主食分类 -->
+            <div class="bg-white rounded-lg p-4">
+                <div class="flex items-center space-x-3">
+                    <input type="checkbox" id="category-main" class="w-5 h-5 text-orange-500 border-gray-300 rounded focus:ring-orange-500">
+                    <label for="category-main" class="flex-1 text-gray-800 font-medium cursor-pointer">主食</label>
+                    <span class="text-sm text-gray-500">(15件商品)</span>
+                </div>
+            </div>
+
+            <!-- 甜品分类 -->
+            <div class="bg-white rounded-lg p-4">
+                <div class="flex items-center space-x-3">
+                    <input type="checkbox" id="category-dessert" class="w-5 h-5 text-orange-500 border-gray-300 rounded focus:ring-orange-500">
+                    <label for="category-dessert" class="flex-1 text-gray-800 font-medium cursor-pointer">甜品</label>
+                    <span class="text-sm text-gray-500">(6件商品)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部确定按钮 -->
+        <div class="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4">
+            <button onclick="confirmCategorySelection()" class="w-full bg-gradient-to-r from-orange-500 to-red-500 text-white py-3 rounded-lg font-medium hover:from-orange-600 hover:to-red-600 transition-all">
+                确定
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // 页面加载时初始化分类选择功能
+        document.addEventListener('DOMContentLoaded', function() {
+            initCategorySelection();
+        });
+    </script>
+</div>
