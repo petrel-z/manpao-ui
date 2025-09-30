@@ -127,7 +127,7 @@
             await loadPage('change-city', 'pages/change-city.html');
             await loadPage('merchant-image', 'pages/merchant-image.html');
             await loadPage('goods-detail', 'pages/goods-detail.html');
-            
+
             // 加载底部导航
             const bottomNavResponse = await fetch('components/bottom-nav.html');
             const bottomNavHtml = await bottomNavResponse.text();
@@ -173,6 +173,7 @@
         document.addEventListener('DOMContentLoaded', initApp);
     </script>
     <script src="js/main.js"></script>
+    <script src="js/merchant.js"></script>
 
     <script></script>
 </body>
