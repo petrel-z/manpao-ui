@@ -250,3 +250,340 @@ function showOrderDetail(orderId) {
 function hideOrderDetail() {
     document.getElementById('orderDetailModal').classList.add('hidden');
 }
+
+// 商品管理相关功能
+
+// 搜索商品
+function searchProducts() {
+    const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+    const productItems = document.querySelectorAll('#productList .bg-white');
+    
+    productItems.forEach(item => {
+        const productName = item.querySelector('h3').textContent.toLowerCase();
+        const productDesc = item.querySelector('p').textContent.toLowerCase();
+        
+        if (productName.includes(searchTerm) || productDesc.includes(searchTerm)) {
+            item.style.display = 'block';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+    
+    updateProductStats();
+}
+
+// 筛选商品
+function filterProducts() {
+    const categoryFilter = document.getElementById('categoryFilter').value;
+    const statusFilter = document.getElementById('statusFilter').value;
+    const stockFilter = document.getElementById('stockFilter').value;
+    const productItems = document.querySelectorAll('#productList .bg-white');
+    
+    productItems.forEach(item => {
+        let showItem = true;
+        
+        // 分类筛选
+        if (categoryFilter !== 'all') {
+            const productName = item.querySelector('h3').textContent;
+            const category = getProductCategory(productName);
+            if (category !== categoryFilter) {
+                showItem = false;
+            }
+        }
+        
+        // 状态筛选
+        if (statusFilter !== 'all') {
+            const statusElement = item.querySelector('.bg-green-100, .bg-orange-100, .bg-gray-100');
+            const status = getProductStatus(statusElement);
+            if (status !== statusFilter) {
+                showItem = false;
+            }
+        }
+        
+        // 库存筛选
+        if (stockFilter !== 'all') {
+            const stockText = item.querySelector('.border-t .text-xs:last-child').textContent;
+            const stock = getStockStatus(stockText);
+            if (stock !== stockFilter) {
+                showItem = false;
+            }
+        }
+        
+        item.style.display = showItem ? 'block' : 'none';
+    });
+    
+    updateProductStats();
+}
+
+// 重置筛选
+function resetFilters() {
+    document.getElementById('searchInput').value = '';
+    document.getElementById('categoryFilter').value = 'all';
+    document.getElementById('statusFilter').value = 'all';
+    document.getElementById('stockFilter').value = 'all';
+    
+    const productItems = document.querySelectorAll('#productList .bg-white');
+    productItems.forEach(item => {
+        item.style.display = 'block';
+    });
+    
+    updateProductStats();
+}
+
+// 获取商品分类
+function getProductCategory(productName) {
+    if (productName.includes('堡') || productName.includes('奶茶') || productName.includes('饮')) {
+        return 'food';
+    } else if (productName.includes('文具') || productName.includes('学习')) {
+        return 'study';
+    } else if (productName.includes('生活') || productName.includes('用品')) {
+        return 'daily';
+    }
+    return 'other';
+}
+
+// 获取商品状态
+function getProductStatus(statusElement) {
+    if (!statusElement) return 'selling';
+    
+    if (statusElement.classList.contains('bg-green-100')) {
+        return 'selling';
+    } else if (statusElement.classList.contains('bg-orange-100')) {
+        return 'pending';
+    } else if (statusElement.classList.contains('bg-gray-100')) {
+        return 'offline';
+    }
+    return 'selling';
+}
+
+// 获取库存状态
+function getStockStatus(stockText) {
+    if (stockText.includes('充足')) {
+        return 'sufficient';
+    } else if (stockText.includes('紧张')) {
+        return 'low';
+    } else if (stockText.includes('缺货')) {
+        return 'out';
+    }
+    return 'sufficient';
+}
+
+// 更新商品统计
+function updateProductStats() {
+    const productItems = document.querySelectorAll('#productList .bg-white');
+    const visibleItems = Array.from(productItems).filter(item => item.style.display !== 'none');
+    
+    let totalCount = visibleItems.length;
+    let sellingCount = 0;
+    let offlineCount = 0;
+    let lowStockCount = 0;
+    
+    visibleItems.forEach(item => {
+        const statusElement = item.querySelector('.bg-green-100, .bg-orange-100, .bg-gray-100');
+        const status = getProductStatus(statusElement);
+        const stockText = item.querySelector('.border-t .text-xs:last-child').textContent;
+        const stock = getStockStatus(stockText);
+        
+        if (status === 'selling') sellingCount++;
+        if (status === 'offline') offlineCount++;
+        if (stock === 'low') lowStockCount++;
+    });
+    
+    // 更新统计卡片
+    const statCards = document.querySelectorAll('.grid.grid-cols-4 .bg-white');
+    if (statCards.length >= 4) {
+        statCards[0].querySelector('.text-xl').textContent = totalCount;
+        statCards[1].querySelector('.text-xl').textContent = sellingCount;
+        statCards[2].querySelector('.text-xl').textContent = offlineCount;
+        statCards[3].querySelector('.text-xl').textContent = lowStockCount;
+    }
+}
+
+// 新增分类
+function addCategory() {
+    const categoryName = prompt('请输入新分类名称:');
+    if (categoryName && categoryName.trim()) {
+        alert(`新分类 "${categoryName.trim()}" 已添加`);
+        // 这里可以添加实际的分类添加逻辑
+    }
+}
+
+// 批量上架
+function batchOnline() {
+    const selectedProducts = getSelectedProducts();
+    if (selectedProducts.length === 0) {
+        alert('请先选择要上架的商品');
+        return;
+    }
+    
+    if (confirm(`确定要将 ${selectedProducts.length} 个商品上架吗？`)) {
+        selectedProducts.forEach(product => {
+            const statusElement = product.querySelector('.bg-gray-100');
+            if (statusElement) {
+                statusElement.className = 'bg-green-100 text-green-600 px-2 py-1 rounded-full text-xs';
+                statusElement.textContent = '在售中';
+            }
+        });
+        alert('批量上架成功');
+        updateProductStats();
+    }
+}
+
+// 批量下架
+function batchOffline() {
+    const selectedProducts = getSelectedProducts();
+    if (selectedProducts.length === 0) {
+        alert('请先选择要下架的商品');
+        return;
+    }
+    
+    if (confirm(`确定要将 ${selectedProducts.length} 个商品下架吗？`)) {
+        selectedProducts.forEach(product => {
+            const statusElement = product.querySelector('.bg-green-100, .bg-orange-100');
+            if (statusElement) {
+                statusElement.className = 'bg-gray-100 text-gray-600 px-2 py-1 rounded-full text-xs';
+                statusElement.textContent = '已下架';
+            }
+        });
+        alert('批量下架成功');
+        updateProductStats();
+    }
+}
+
+// 获取选中的商品（这里简化处理，实际应该有复选框选择机制）
+function getSelectedProducts() {
+    // 简化处理：返回所有可见的商品
+    const productItems = document.querySelectorAll('#productList .bg-white');
+    return Array.from(productItems).filter(item => item.style.display !== 'none');
+}
+
+// 编辑商品
+function editProduct(productId) {
+    alert(`编辑商品 ${productId}`);
+    // 这里可以跳转到编辑页面或打开编辑弹窗
+}
+
+// 管理规格
+function manageSpecs(productId) {
+    alert(`管理商品 ${productId} 的规格`);
+    // 这里可以跳转到规格管理页面
+}
+
+// 切换商品状态
+function toggleProduct(productId) {
+    const productItem = document.querySelector(`#productList .bg-white:nth-child(${productId})`);
+    if (productItem) {
+        const statusElement = productItem.querySelector('.bg-green-100, .bg-orange-100, .bg-gray-100');
+        if (statusElement) {
+            if (statusElement.classList.contains('bg-gray-100')) {
+                // 从下架变为在售
+                statusElement.className = 'bg-green-100 text-green-600 px-2 py-1 rounded-full text-xs';
+                statusElement.textContent = '在售中';
+            } else {
+                // 从在售变为下架
+                statusElement.className = 'bg-gray-100 text-gray-600 px-2 py-1 rounded-full text-xs';
+                statusElement.textContent = '已下架';
+            }
+            updateProductStats();
+        }
+    }
+}
+
+// 分类管理相关功能
+
+// 显示分类操作菜单
+function showCategoryMenu(categoryId) {
+    // 隐藏所有菜单
+    document.querySelectorAll('[id^="category-menu-"]').forEach(menu => {
+        menu.classList.add('hidden');
+    });
+    
+    // 显示当前菜单
+    const menu = document.getElementById(`category-menu-${categoryId}`);
+    menu.classList.toggle('hidden');
+    
+    // 点击其他地方隐藏菜单
+    document.addEventListener('click', function hideMenu(e) {
+        if (!e.target.closest(`#category-menu-${categoryId}`) && !e.target.closest(`button[onclick="showCategoryMenu(${categoryId})"]`)) {
+            menu.classList.add('hidden');
+            document.removeEventListener('click', hideMenu);
+        }
+    });
+}
+
+// 重命名分类
+function renameCategory(categoryId) {
+    // 隐藏菜单
+    document.getElementById(`category-menu-${categoryId}`).classList.add('hidden');
+    // 这里可以实现重命名逻辑
+    console.log('重命名分类:', categoryId);
+}
+
+// 删除分类
+function deleteCategory(categoryId) {
+    // 隐藏菜单
+    document.getElementById(`category-menu-${categoryId}`).classList.add('hidden');
+    // 这里可以实现删除逻辑
+    if (confirm('确定要删除这个分类吗？删除后该分类下的商品将移至未分类。')) {
+        console.log('删除分类:', categoryId);
+    }
+}
+
+// 排序分类
+function sortCategories() {
+    console.log('排序分类');
+    // 这里可以实现排序逻辑
+}
+
+// 显示添加分类弹窗
+function showAddCategoryModal() {
+    document.getElementById('add-category-modal').classList.remove('hidden');
+    document.getElementById('category-name-input').focus();
+}
+
+// 隐藏添加分类弹窗
+function hideAddCategoryModal() {
+    document.getElementById('add-category-modal').classList.add('hidden');
+    document.getElementById('category-name-input').value = '';
+    document.getElementById('category-name-count').textContent = '0';
+}
+
+// 保存分类
+function saveCategory() {
+    const categoryName = document.getElementById('category-name-input').value.trim();
+    if (!categoryName) {
+        alert('请输入分类名称');
+        return;
+    }
+    
+    // 这里可以实现保存逻辑
+    console.log('保存分类:', categoryName);
+    hideAddCategoryModal();
+}
+
+// 管理未分类商品
+function manageUncategorizedGoods() {
+    console.log('管理未分类商品');
+    // 这里可以跳转到商品管理页面并筛选未分类商品
+    showPage('goods-manage');
+    // 可以在商品管理页面中添加筛选未分类商品的逻辑
+}
+
+// 初始化分类管理页面事件监听器
+function initCategoryManagement() {
+    // 输入框字符计数
+    const categoryNameInput = document.getElementById('category-name-input');
+    if (categoryNameInput) {
+        categoryNameInput.addEventListener('input', function() {
+            const count = this.value.length;
+            document.getElementById('category-name-count').textContent = count;
+        });
+    }
+
+    // ESC键关闭弹窗
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            hideAddCategoryModal();
+        }
+    });
+}
