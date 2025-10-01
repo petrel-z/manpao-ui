@@ -12,47 +12,30 @@
             </div>
         </div>
 
-        <!-- 主要内容 -->
-        <div class="px-4 py-4">
-            <!-- 统计信息 -->
-            <div class="bg-white rounded-lg p-4 mb-4 shadow-sm">
-                <div class="grid grid-cols-4 gap-4 text-center">
-                    <div>
-                        <div class="text-2xl font-bold text-orange-500">128</div>
-                        <div class="text-gray-500 text-caption">总评论</div>
-                    </div>
-                    <div>
-                        <div class="text-2xl font-bold text-green-500">95</div>
-                        <div class="text-gray-500 text-caption">好评</div>
-                    </div>
-                    <div>
-                        <div class="text-2xl font-bold text-yellow-500">25</div>
-                        <div class="text-gray-500 text-caption">中评</div>
-                    </div>
-                    <div>
-                        <div class="text-2xl font-bold text-red-500">8</div>
-                        <div class="text-gray-500 text-caption">差评</div>
-                    </div>
+        <!-- 统计卡片 -->
+        <div class="p-4">
+            <div class="grid grid-cols-4 gap-2">
+                <div class="bg-white rounded-lg p-3 text-center">
+                    <div class="text-xl font-bold text-blue-500">128</div>
+                    <div class="text-xs text-gray-500" style="font-size: 10px;">总评论</div>
+                </div>
+                <div class="bg-white rounded-lg p-3 text-center">
+                    <div class="text-xl font-bold text-green-500">95</div>
+                    <div class="text-xs text-gray-500" style="font-size: 10px;">好评</div>
+                </div>
+                <div class="bg-white rounded-lg p-3 text-center">
+                    <div class="text-xl font-bold text-orange-500">25</div>
+                    <div class="text-xs text-gray-500" style="font-size: 10px;">中评</div>
+                </div>
+                <div class="bg-white rounded-lg p-3 text-center">
+                    <div class="text-xl font-bold text-red-500">8</div>
+                    <div class="text-xs text-gray-500" style="font-size: 10px;">差评</div>
                 </div>
             </div>
+        </div>
 
-            <!-- 筛选标签 -->
-            <div class="bg-white rounded-lg p-4 mb-4 shadow-sm">
-                <div class="flex space-x-2">
-                    <button class="px-4 py-2 bg-orange-500 text-white rounded-full text-body-sm font-medium">
-                        全部 (128)
-                    </button>
-                    <button class="px-4 py-2 bg-gray-100 text-gray-600 rounded-full text-body-sm font-medium hover:bg-gray-200">
-                        好评 (95)
-                    </button>
-                    <button class="px-4 py-2 bg-gray-100 text-gray-600 rounded-full text-body-sm font-medium hover:bg-gray-200">
-                        中评 (25)
-                    </button>
-                    <button class="px-4 py-2 bg-gray-100 text-gray-600 rounded-full text-body-sm font-medium hover:bg-gray-200">
-                        差评 (8)
-                    </button>
-                </div>
-            </div>
+        <!-- 主要内容 -->
+        <div class="px-4 py-4 h-[570px] overflow-y-auto">
 
             <!-- 评论列表 -->
             <div class="space-y-4">
@@ -62,8 +45,11 @@
                         <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face" alt="用户头像" class="w-10 h-10 rounded-full">
                         <div class="flex-1">
                             <div class="flex items-center justify-between mb-2">
-                                <div>
-                                    <span class="font-medium text-body-md">张三</span>
+                                <div class="w-full ">
+                                    <div class="w-full flex justify-between items-center font-medium text-body-md">
+                                        <span>张*</span>
+                                        <span class="ml-2 text-gray-500 text-caption">2024-01-15 14:30</span>
+                                    </div>
                                     <div class="flex items-center mt-1">
                                         <div class="flex space-x-1">
                                             <i class="fas fa-star text-yellow-400 text-sm"></i>
@@ -72,25 +58,22 @@
                                             <i class="fas fa-star text-yellow-400 text-sm"></i>
                                             <i class="fas fa-star text-yellow-400 text-sm"></i>
                                         </div>
-                                        <span class="ml-2 text-gray-500 text-caption">2024-01-15 14:30</span>
                                     </div>
                                 </div>
-                                <div class="flex space-x-2">
-                                    <button class="text-orange-500 text-body-sm hover:text-orange-600">
-                                        <i class="fas fa-reply mr-1"></i>回复
-                                    </button>
-                                    <button class="text-red-500 text-body-sm hover:text-red-600">
-                                        <i class="fas fa-trash mr-1"></i>删除
-                                    </button>
-                                </div>
+                                
                             </div>
                             <p class="text-gray-700 text-body-sm mb-2">
                                 味道很不错，配送也很快，包装很好，下次还会再来的！推荐大家试试这家的招牌菜。
                             </p>
                             <div class="text-gray-500 text-caption">
-                                订单：巨无霸套餐 x1
+                                订单号：#2024011500123
                             </div>
                         </div>
+                    </div>
+                    <div class="flex w-full justify-end space-x-2">
+                        <button class="text-orange-500 text-body-sm hover:text-orange-600">
+                            <i class="fas fa-reply mr-1"></i>回复
+                        </button>
                     </div>
                 </div>
 
@@ -100,8 +83,11 @@
                         <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&h=40&fit=crop&crop=face" alt="用户头像" class="w-10 h-10 rounded-full">
                         <div class="flex-1">
                             <div class="flex items-center justify-between mb-2">
-                                <div>
-                                    <span class="font-medium text-body-md">李小美</span>
+                                <div class="w-full ">
+                                    <div class="w-full flex justify-between items-center font-medium text-body-md">
+                                        <span>李**</span>
+                                        <span class="ml-2 text-gray-500 text-caption">2024-01-15 12:15</span>
+                                    </div>
                                     <div class="flex items-center mt-1">
                                         <div class="flex space-x-1">
                                             <i class="fas fa-star text-yellow-400 text-sm"></i>
@@ -110,38 +96,47 @@
                                             <i class="fas fa-star text-yellow-400 text-sm"></i>
                                             <i class="fas fa-star text-gray-300 text-sm"></i>
                                         </div>
-                                        <span class="ml-2 text-gray-500 text-caption">2024-01-15 12:15</span>
                                     </div>
                                 </div>
-                                <div class="flex space-x-2">
-                                    <button class="text-orange-500 text-body-sm hover:text-orange-600">
-                                        <i class="fas fa-reply mr-1"></i>回复
-                                    </button>
-                                    <button class="text-red-500 text-body-sm hover:text-red-600">
-                                        <i class="fas fa-trash mr-1"></i>删除
-                                    </button>
-                                </div>
+                                
                             </div>
                             <p class="text-gray-700 text-body-sm mb-2">
                                 整体还不错，就是配送稍微慢了一点，希望能改进。食物味道很好，分量也足够。
                             </p>
                             <div class="text-gray-500 text-caption">
-                                订单：香辣鸡腿堡套餐 x1
+                                订单号：#2024011500124
                             </div>
-                            <!-- 商家回复 -->
-                            <div class="mt-3 bg-gray-50 rounded-lg p-3">
-                                <div class="flex items-start space-x-2">
-                                    <span class="text-orange-500 text-body-sm font-medium">商家回复：</span>
-                                    <p class="text-gray-700 text-body-sm flex-1">
-                                        感谢您的反馈，我们会努力提升配送速度，为您提供更好的服务体验！
-                                    </p>
-                                </div>
-                                <div class="text-gray-400 text-caption mt-1 ml-16">
-                                    2024-01-15 13:20
-                                </div>
+            
+                        </div>
+                    </div>
+                    <div class="flex w-full justify-end space-x-2">
+                        <button class="text-orange-500 text-body-sm hover:text-orange-600">
+                            <i class="fas fa-reply mr-1"></i>回复
+                        </button>
+                    </div>
+                                    <!-- 商家回复 -->
+            <div class="mt-3 bg-white border border-gray-100 rounded-lg p-3 shadow-sm">
+                <div class="flex items-start space-x-3">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face" alt="商家头像" class="w-8 h-8 rounded-full">
+                    <div class="flex-1">
+                        <div class="flex items-center space-x-2 mb-1">
+                            <span class="text-gray-800 text-body-sm font-medium">满跑小店</span>
+                            <span class="bg-orange-100 text-orange-600 px-2 py-0.5 rounded-full text-xs">商家</span>
+                        </div>
+                        <p class="text-gray-700 text-body-sm mb-2">
+                            感谢您的反馈，我们会努力提升配送速度，为您提供更好的服务体验！
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <div class="text-gray-400 text-caption">
+                                2024-01-15 13:20
+                            </div>
+                            <div class="text-gray-400 text-caption">
+                                回复
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
                 </div>
 
                 <!-- 评论项 3 -->
@@ -150,8 +145,11 @@
                         <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face" alt="用户头像" class="w-10 h-10 rounded-full">
                         <div class="flex-1">
                             <div class="flex items-center justify-between mb-2">
-                                <div>
-                                    <span class="font-medium text-body-md">王大明</span>
+                                <div class="w-full ">
+                                    <div class="w-full flex justify-between items-center font-medium text-body-md">
+                                        <span>王**</span>
+                                        <span class="ml-2 text-gray-500 text-caption">2024-01-14 19:45</span>
+                                    </div>
                                     <div class="flex items-center mt-1">
                                         <div class="flex space-x-1">
                                             <i class="fas fa-star text-yellow-400 text-sm"></i>
@@ -160,23 +158,24 @@
                                             <i class="fas fa-star text-gray-300 text-sm"></i>
                                             <i class="fas fa-star text-gray-300 text-sm"></i>
                                         </div>
-                                        <span class="ml-2 text-gray-500 text-caption">2024-01-14 19:45</span>
                                     </div>
                                 </div>
-                                <div class="flex space-x-2">
-                                    <button class="text-orange-500 text-body-sm hover:text-orange-600">
-                                        <i class="fas fa-reply mr-1"></i>回复
-                                    </button>
-                                    <button class="text-red-500 text-body-sm hover:text-red-600">
-                                        <i class="fas fa-trash mr-1"></i>删除
-                                    </button>
-                                </div>
+                                
                             </div>
                             <p class="text-gray-700 text-body-sm mb-2">
                                 食物温度不够，而且味道一般，配送时间也比预期长了很多，希望能改进。
                             </p>
                             <div class="text-gray-500 text-caption">
-                                订单：经典汉堡套餐 x2
+                                订单号：#2024011400089
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex w-full justify-end space-x-2">
+                        <button class="text-orange-500 text-body-sm hover:text-orange-600">
+                            <i class="fas fa-reply mr-1"></i>回复
+                        </button>
+                    </div>
+                </div>
                             </div>
                         </div>
                     </div>

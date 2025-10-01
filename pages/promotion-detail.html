@@ -1,0 +1,103 @@
+<!-- 推广明细页面 -->
+<div class="page" id="promotion-detail">
+    <div class="min-h-full bg-gray-50 pb-16">
+        <!-- 头部导航栏 -->
+        <div class="primary-red p-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <i onclick="showPage('profile')" class="fas fa-arrow-left text-white cursor-pointer"></i>
+                    <span class="text-white font-semibold">推广明细</span>
+                </div>
+                <div class="text-white text-sm">
+                    <i class="fas fa-share-alt cursor-pointer"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="h-[78vh] overflow-y-auto">
+            <!-- 推广统计信息 -->
+            <div class="p-3">
+                <div class="bg-white rounded-lg p-4 shadow-sm">
+                    <h3 class="font-bold mb-4 text-heading-md text-gray-800">推广统计</h3>
+                    <div class="grid grid-cols-3 gap-4">
+                        <!-- 推广人数 -->
+                        <div class="text-center">
+                            <div class="bg-gradient-to-r from-red-500 to-orange-400 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2">
+                                <i class="fas fa-users text-white text-lg"></i>
+                            </div>
+                            <div class="text-2xl font-bold text-gray-800" id="promotion-count">0</div>
+                            <div class="text-xs text-gray-500">推广人数</div>
+                        </div>
+                        <!-- 今日推广 -->
+                        <div class="text-center">
+                            <div class="bg-gradient-to-r from-blue-500 to-purple-400 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2">
+                                <i class="fas fa-calendar-day text-white text-lg"></i>
+                            </div>
+                            <div class="text-2xl font-bold text-gray-800" id="today-promotion">0</div>
+                            <div class="text-xs text-gray-500">今日推广</div>
+                        </div>
+                        <!-- 累计收益 -->
+                        <div class="text-center">
+                            <div class="bg-gradient-to-r from-green-500 to-teal-400 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2">
+                                <i class="fas fa-coins text-white text-lg"></i>
+                            </div>
+                            <div class="text-2xl font-bold text-gray-800" id="total-earnings">¥0</div>
+                            <div class="text-xs text-gray-500">累计收益</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 推广列表 -->
+            <div class="px-3">
+                <div class="bg-white rounded-lg shadow-sm">
+                    <div class="p-4 border-b border-gray-100">
+                        <div class="flex items-center justify-between">
+                            <h3 class="font-bold text-heading-md text-gray-800">推广列表</h3>
+                            <div class="flex items-center space-x-2">
+                                <select id="time-filter" class="text-sm border border-gray-200 rounded px-2 py-1 text-gray-600">
+                                    <option value="all">全部时间</option>
+                                    <option value="today">今天</option>
+                                    <option value="week">本周</option>
+                                    <option value="month">本月</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 推广用户列表 -->
+                    <div id="promotion-list" class="divide-y divide-gray-100">
+                        <!-- 推广用户项将通过JavaScript动态生成 -->
+                        <div class="flex items-center justify-center py-12 text-gray-400">
+                            <div class="text-center">
+                                <i class="fas fa-user-plus text-4xl mb-3"></i>
+                                <p class="text-sm">暂无推广记录</p>
+                                <p class="text-xs mt-1">快去邀请好友加入吧！</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 推广说明 -->
+            <div class="p-3">
+                <div class="bg-blue-50 rounded-lg p-4">
+                    <div class="flex items-start space-x-3">
+                        <div class="bg-blue-500 w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <i class="fas fa-info text-white text-xs"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-sm text-blue-800 mb-2">推广说明</h4>
+                            <ul class="text-xs text-blue-700 space-y-1">
+                                <li>• 成功推广一位新用户可获得5元奖励</li>
+                                <li>• 被推广用户首次下单后奖励生效</li>
+                                <li>• 推广奖励将在24小时内到账</li>
+                                <li>• 更多推广活动请关注平台公告</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
