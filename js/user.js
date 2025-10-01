@@ -682,13 +682,13 @@ document.addEventListener('DOMContentLoaded', function() {
     if (document.getElementById('comment-manage-user').classList.contains('page-current')) {
         initUserCommentManage();
     }
-}
+},
 
 // 评论详情页功能
 function initCommentDetailPage() {
     initReplySubmit();
     initReplyList();
-}
+},
 
 // 初始化回复提交功能
 function initReplySubmit() {
@@ -703,7 +703,7 @@ function initReplySubmit() {
             }
         });
     }
-}
+},
 
 // 提交回复功能
 function submitReply() {
@@ -752,7 +752,7 @@ function submitReply() {
     showToast('回复发布成功');
     
     console.log('新回复已发布:', replyText);
-}
+},
 
 // 初始化回复列表
 function initReplyList() {
@@ -766,7 +766,7 @@ function initReplyList() {
             noReplyTip.classList.remove('hidden');
         }
     }
-}
+},
 
 // 更新回复数量
 function updateReplyCount() {
@@ -777,7 +777,7 @@ function updateReplyCount() {
         const count = replyList.children.length;
         replyTitle.textContent = `全部回复 (${count})`;
     }
-}
+},
 
 // 格式化当前时间
 function formatCurrentTime() {
@@ -789,7 +789,7 @@ function formatCurrentTime() {
     const minutes = String(now.getMinutes()).padStart(2, '0');
     
     return `${year}-${month}-${day} ${hours}:${minutes}`;
-}
+},
 
 // 页面初始化监听器
 document.addEventListener('DOMContentLoaded', function() {
@@ -807,7 +807,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (document.getElementById('comment-manage-user')) {
         initUserCommentManage();
     }
-});
+}),
 function initEvaluatePage() {
     let selectedTags = []; // 存储选中的标签
     let currentRating = 4; // 当前评分，默认4星
@@ -958,4 +958,4 @@ function initEvaluatePage() {
             });
         }
     }
-}
+});
