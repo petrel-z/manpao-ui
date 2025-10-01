@@ -45,21 +45,21 @@
         <div class="px-4 mt-5 mb-5">
             <div class="bg-white rounded-lg p-4 shadow-sm">
                 <div class="grid grid-cols-4 gap-4">
-                     <div class="text-center">
-                        <i class="fas fa-map-marker-alt text-green-500 text-2xl mb-2"></i>
-                        <span class="text-body-xs block">我的地址</span>
-                    </div>
                     <div class="text-center cursor-pointer" onclick="showPromotionCard()">
                         <i class="fas fa-id-card text-indigo-500 text-2xl mb-2"></i>
                         <span class="text-body-xs block">推广名片</span>
                     </div>
-                    <div class="text-center">
+                    <div class="text-center" onclick="showPage('promotion-detail')"> 
                         <i class="fas fa-chart-line text-blue-500 text-2xl mb-2"></i>
-                        <span class="text-body-xs block">推广统计</span>
+                        <span class="text-body-xs block">推广明细</span>
                     </div>
                     <div class="text-center cursor-pointer" onclick="showPage('reward-detail')">
+                        <i class="fas fa-wallet text-green-500 text-2xl mb-2"></i>
+                        <span class="text-body-xs block">余额详情</span>
+                    </div>
+                    <div class="text-center cursor-pointer" onclick="showPage('gold-bean')">
                         <i class="fas fa-coins text-yellow-500 text-2xl mb-2"></i>
-                        <span class="text-body-xs block">奖励明细</span>
+                        <span class="text-body-xs block">金豆详情</span>
                     </div>
                 </div>
             </div>
@@ -81,13 +81,6 @@
                         <div class="flex items-center space-x-4">
                             <i class="fas fa-crown text-yellow-500 text-xl"></i>
                             <span class="text-body-sm">团长中心</span>
-                        </div>
-                        <i class="fas fa-chevron-right text-gray-400"></i>
-                    </div>
-                    <div onclick="showPage('balance')" class="flex items-center justify-between cursor-pointer py-1">
-                        <div class="flex items-center space-x-4">
-                            <i class="fas fa-wallet text-green-500 text-xl"></i>
-                            <span class="text-body-sm">余额明细</span>
                         </div>
                         <i class="fas fa-chevron-right text-gray-400"></i>
                     </div>

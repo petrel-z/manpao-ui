@@ -1,2 +1,96 @@
-<!-- 用户评论管理页面 -->
- 
+<!-- 用户评价中心 -->
+<div class="page" id="comment-manage-user">
+    <div class="min-h-full bg-gray-50 pb-16">
+        <!-- 顶部标题 -->
+        <div class="bg-white p-4 sticky top-0 z-10 shadow-sm">
+            <div class="flex items-center">
+                <button onclick="goBack()" class="mr-3 text-gray-600">
+                    <i class="fas fa-arrow-left text-xl"></i>
+                </button>
+                <h2 class="text-center font-bold text-heading-md flex-1">我的评价</h2>
+                <div class="w-6"></div>
+            </div>
+        </div>
+
+        <!-- 统计卡片 -->
+        <div class="p-4">
+            <div class="grid grid-cols-3 gap-3">
+                <div class="bg-white rounded-lg p-3 text-center">
+                    <div class="text-xl font-bold text-blue-500" id="total-comments">0</div>
+                    <div class="text-xs text-gray-500" style="font-size: 10px;">总评价</div>
+                </div>
+                <div class="bg-white rounded-lg p-3 text-center">
+                    <div class="text-xl font-bold text-green-500" id="good-comments">0</div>
+                    <div class="text-xs text-gray-500" style="font-size: 10px;">好评</div>
+                </div>
+                <div class="bg-white rounded-lg p-3 text-center">
+                    <div class="text-xl font-bold text-orange-500" id="avg-rating">0.0</div>
+                    <div class="text-xs text-gray-500" style="font-size: 10px;">平均评分</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 筛选器 -->
+        <div class="px-4 pb-4">
+            <div class="bg-white rounded-lg p-3">
+                <div class="flex items-center space-x-4">
+                    <span class="text-gray-600 text-body-sm">筛选：</span>
+                    <select id="rating-filter" class="flex-1 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-body-sm">
+                        <option value="all">全部评分</option>
+                        <option value="5">5星好评</option>
+                        <option value="4">4星</option>
+                        <option value="3">3星</option>
+                        <option value="2">2星</option>
+                        <option value="1">1星差评</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- 主要内容 -->
+        <div class="px-4 py-4 h-[500px] overflow-y-auto">
+            <!-- 评价列表 -->
+            <div id="comment-list" class="space-y-4">
+                <!-- 评价项将通过JavaScript动态生成 -->
+            </div>
+
+            <!-- 空状态 -->
+            <div id="empty-state" class="text-center py-12 hidden">
+                <div class="text-gray-400 mb-4">
+                    <i class="fas fa-comment-slash text-4xl"></i>
+                </div>
+                <p class="text-gray-500 text-body-md">暂无评价记录</p>
+                <p class="text-gray-400 text-caption mt-2">快去下单并评价商品吧~</p>
+            </div>
+
+            <!-- 加载更多 -->
+            <div id="load-more" class="text-center mt-6 hidden">
+                <button class="px-6 py-2 bg-gray-100 text-gray-600 rounded-lg text-body-sm hover:bg-gray-200">
+                    加载更多评价
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+        /* 基础样式保持不变，移除不需要的商品图片和用户头像相关样式 */
+        .comment-item {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid #f0f0f0;
+        }
+
+        /* 移除不需要的样式，保持页面简洁 */
+        .user-info, .user-avatar, .user-details, .user-nickname,
+        .product-info, .product-image, .shop-card, .shop-image, 
+        .shop-details, .shop-name, .shop-address, .shop-category,
+        .comment-content, .comment-text, .order-number,
+        .shop-reply, .reply-label, .reply-content, .reply-time,
+        .comment-actions, .edit-btn, .delete-btn {
+            /* 这些样式现在由JavaScript渲染的HTML结构和Tailwind CSS类处理 */
+        }
+</style>

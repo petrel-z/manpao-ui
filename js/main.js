@@ -76,27 +76,6 @@ function showPage(pageId) {
   localStorage.setItem("currentPage", pageId);
 }
 
-/**
- * 初始化页面
- */
-function initializeApp() {
-  // 检查用户是否已登录
-  const userInfo = localStorage.getItem("userInfo");
-
-  // 从本地存储中获取上次访问的页面
-  let lastPage = localStorage.getItem("currentPage") || "login";
-
-  // 如果用户已登录但当前页面是登录页，则跳转到首页
-  if (userInfo && lastPage === "login") {
-    lastPage = "home";
-  }
-
-  showPage(lastPage);
-
-  // 更新时间显示
-  updateTime();
-  setInterval(updateTime, 60000); // 每分钟更新一次
-}
 
 /**
  * 更新状态栏时间
@@ -159,74 +138,6 @@ function updateNavActiveState(pageId) {
       console.log("已设置活跃状态");
     }
   }
-}
-
-/**
- * 用户登录功能
- */
-function login() {
-  // 检查是否同意用户协议和隐私政策
-  const agreementCheckbox = document.querySelector("#account-agreement");
-  if (!agreementCheckbox.checked) {
-    alert("请阅读并同意用户协议和隐私政策");
-    return;
-  }
-
-  const username = document.querySelector('#login input[type="text"]').value;
-  const password = document.querySelector(
-    '#login input[type="password"]'
-  ).value;
-  const role = document.querySelector("#role-select").value;
-
-  // 简单验证
-  if (!username || !password) {
-    alert("请输入账号和密码");
-    return;
-  }
-
-  // 模拟验证成功
-  // 在实际应用中，这里应该是向后端发送请求验证账号密码
-
-  // 保存用户信息到本地存储
-  const userInfo = {
-    username: username,
-    role: role,
-    roleName: getRoleName(role),
-    id: "123456789", // 模拟用户ID
-  };
-
-  localStorage.setItem("userInfo", JSON.stringify(userInfo));
-
-  // 登录成功，跳转到首页
-  showPage("home");
-}
-
-/**
- * 微信登录功能
- */
-function wechatLogin() {
-  // 检查是否同意用户协议和隐私政策
-  const agreementCheckbox = document.querySelector("#wechat-agreement");
-  if (!agreementCheckbox.checked) {
-    alert("请阅读并同意用户协议和隐私政策");
-    return;
-  }
-
-  // 模拟微信登录成功
-  // 在实际应用中，这里应该是调用微信登录API
-
-  // 保存用户信息到本地存储（默认为学生角色）
-  const userInfo = {
-    username: "微信用户" + Math.floor(Math.random() * 10000), // 随机用户名
-    role: "student",
-    roleName: getRoleName("student"),
-    id: "wx_" + Math.floor(Math.random() * 1000000), // 模拟微信用户ID
-  };
-
-  localStorage.setItem("userInfo", JSON.stringify(userInfo));
-
-  // 登录成功，跳转到首页
-  showPage("home");
 }
 
 /**
@@ -418,23 +329,7 @@ function showPage(pageId) {
   );
 }
 
-/**
- * 切换登录方式
- */
-function toggleLoginMethod() {
-  const wechatLogin = document.getElementById("wechat-login");
-  const accountLogin = document.getElementById("account-login");
 
-  if (wechatLogin.classList.contains("hidden")) {
-    // 切换到微信登录
-    wechatLogin.classList.remove("hidden");
-    accountLogin.classList.add("hidden");
-  } else {
-    // 切换到账号密码登录
-    wechatLogin.classList.add("hidden");
-    accountLogin.classList.remove("hidden");
-  }
-}
 
 // 显示支付弹窗
 function showPaymentModal() {

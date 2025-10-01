@@ -29,51 +29,8 @@
                         <i class="fab fa-weixin"></i>
                         <span>微信手机号快捷登录</span>
                     </button>
-                    <div class="text-center">
-                        <span class="text-gray-400 text-sm">或</span>
-                    </div>
-                    <button onclick="toggleLoginMethod()" class="w-full border border-gray-300 text-gray-700 p-3 rounded-lg font-semibold text-sm hover:bg-gray-50 transition-colors">
-                        账号密码登录
-                    </button>
                 </div>
                 
-                <!-- 账号密码登录区域（默认隐藏） -->
-                <div id="account-login" class="space-y-3 hidden">
-                    <div>
-                        <input type="text" placeholder="请输入账号" value="admin" class="w-full p-3 border border-gray-200 rounded-lg focus:border-red-400 focus:outline-none transition-colors text-sm">
-                    </div>
-                    <div>
-                        <input type="password" placeholder="请输入密码" value="123456" class="w-full p-3 border border-gray-200 rounded-lg focus:border-red-400 focus:outline-none transition-colors text-sm">
-                    </div>
-                    <div>
-                        <select id="role-select" class="w-full p-3 border border-gray-200 rounded-lg focus:border-red-400 focus:outline-none transition-colors text-sm">
-                            <option value="student">学生</option>
-                            <option value="merchant-normal">普通商家</option>
-                            <option value="merchant-student">学生商家</option>
-                            <option value="captain">团长（学校管理员）</option>
-                            <option value="rider">骑手</option>
-                        </select>
-                    </div>
-                    
-                    <!-- 用户协议和隐私政策选择框 -->
-                    <div class="flex items-center">
-                        <input type="checkbox" id="account-agreement" class="w-4 h-4 text-red-400 border-gray-300 rounded focus:ring-red-400">
-                        <label for="account-agreement" class="ml-2 text-sm text-gray-600">
-                            我已阅读并同意 <a href="#" class="text-blue-500">《用户协议》</a>和<a href="#" class="text-blue-500">《隐私政策》</a>
-                        </label>
-                    </div>
-                    
-                    <button onclick="login()" class="w-full btn-primary text-white p-3 rounded-lg font-semibold text-sm">
-                        登录
-                    </button>
-                    <div class="text-center">
-                        <span class="text-gray-400 text-sm">或</span>
-                    </div>
-                    <button onclick="toggleLoginMethod()" class="w-full border border-gray-300 text-gray-700 p-3 rounded-lg font-semibold flex items-center justify-center space-x-2 hover:bg-gray-50 transition-colors text-sm">
-                        <i class="fab fa-weixin text-green-500"></i>
-                        <span>微信登录</span>
-                    </button>
-                </div>
             </div>
         </div>
     </div>
