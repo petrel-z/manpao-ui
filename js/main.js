@@ -1,79 +1,62 @@
-/**
- * 页面切换功能
- * @param {string} pageId - 要显示的页面ID
- */
-function showPage(pageId) {
-  // 隐藏所有页面
-  const pages = document.querySelectorAll(".page");
-  pages.forEach((page) => {
-    page.classList.remove("active");
-  });
 
-  // 显示指定页面
-  const targetPage = document.getElementById(pageId);
-  if (targetPage) {
-    targetPage.classList.add("active");
-    // 移除动画效果
-  }
+// 应用初始化：在所有页面内容加载完成后，执行默认页面展示与基础状态更新
+function initializeApp() {
+  // 防重复初始化
+  if (window.__appInitialized) return;
 
-  // 更新导航按钮状态
-  const navButtons = document.querySelectorAll(".prototype-btn");
-  navButtons.forEach((btn) => {
-    btn.classList.remove("active");
-    if (btn.dataset.page === pageId) {
-      btn.classList.add("active");
-    }
-  });
+  let attempts = 0;
+  const maxAttempts = 40; // 最多等待约 2s（40 * 50ms）
 
-  // 延迟执行底部导航控制，确保页面内容已加载
-  setTimeout(() => {
-    // 控制底部导航的显示与隐藏
+  function tryInit() {
+    const pagesContainer = document.getElementById("pages-container");
+    const hasPages = pagesContainer && pagesContainer.querySelector(".page");
     const bottomNav = document.querySelector(".bottom-nav");
-    const circleBottomNav = document.querySelector(".circle-bottom-nav");
 
-    console.log("查找底部导航元素:", {
-      bottomNav: !!bottomNav,
-      circleBottomNav: !!circleBottomNav,
-      pageId: pageId,
-    });
+    // 页面内容已注入，开始初始化
+    if (hasPages) {
+      const lastPage = localStorage.getItem("currentPage") || "login";
 
-    // 隐藏所有底部导航
-    if (bottomNav) bottomNav.style.display = "none";
-    if (circleBottomNav) circleBottomNav.style.display = "none";
-
-    // 根据页面ID显示相应的底部导航
-    if (pageId === "circle" || pageId === "community") {
-      // 显示圈子专用底部导航
-      if (circleBottomNav) {
-        circleBottomNav.style.display = "flex";
-        console.log("显示圈子底部导航");
-      } else {
-        console.log("未找到圈子底部导航元素");
+      // 使用统一的 showPage 进行页面切换与底部导航控制
+      try {
+        showPage(lastPage);
+      } catch (err) {
+        console.error("初始化显示页面失败，回退到登录页:", err);
+        showPage("login");
       }
-    } else if (
-      pageId === "home" ||
-      pageId === "grab-orders" ||
-      pageId === "orders" ||
-      pageId === "profile"
-    ) {
-      // 显示主底部导航
-      if (bottomNav) {
-        bottomNav.style.display = "flex";
-        console.log("显示主底部导航");
+
+      // 基础状态更新（如状态栏时间）
+      if (typeof updateTime === "function") {
+        updateTime();
       }
+
+      // 仅在成功初始化后标记完成，避免并发多次调用
+      window.__appInitialized = true;
+      return;
     }
-  }, 100);
 
-  // 更新底部导航栏状态
-  if (typeof updateNavActiveState === "function") {
-    console.log("调用updateNavActiveState函数，页面ID：", pageId);
-    updateNavActiveState(pageId);
-  } else {
-    console.error("updateNavActiveState函数未定义");
+    // 页面尚未完成注入，继续等待重试
+    if (attempts < maxAttempts) {
+      attempts += 1;
+      setTimeout(tryInit, 50);
+      return;
+    }
+
+    // 超过最大等待次数仍未加载页面，进行兜底处理
+    console.warn("等待页面加载超时，执行兜底初始化");
+    try {
+      showPage(localStorage.getItem("currentPage") || "login");
+    } catch (err) {
+      console.error("兜底初始化失败:", err);
+    }
+    window.__appInitialized = true;
   }
 
-  // 保存当前页面到本地存储
-  localStorage.setItem("currentPage", pageId);
+  // 下一帧开始检查（避免与 DOMContentLoaded 并发竞态）
+  if (typeof requestAnimationFrame === "function") {
+    requestAnimationFrame(tryInit);
+  } else {
+    setTimeout(tryInit, 0);
+  }
 }
 
 
@@ -271,12 +254,6 @@ function showPage(pageId) {
     // 控制底部导航的显示与隐藏
     const bottomNav = document.querySelector(".bottom-nav");
     const circleBottomNav = document.querySelector(".circle-bottom-nav");
-
-    console.log("第二个showPage - 查找底部导航元素:", {
-      bottomNav: !!bottomNav,
-      circleBottomNav: !!circleBottomNav,
-      pageId: pageId,
-    });
 
     // 隐藏所有底部导航
     if (bottomNav) bottomNav.style.display = "none";

@@ -819,10 +819,10 @@ function showSelectedDateInfo(data) {
         
         infoDiv.classList.remove('hidden');
         
-        // 3秒后自动隐藏
-        setTimeout(() => {
-            infoDiv.classList.add('hidden');
-        }, 3000);
+        // // 3秒后自动隐藏
+        // setTimeout(() => {
+        //     infoDiv.classList.add('hidden');
+        // }, 3000);
     }
 }
 
