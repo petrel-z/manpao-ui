@@ -14,6 +14,305 @@ function initGoodsSpecSelector() {
         return;
     }
 
+// 多级规格分类页面相关功能
+let currentCategoryId = 0;
+let currentSpecId = 0;
+let currentCommonCategory = '';
+let selectedCommonOptions = [];
+
+// 常用规格分类数据
+const commonCategoriesData = {
+    '分量': ['大', '中', '小', '超大', '迷你'],
+    '口味': ['原味', '甜味', '咸味', '辣味', '酸味'],
+    '温度': ['热饮', '温饮', '冰饮', '常温']
+};
+
+initMultiCategoryPage();
+// 初始化多级规格分类页面
+function initMultiCategoryPage() {
+    // 获取页面元素
+    const backBtn = document.getElementById('back-btn');
+    const addCategoryBtn = document.getElementById('add-category-btn');
+    const commonCategoryButtons = document.querySelectorAll('[id^="common-category-"]');
+    const commonCategoryCancelBtn = document.getElementById('common-category-cancel-btn');
+    const commonCategoryConfirmBtn = document.getElementById('common-category-confirm-btn');
+    const addCategoryCancelBtn = document.getElementById('add-category-cancel-btn');
+    const addCategorySaveBtn = document.getElementById('add-category-save-btn');
+    const addSpecCancelBtn = document.getElementById('add-spec-cancel-btn');
+    const addSpecSaveBtn = document.getElementById('add-spec-save-btn');
+    const categoryList = document.getElementById('category-list');
+    
+    // 绑定返回按钮事件
+    if (backBtn) {
+        backBtn.addEventListener('click', function() {
+            window.history.back();
+        });
+    }
+    
+    // 绑定添加分类按钮事件
+    if (addCategoryBtn) {
+        addCategoryBtn.addEventListener('click', function() {
+            console.log('点击添加分类按钮');
+            showAddCategoryModals();
+        });
+    }
+    
+    // 绑定常用规格分类按钮事件
+    commonCategoryButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const categoryType = this.id.replace('common-category-', '');
+            showCommonCategoryModal(categoryType);
+        });
+    });
+    
+    // 绑定常用规格分类弹窗按钮事件
+    if (commonCategoryCancelBtn) {
+        commonCategoryCancelBtn.addEventListener('click', function() {
+            hideCommonCategoryModal();
+        });
+    }
+    
+    if (commonCategoryConfirmBtn) {
+        commonCategoryConfirmBtn.addEventListener('click', function() {
+            confirmCommonCategory();
+        });
+    }
+    
+    // 绑定添加规格分类弹窗按钮事件
+    if (addCategoryCancelBtn) {
+        addCategoryCancelBtn.addEventListener('click', function() {
+            hideAddCategoryModal();
+        });
+    }
+    
+    if (addCategorySaveBtn) {
+        addCategorySaveBtn.addEventListener('click', function() {
+            saveNewCategory();
+        });
+    }
+    
+    // 绑定添加规格弹窗按钮事件
+    if (addSpecCancelBtn) {
+        addSpecCancelBtn.addEventListener('click', function() {
+            hideAddSpecModal();
+        });
+    }
+    
+    if (addSpecSaveBtn) {
+        addSpecSaveBtn.addEventListener('click', function() {
+            saveNewSpec();
+        });
+    }
+    
+    // 使用事件委托绑定动态生成的按钮事件
+    if (categoryList) {
+        categoryList.addEventListener('click', function(e) {
+            const target = e.target;
+            const categoryId = target.getAttribute('data-category-id');
+            
+            if (target.classList.contains('add-spec-btn')) {
+                console.log('点击添加规格按钮，分类ID:', categoryId);
+                showAddSpecModal(categoryId);
+            } else if (target.classList.contains('move-up-btn')) {
+                moveCategoryUp(categoryId);
+            } else if (target.classList.contains('move-down-btn')) {
+                moveCategoryDown(categoryId);
+            } else if (target.classList.contains('delete-category-btn')) {
+                deleteCategory(categoryId);
+            } else if (target.classList.contains('save-common-btn')) {
+                saveAsCommon(categoryId);
+            }
+        });
+    }
+}
+
+// 显示常用规格分类弹窗
+function showCommonCategoryModal(categoryName) {
+    currentCommonCategory = categoryName;
+    selectedCommonOptions = [];
+    
+    const modal = document.getElementById('common-category-modal');
+    const title = document.getElementById('common-category-title');
+    const optionsContainer = document.getElementById('common-category-options');
+    
+    title.textContent = `选择${categoryName}`;
+    
+    // 清空选项容器
+    optionsContainer.innerHTML = '';
+    
+    // 添加选项
+    const options = commonCategoriesData[categoryName] || [];
+    options.forEach(option => {
+        const optionDiv = document.createElement('div');
+        optionDiv.className = 'flex items-center space-x-2';
+        optionDiv.innerHTML = `
+            <input type="checkbox" id="option-${option}" value="${option}" 
+                class="text-red-500" onchange="toggleCommonOption('${option}')">
+            <label for="option-${option}" class="text-sm text-gray-700 cursor-pointer">${option}</label>
+        `;
+        optionsContainer.appendChild(optionDiv);
+    });
+    
+    modal.classList.remove('hidden');
+}
+
+// 隐藏常用规格分类弹窗
+function hideCommonCategoryModal() {
+    const modal = document.getElementById('common-category-modal');
+    modal.classList.add('hidden');
+    selectedCommonOptions = [];
+}
+
+// 切换常用选项选择状态
+function toggleCommonOption(option) {
+    const index = selectedCommonOptions.indexOf(option);
+    if (index > -1) {
+        selectedCommonOptions.splice(index, 1);
+    } else {
+        selectedCommonOptions.push(option);
+    }
+}
+
+// 确认常用规格分类选择
+function confirmCommonCategory() {
+    if (selectedCommonOptions.length === 0) {
+        alert('请至少选择一个选项');
+        return;
+    }
+    
+    // 创建新的规格分类项
+    createCategoryItem(currentCommonCategory, selectedCommonOptions);
+    
+    hideCommonCategoryModal();
+}
+
+// 显示添加规格分类弹窗
+function showAddCategoryModals() {
+    console.log('执行showAddCategoryModals函数');
+    const modal = document.getElementById('add-category-modal-multi');
+    const input = document.getElementById('category-name-input-multi');
+    
+    if (!modal) {
+        console.error('找不到add-category-modal-multi元素');
+        return;
+    }
+    
+    if (!input) {
+        console.error('找不到category-name-input-multi元素');
+        return;
+    }
+    
+    input.value = '';
+    modal.classList.remove('hidden');
+    console.log('弹窗应该已显示',modal);
+}
+
+// 隐藏添加规格分类弹窗
+function hideAddCategoryModal() {
+    const modal = document.getElementById('add-category-modal-multi');
+    modal.classList.add('hidden');
+}
+
+// 保存新规格分类
+function saveNewCategory() {
+    const input = document.getElementById('category-name-input-multi');
+    const categoryName = input.value.trim();
+    
+    if (!categoryName) {
+        alert('请输入分类名称');
+        return;
+    }
+    
+    // 创建新的规格分类项
+    createCategoryItem(categoryName, []);
+    
+    hideAddCategoryModal();
+}
+
+// 创建规格分类项
+function createCategoryItem(categoryName, specs = []) {
+    currentCategoryId++;
+    const categoryList = document.getElementById('category-list');
+    
+    const categoryDiv = document.createElement('div');
+    categoryDiv.className = 'bg-white rounded-lg p-4 mb-3';
+    categoryDiv.id = `category-${currentCategoryId}`;
+    
+    let specsHtml = '';
+    specs.forEach(spec => {
+        specsHtml += `
+            <span class="inline-block px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded mr-2 mb-2">${spec}</span>
+        `;
+    });
+    
+    categoryDiv.innerHTML = `
+        <div class="flex items-center justify-between mb-3">
+            <span class="text-sm font-medium text-gray-800">${categoryName}</span>
+            <div class="flex items-center space-x-2">
+                <button data-category-id="${currentCategoryId}" class="move-up-btn px-2 py-1 text-xs text-gray-600 border border-gray-300 rounded hover:bg-gray-50">
+                    上移
+                </button>
+                <button data-category-id="${currentCategoryId}" class="move-down-btn px-2 py-1 text-xs text-gray-600 border border-gray-300 rounded hover:bg-gray-50">
+                    下移
+                </button>
+                <button data-category-id="${currentCategoryId}" class="delete-category-btn px-2 py-1 text-xs text-red-500 border border-red-300 rounded hover:bg-red-50">
+                    删除
+                </button>
+                <button data-category-id="${currentCategoryId}" class="save-common-btn px-2 py-1 text-xs text-blue-500 border border-blue-300 rounded hover:bg-blue-50">
+                    保存为常用
+                </button>
+            </div>
+        </div>
+        <div class="mb-3">
+            <div id="specs-${currentCategoryId}" class="min-h-[20px]">
+                ${specsHtml}
+            </div>
+        </div>
+        <button data-category-id="${currentCategoryId}" class="add-spec-btn w-full py-2 border-2 border-dashed border-gray-300 rounded-lg text-gray-500 hover:border-red-300 hover:text-red-500 transition-colors text-sm">
+            + 添加规格
+        </button>
+    `;
+    
+    categoryList.appendChild(categoryDiv);
+}
+
+// 显示添加规格弹窗
+function showAddSpecModal(categoryId) {
+    const modal = document.getElementById('add-spec-modal');
+    const input = document.getElementById('spec-name-input');
+    input.value = '';
+    input.setAttribute('data-category-id', categoryId);
+    modal.classList.remove('hidden');
+}
+
+// 隐藏添加规格弹窗
+function hideAddSpecModal() {
+    const modal = document.getElementById('add-spec-modal');
+    modal.classList.add('hidden');
+}
+
+// 保存新规格
+function saveNewSpec() {
+    const input = document.getElementById('spec-name-input');
+    const specName = input.value.trim();
+    const categoryId = input.getAttribute('data-category-id');
+    
+    if (!specName) {
+        alert('请输入规格名称');
+        return;
+    }
+    
+    // 添加规格到对应分类
+    const specsContainer = document.getElementById(`specs-${categoryId}`);
+    const specSpan = document.createElement('span');
+    specSpan.className = 'inline-block px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded mr-2 mb-2';
+    specSpan.textContent = specName;
+    specsContainer.appendChild(specSpan);
+    
+    hideAddSpecModal();
+}
+
+
     // 切换规格模块显示
     function switchSpecModule(specType) {
         // 隐藏所有模块
@@ -68,6 +367,7 @@ document.addEventListener('pageShown', function(event) {
         setTimeout(() => {
             initSingleSizePage();
         }, 100);
+    } else if (event.detail && event.detail.pageId === 'multi-category') {
     }
 });
 
@@ -159,53 +459,4 @@ function addNewSpecItem() {
     
     // 为新添加的规格项绑定事件
     bindSpecItemEvents(newSpecItem);
-}
-
-// 为规格项绑定事件
-function bindSpecItemEvents(container = null) {
-    const targetContainer = container || document.getElementById('spec-list');
-    if (!targetContainer) return;
-    
-    // 删除按钮事件
-    const deleteButtons = targetContainer.querySelectorAll('.delete-btn');
-    deleteButtons.forEach(btn => {
-        btn.addEventListener('click', function() {
-            const specItem = this.closest('.spec-item');
-            const specList = document.getElementById('spec-list');
-            
-            // 至少保留一个规格项
-            if (specList && specList.children.length > 1) {
-                specItem.remove();
-            } else {
-                alert('至少需要保留一个规格项');
-            }
-        });
-    });
-    
-    // 下移按钮事件
-    const moveDownButtons = targetContainer.querySelectorAll('.move-down-btn');
-    moveDownButtons.forEach(btn => {
-        btn.addEventListener('click', function() {
-            const specItem = this.closest('.spec-item');
-            const nextSibling = specItem.nextElementSibling;
-            
-            if (nextSibling) {
-                specItem.parentNode.insertBefore(nextSibling, specItem);
-            }
-        });
-    });
-    
-    // 插入按钮事件
-    const insertButtons = targetContainer.querySelectorAll('.insert-btn');
-    insertButtons.forEach(btn => {
-        btn.addEventListener('click', function() {
-            const specItem = this.closest('.spec-item');
-            addNewSpecItem();
-            
-            // 将新添加的规格项移动到当前项的下方
-            const specList = document.getElementById('spec-list');
-            const newItem = specList.lastElementChild;
-            specItem.parentNode.insertBefore(newItem, specItem.nextSibling);
-        });
-    });
 }
