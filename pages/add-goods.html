@@ -66,50 +66,9 @@
                 </div>
             </div>
 
-            <!-- 价格库存 -->
-            <div class="bg-white rounded-lg p-4">
-                <h3 class="font-medium text-gray-800 mb-3">价格库存</h3>
-                <div class="space-y-4">
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-sm text-gray-700 mb-2">商品价格 <span class="text-red-500">*</span></label>
-                            <div class="relative">
-                                <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">¥</span>
-                                <input type="number" id="product-price" placeholder="0.00" class="w-full pl-8 pr-3 py-3 border border-gray-200 rounded-lg focus:border-red-400 focus:outline-none" step="0.01" min="0">
-                            </div>
-                        </div>
-                        <div>
-                            <label class="block text-sm text-gray-700 mb-2">库存数量</label>
-                            <input type="number" id="product-stock" placeholder="999" class="w-full p-3 border border-gray-200 rounded-lg focus:border-red-400 focus:outline-none" min="0">
-                        </div>
-                    </div>
-                    
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-sm text-gray-700 mb-2">原价</label>
-                            <div class="relative">
-                                <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">¥</span>
-                                <input type="number" id="product-original-price" placeholder="0.00" class="w-full pl-8 pr-3 py-3 border border-gray-200 rounded-lg focus:border-red-400 focus:outline-none" step="0.01" min="0">
-                            </div>
-                            <p class="text-xs text-gray-500 mt-1">用于显示划线价格</p>
-                        </div>
-                        <div>
-                            <label class="block text-sm text-gray-700 mb-2">限购数量</label>
-                            <input type="number" id="product-limit" placeholder="不限制" class="w-full p-3 border border-gray-200 rounded-lg focus:border-red-400 focus:outline-none" min="1">
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             <!-- 商品规格 -->
             <div class="bg-white rounded-lg p-4">
-                <div class="flex items-center justify-between mb-3">
-                    <h3 class="font-medium text-gray-800">商品规格</h3>
-                    <button onclick="showPage('specification-setting')" class="text-red-500 text-sm">
-                        <i class="fas fa-cog mr-1"></i>设置规格
-                    </button>
-                </div>
-                
                 <div id="spec-type-selector" class="space-y-3">
                     <div class="flex space-x-3">
                         <label class="flex items-center space-x-2 cursor-pointer">
@@ -128,9 +87,55 @@
                     <p class="text-xs text-gray-500">统一规格：所有商品使用相同价格和库存<br>单规格：如大杯、中杯、小杯<br>多规格：如颜色+尺寸的组合</p>
                 </div>
                 
-                <div id="spec-preview" class="mt-3 p-3 bg-gray-50 rounded-lg hidden">
-                    <div class="text-xs text-gray-600 mb-2">当前规格预览：</div>
-                    <div class="text-sm text-gray-800">统一规格 - 无规格选项</div>
+                <!-- 统一规格模块 -->
+                <div id="unified-spec-module" class="mt-3 p-3 bg-gray-50 rounded-lg">
+                    <div class="text-xs text-gray-600 mb-3">统一规格设置：</div>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3">
+                            <label class="text-sm text-gray-700 w-16">价格：</label>
+                            <div class="flex-1">
+                                <input type="number" id="unified-price" placeholder="请输入价格" 
+                                       class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-red-500" 
+                                       step="0.01" min="0">
+                            </div>
+                            <span class="text-sm text-gray-500">元</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <label class="text-sm text-gray-700 w-16">库存：</label>
+                            <div class="flex-1">
+                                <input type="number" id="unified-stock" placeholder="请输入库存数量" 
+                                       class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-red-500" 
+                                       min="0">
+                            </div>
+                            <span class="text-sm text-gray-500">件</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 单规格模块 -->
+                <div id="single-spec-module" class="mt-3 p-3 bg-gray-50 rounded-lg hidden">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <div class="text-sm text-gray-800">价格和库存</div>
+                            <div class="text-xs text-gray-500 mt-1">设置不同规格的价格和库存</div>
+                        </div>
+                        <button onclick="showPage('single-size')" class="px-3 py-1 text-sm text-red-500 border border-red-500 rounded-lg hover:bg-red-50">
+                            去设置
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 多规格模块 -->
+                <div id="multiple-spec-module" class="mt-3 p-3 bg-gray-50 rounded-lg hidden">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <div class="text-sm text-gray-800">商品规格</div>
+                            <div class="text-xs text-gray-500 mt-1">添加多种规格组合，如颜色+尺寸</div>
+                        </div>
+                        <button class="px-3 py-1 text-sm text-red-500 border border-red-500 rounded-lg hover:bg-red-50">
+                            去添加
+                        </button>
+                    </div>
                 </div>
             </div>
 
