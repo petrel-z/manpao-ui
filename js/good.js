@@ -15,16 +15,16 @@ function initGoodsSpecSelector() {
     }
 
 // 多级规格分类页面相关功能
-let currentCategoryId = 0;
+let currentCategoryId = 2;
 let currentSpecId = 0;
 let currentCommonCategory = '';
 let selectedCommonOptions = [];
 
 // 常用规格分类数据
 const commonCategoriesData = {
-    '分量': ['大', '中', '小', '超大', '迷你'],
-    '口味': ['原味', '甜味', '咸味', '辣味', '酸味'],
-    '温度': ['热饮', '温饮', '冰饮', '常温']
+    'fengliang': ['大', '中', '小', '超大', '迷你'],
+    'kouwei': ['原味', '甜味', '咸味', '辣味', '酸味'],
+    'wendu': ['热饮', '温饮', '冰饮', '常温']
 };
 
 initMultiCategoryPage();
@@ -33,7 +33,7 @@ function initMultiCategoryPage() {
     // 获取页面元素
     const backBtn = document.getElementById('back-btn');
     const addCategoryBtn = document.getElementById('add-category-btn');
-    const commonCategoryButtons = document.querySelectorAll('[id^="common-category-"]');
+    const commonCategoryButtons = document.querySelectorAll('[id^="common-category-btn-"]');
     const commonCategoryCancelBtn = document.getElementById('common-category-cancel-btn');
     const commonCategoryConfirmBtn = document.getElementById('common-category-confirm-btn');
     const addCategoryCancelBtn = document.getElementById('add-category-cancel-btn');
@@ -60,7 +60,7 @@ function initMultiCategoryPage() {
     // 绑定常用规格分类按钮事件
     commonCategoryButtons.forEach(button => {
         button.addEventListener('click', function() {
-            const categoryType = this.id.replace('common-category-', '');
+            const categoryType = this.id.replace('common-category-btn-', '');
             showCommonCategoryModal(categoryType);
         });
     });
@@ -130,7 +130,7 @@ function initMultiCategoryPage() {
 function showCommonCategoryModal(categoryName) {
     currentCommonCategory = categoryName;
     selectedCommonOptions = [];
-    
+    console.log('执行showCommonCategoryModal函数', categoryName);
     const modal = document.getElementById('common-category-modal');
     const title = document.getElementById('common-category-title');
     const optionsContainer = document.getElementById('common-category-options');
@@ -160,6 +160,7 @@ function showCommonCategoryModal(categoryName) {
 function hideCommonCategoryModal() {
     const modal = document.getElementById('common-category-modal');
     modal.classList.add('hidden');
+    console.log('yin');
     selectedCommonOptions = [];
 }
 
@@ -246,9 +247,14 @@ function createCategoryItem(categoryName, specs = []) {
     });
     
     categoryDiv.innerHTML = `
-        <div class="flex items-center justify-between mb-3">
-            <span class="text-sm font-medium text-gray-800">${categoryName}</span>
-            <div class="flex items-center space-x-2">
+        <div class="flex flex-col justify-between mb-3">
+            <div class="text-sm font-medium text-gray-800 mb-3">${categoryName}</div>
+            <div class="">
+                <div id="specs-${currentCategoryId}" class="min-h-[20px]">
+                    ${specsHtml}
+                </div>
+            </div>
+            <div class="flex items-center justify-end space-x-2 mt-3">
                 <button data-category-id="${currentCategoryId}" class="move-up-btn px-2 py-1 text-xs text-gray-600 border border-gray-300 rounded hover:bg-gray-50">
                     上移
                 </button>
@@ -261,11 +267,6 @@ function createCategoryItem(categoryName, specs = []) {
                 <button data-category-id="${currentCategoryId}" class="save-common-btn px-2 py-1 text-xs text-blue-500 border border-blue-300 rounded hover:bg-blue-50">
                     保存为常用
                 </button>
-            </div>
-        </div>
-        <div class="mb-3">
-            <div id="specs-${currentCategoryId}" class="min-h-[20px]">
-                ${specsHtml}
             </div>
         </div>
         <button data-category-id="${currentCategoryId}" class="add-spec-btn w-full py-2 border-2 border-dashed border-gray-300 rounded-lg text-gray-500 hover:border-red-300 hover:text-red-500 transition-colors text-sm">
