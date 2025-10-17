@@ -1,2 +1,308 @@
 <!-- 多级规格——设置价格和库存页面 -->
- 
+<div class="page" id="multi-price">
+    <div class="min-h-full bg-gray-50 pb-20 relative">
+        <!-- 头部导航 -->
+        <div class="primary-red p-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <i onclick="showPage('multi-category')" class="fas fa-arrow-left text-white cursor-pointer"></i>
+                    <h1 class="text-white text-lg font-medium">多规格价格设置</h1>
+                </div>
+            </div>
+        </div>
+
+        <!-- 页面内容 -->
+        <div class="p-4 space-y-4 h-[600px] overflow-y-scroll relative">
+            <!-- 划线价设置 -->
+            <div class="bg-white rounded-lg p-4 mb-3">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-sm font-medium text-gray-800">划线价设置</span>
+                    <span class="text-xs text-gray-500">选填</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <span class="text-sm text-gray-700 w-16">划线价：</span>
+                    <div class="flex-1">
+                        <input type="number" id="original-price" placeholder="请输入原价"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-red-500"
+                            step="0.01" min="0">
+                    </div>
+                    <span class="text-sm text-gray-500">元</span>
+                </div>
+                <div class="text-xs text-gray-500 mt-2">设置划线价可以突出商品优惠力度</div>
+            </div>
+
+            <!-- 规格统计模块 -->
+            <div class="bg-white rounded-lg p-4 mb-3 relative">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-sm font-medium text-gray-800">共 <span id="spec-count">4</span> 个规格</span>
+                    <button id="filter-btn" class="px-3 py-1 text-xs text-gray-600 border border-gray-300 rounded hover:bg-gray-50">
+                        筛选
+                    </button>
+                </div>
+
+                <!-- 筛选下拉框 -->
+                <div id="filter-dropdown" class="absolute top-0 left-0 right-0 bg-white border border-gray-200 rounded-lg shadow-lg z-10 mt-1 hidden">
+                    <div class="p-4">
+                        <div class="space-y-4">
+                            <!-- 口味分类 -->
+                            <div>
+                                <h4 class="text-sm font-medium text-gray-800 mb-2">口味：</h4>
+                                <div class="flex item-center">
+                                    <label class="flex items-center space-x-2 cursor-pointer mr-3">
+                                        <input type="checkbox" class="filter-checkbox" data-category="口味" data-value="微辣" checked>
+                                        <span class="text-sm text-gray-700">微辣</span>
+                                    </label>
+                                    <label class="flex items-center space-x-2 cursor-pointer">
+                                        <input type="checkbox" class="filter-checkbox" data-category="口味" data-value="特辣" checked>
+                                        <span class="text-sm text-gray-700">特辣</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- 分量分类 -->
+                            <div>
+                                <h4 class="text-sm font-medium text-gray-800 mb-2">分量：</h4>
+                                <div class="flex item-center">
+                                    <label class="flex items-center  space-x-2 cursor-pointer mr-3">
+                                        <input type="checkbox" class="filter-checkbox" data-category="分量" data-value="小份" checked>
+                                        <span class="text-sm text-gray-700">小份</span>
+                                    </label>
+                                    <label class="flex items-center space-x-2 cursor-pointer">
+                                        <input type="checkbox" class="filter-checkbox" data-category="分量" data-value="大份" checked>
+                                        <span class="text-sm text-gray-700">大份</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 操作按钮 -->
+                        <div class="flex space-x-3 mt-4 pt-3 border-t border-gray-200">
+                            <button id="filter-reset-btn" class="flex-1 py-2 text-sm text-gray-600 border border-gray-300 rounded hover:bg-gray-50">
+                                重置
+                            </button>
+                            <button id="filter-confirm-btn" class="flex-1 py-2 text-sm text-white bg-red-500 rounded hover:bg-red-600">
+                                确认
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 规格组合列表 -->
+                <div id="spec-combination-list" class="space-y-3">
+                    <!-- 规格组合项 1: 微辣|小份 -->
+                    <div class="spec-combination-item bg-gray-50 rounded-lg p-3 border border-gray-200">
+                        <div class="space-y-3">
+                            <!-- 组合名称 -->
+                            <div class="flex items-center">
+                                <span class="text-sm font-medium text-gray-800">微辣 | 小份</span>
+                            </div>
+
+                            <!-- 价格 -->
+                            <div class="flex items-center space-x-3">
+                                <label class="text-sm text-gray-700 w-12">价格：</label>
+                                <div class="flex-1">
+                                    <input type="number" placeholder="0.00"
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-red-500"
+                                        step="0.01" min="0">
+                                </div>
+                                <span class="text-sm text-gray-500">元</span>
+                            </div>
+
+                            <!-- 库存 -->
+                            <div class="flex items-center space-x-3">
+                                <label class="text-sm text-gray-700 w-12">库存：</label>
+                                <div class="flex-1">
+                                    <input type="number" placeholder="0"
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-red-500"
+                                        min="0">
+                                </div>
+                                <span class="text-sm text-gray-500">件</span>
+                            </div>
+
+                            <!-- 可售卖状态 -->
+                            <div class="flex items-center">
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" class="text-red-500" checked>
+                                    <span class="text-sm text-gray-700">可售卖</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 规格组合项 2: 微辣|大份 -->
+                    <div class="spec-combination-item bg-gray-50 rounded-lg p-3 border border-gray-200">
+                        <div class="space-y-3">
+                            <!-- 组合名称 -->
+                            <div class="flex items-center">
+                                <span class="text-sm font-medium text-gray-800">微辣 | 大份</span>
+                            </div>
+
+                            <!-- 价格 -->
+                            <div class="flex items-center space-x-3">
+                                <label class="text-sm text-gray-700 w-12">价格：</label>
+                                <div class="flex-1">
+                                    <input type="number" placeholder="0.00"
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-red-500"
+                                        step="0.01" min="0">
+                                </div>
+                                <span class="text-sm text-gray-500">元</span>
+                            </div>
+
+                            <!-- 库存 -->
+                            <div class="flex items-center space-x-3">
+                                <label class="text-sm text-gray-700 w-12">库存：</label>
+                                <div class="flex-1">
+                                    <input type="number" placeholder="0"
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-red-500"
+                                        min="0">
+                                </div>
+                                <span class="text-sm text-gray-500">件</span>
+                            </div>
+
+                            <!-- 可售卖状态 -->
+                            <div class="flex items-center">
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" class="text-red-500" checked>
+                                    <span class="text-sm text-gray-700">可售卖</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 规格组合项 3: 特辣|小份 -->
+                    <div class="spec-combination-item bg-gray-50 rounded-lg p-3 border border-gray-200">
+                        <div class="space-y-3">
+                            <!-- 组合名称 -->
+                            <div class="flex items-center">
+                                <span class="text-sm font-medium text-gray-800">特辣 | 小份</span>
+                            </div>
+
+                            <!-- 价格 -->
+                            <div class="flex items-center space-x-3">
+                                <label class="text-sm text-gray-700 w-12">价格：</label>
+                                <div class="flex-1">
+                                    <input type="number" placeholder="0.00"
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-red-500"
+                                        step="0.01" min="0">
+                                </div>
+                                <span class="text-sm text-gray-500">元</span>
+                            </div>
+
+                            <!-- 库存 -->
+                            <div class="flex items-center space-x-3">
+                                <label class="text-sm text-gray-700 w-12">库存：</label>
+                                <div class="flex-1">
+                                    <input type="number" placeholder="0"
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-red-500"
+                                        min="0">
+                                </div>
+                                <span class="text-sm text-gray-500">件</span>
+                            </div>
+
+                            <!-- 可售卖状态 -->
+                            <div class="flex items-center">
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" class="text-red-500" checked>
+                                    <span class="text-sm text-gray-700">可售卖</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 规格组合项 4: 特辣|大份 -->
+                    <div class="spec-combination-item bg-gray-50 rounded-lg p-3 border border-gray-200">
+                        <div class="space-y-3">
+                            <!-- 组合名称 -->
+                            <div class="flex items-center">
+                                <span class="text-sm font-medium text-gray-800">特辣 | 大份</span>
+                            </div>
+
+                            <!-- 价格 -->
+                            <div class="flex items-center space-x-3">
+                                <label class="text-sm text-gray-700 w-12">价格：</label>
+                                <div class="flex-1">
+                                    <input type="number" placeholder="0.00"
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-red-500"
+                                        step="0.01" min="0">
+                                </div>
+                                <span class="text-sm text-gray-500">元</span>
+                            </div>
+
+                            <!-- 库存 -->
+                            <div class="flex items-center space-x-3">
+                                <label class="text-sm text-gray-700 w-12">库存：</label>
+                                <div class="flex-1">
+                                    <input type="number" placeholder="0"
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-red-500"
+                                        min="0">
+                                </div>
+                                <span class="text-sm text-gray-500">件</span>
+                            </div>
+
+                            <!-- 可售卖状态 -->
+                            <div class="flex items-center">
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" class="text-red-500" checked>
+                                    <span class="text-sm text-gray-700">可售卖</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部操作按钮 -->
+        <div class="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4">
+            <div class="flex space-x-3">
+                <button id="batch-setting-btn" class="flex-1 py-3 bg-white text-black border border-black-200 rounded-lg hover:bg-gray-50">
+                    批量设置
+                </button>
+                <button id="save-btn" class="flex-1 py-3 bg-red-500 text-white rounded-lg hover:bg-red-600">
+                    保存
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* 多规格价格页面特定样式 */
+        #multi-price .spec-combination-item {
+            position: relative;
+        }
+
+        #multi-price .spec-combination-item:hover {
+            border-color: #e5e7eb;
+        }
+
+        #multi-price input[type="checkbox"] {
+            accent-color: #ef4444;
+        }
+
+        /* 筛选下拉框样式 */
+        #multi-price #filter-dropdown {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        #multi-price #filter-dropdown.show {
+            display: block !important;
+        }
+
+        #multi-price .filter-checkbox {
+            accent-color: #ef4444;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 640px) {
+            #multi-price .space-y-3>*+* {
+                margin-top: 0.75rem;
+            }
+            
+            #multi-price #filter-dropdown {
+                left: -1rem;
+                right: -1rem;
+            }
+        }
+    </style>
+</div>

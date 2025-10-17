@@ -78,7 +78,6 @@ function updateTime() {
 }
 
 function updateNavActiveState(pageId) {
-  console.log("更新导航状态，当前页面：", pageId);
 
   // 移除所有导航项的活跃状态
   const navItems = document.querySelectorAll(".nav-item");
@@ -109,8 +108,6 @@ function updateNavActiveState(pageId) {
     activeNavId = "b-nav-profile";
   }
 
-  console.log("活跃导航ID：", activeNavId);
-
   if (activeNavId) {
     const activeNav = document.getElementById(activeNavId);
     if (activeNav) {
@@ -118,7 +115,6 @@ function updateNavActiveState(pageId) {
       activeNav.classList.remove("text-gray-500");
       // 直接设置颜色样式，确保覆盖Tailwind类
       activeNav.style.color = "#ff6b6b";
-      console.log("已设置活跃状态");
     }
   }
 }
@@ -264,9 +260,7 @@ function showPage(pageId) {
       // 显示圈子专用底部导航
       if (circleBottomNav) {
         circleBottomNav.style.display = "flex";
-        console.log("第二个showPage - 显示圈子底部导航");
       } else {
-        console.log("第二个showPage - 未找到圈子底部导航元素");
       }
     } else if (
       pageId === "home" ||
@@ -277,7 +271,6 @@ function showPage(pageId) {
       // 显示主底部导航
       if (bottomNav) {
         bottomNav.style.display = "flex";
-        console.log("第二个showPage - 显示主底部导航");
       }
     }
   }, 100);
@@ -1746,7 +1739,6 @@ if (typeof initializeSchoolSelect === "undefined") {
 // 金豆使用规则弹窗功能
 function showGoldBeanRules() {
   const modal = document.getElementById("goldBeanRulesModal");
-  console.log("show gold bean rules", modal);
   if (modal) {
     modal.style.display = "block";
   }
@@ -1780,8 +1772,6 @@ document.addEventListener("DOMContentLoaded", function () {
       // 隐藏排序选项面板
       document.getElementById("sort-options").classList.add("hidden");
 
-      // 模拟排序效果（实际应用中应该根据排序条件对数据进行排序）
-      console.log("排序条件：", this.textContent);
     });
   });
 });

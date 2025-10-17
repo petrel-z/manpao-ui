@@ -27,7 +27,6 @@ const commonCategoriesData = {
     'wendu': ['热饮', '温饮', '冰饮', '常温']
 };
 
-initMultiCategoryPage();
 // 初始化多级规格分类页面
 function initMultiCategoryPage() {
     // 获取页面元素
@@ -52,7 +51,6 @@ function initMultiCategoryPage() {
     // 绑定添加分类按钮事件
     if (addCategoryBtn) {
         addCategoryBtn.addEventListener('click', function() {
-            console.log('点击添加分类按钮');
             showAddCategoryModals();
         });
     }
@@ -111,26 +109,25 @@ function initMultiCategoryPage() {
             const categoryId = target.getAttribute('data-category-id');
             
             if (target.classList.contains('add-spec-btn')) {
-                console.log('点击添加规格按钮，分类ID:', categoryId);
                 showAddSpecModal(categoryId);
             } else if (target.classList.contains('move-up-btn')) {
                 moveCategoryUp(categoryId);
             } else if (target.classList.contains('move-down-btn')) {
                 moveCategoryDown(categoryId);
             } else if (target.classList.contains('delete-category-btn')) {
-                deleteCategory(categoryId);
+
             } else if (target.classList.contains('save-common-btn')) {
                 saveAsCommon(categoryId);
             }
         });
     }
 }
+initMultiCategoryPage();
 
 // 显示常用规格分类弹窗
 function showCommonCategoryModal(categoryName) {
     currentCommonCategory = categoryName;
     selectedCommonOptions = [];
-    console.log('执行showCommonCategoryModal函数', categoryName);
     const modal = document.getElementById('common-category-modal');
     const title = document.getElementById('common-category-title');
     const optionsContainer = document.getElementById('common-category-options');
@@ -160,7 +157,6 @@ function showCommonCategoryModal(categoryName) {
 function hideCommonCategoryModal() {
     const modal = document.getElementById('common-category-modal');
     modal.classList.add('hidden');
-    console.log('yin');
     selectedCommonOptions = [];
 }
 
@@ -189,7 +185,6 @@ function confirmCommonCategory() {
 
 // 显示添加规格分类弹窗
 function showAddCategoryModals() {
-    console.log('执行showAddCategoryModals函数');
     const modal = document.getElementById('add-category-modal-multi');
     const input = document.getElementById('category-name-input-multi');
     
@@ -205,7 +200,6 @@ function showAddCategoryModals() {
     
     input.value = '';
     modal.classList.remove('hidden');
-    console.log('弹窗应该已显示',modal);
 }
 
 // 隐藏添加规格分类弹窗
@@ -369,6 +363,11 @@ document.addEventListener('pageShown', function(event) {
             initSingleSizePage();
         }, 100);
     } else if (event.detail && event.detail.pageId === 'multi-category') {
+    } else if (event.detail && event.detail.pageId === 'multi-price') {
+        // 初始化多规格价格页面
+        setTimeout(() => {
+            initMultiPricePage();
+        }, 100);
     }
 });
 
@@ -387,7 +386,7 @@ function initSingleSizePage() {
     });
     
     // 为现有规格项绑定事件
-    bindSpecItemEvents();
+    // bindSpecItemEvents();
 }
 
 // 添加新的规格项
@@ -459,5 +458,118 @@ function addNewSpecItem() {
     specList.appendChild(newSpecItem);
     
     // 为新添加的规格项绑定事件
-    bindSpecItemEvents(newSpecItem);
+    // bindSpecItemEvents(newSpecItem);
+}
+
+// 初始化多规格价格页面
+function initMultiPricePage() {
+    const filterBtn = document.getElementById('filter-btn');
+    const filterDropdown = document.getElementById('filter-dropdown');
+    const resetBtn = document.getElementById('filter-reset-btn');
+    const confirmBtn = document.getElementById('filter-confirm-btn');
+    
+    if (!filterBtn || !filterDropdown) {
+        return;
+    }
+    
+    // 筛选按钮点击事件
+    filterBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        filterDropdown.classList.remove('hidden');
+    });
+    
+    // 点击页面其他地方关闭下拉框
+    document.addEventListener('click', function(e) {
+        if (!filterDropdown.contains(e.target) && !filterBtn.contains(e.target)) {
+        filterDropdown.classList.add('hidden');
+        }
+    });
+    
+    // 重置按钮事件
+    if (resetBtn) {
+        resetBtn.addEventListener('click', function() {
+            const checkboxes = filterDropdown.querySelectorAll('.filter-checkbox');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = false;
+                filterDropdown.classList.add('hidden');
+            });
+        });
+    }
+    
+    // 确认按钮事件
+    if (confirmBtn) {
+        confirmBtn.addEventListener('click', function() {
+            filterSpecCombinations();
+            filterDropdown.classList.add('hidden');
+        });
+    }
+}
+
+// 筛选规格组合
+function filterSpecCombinations() {
+    const filterDropdown = document.getElementById('filter-dropdown');
+    const specList = document.getElementById('spec-combination-list');
+    
+    if (!filterDropdown || !specList) {
+        return;
+    }
+    
+    // 获取选中的筛选条件
+    const selectedFilters = {
+        '口味': [],
+        '分量': []
+    };
+    
+    const checkboxes = filterDropdown.querySelectorAll('.filter-checkbox:checked');
+    checkboxes.forEach(checkbox => {
+        const category = checkbox.dataset.category;
+        const value = checkbox.dataset.value;
+        if (selectedFilters[category]) {
+            selectedFilters[category].push(value);
+        }
+    });
+    
+    // 获取所有规格组合项
+    const specItems = specList.querySelectorAll('.spec-combination-item');
+    
+    specItems.forEach(item => {
+        const specName = item.querySelector('.spec-name').textContent;
+        let shouldShow = true;
+        
+        // 检查是否符合筛选条件
+        for (const [category, values] of Object.entries(selectedFilters)) {
+            if (values.length > 0) {
+                const hasMatch = values.some(value => specName.includes(value));
+                if (!hasMatch) {
+                    shouldShow = false;
+                    break;
+                }
+            }
+        }
+        
+        // 显示或隐藏规格项
+        if (shouldShow) {
+            item.style.display = 'block';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+    
+    // 更新统计信息
+    updateSpecStats();
+}
+
+// 更新规格统计信息
+function updateSpecStats() {
+    const specList = document.getElementById('spec-combination-list');
+    const totalCountElement = document.querySelector('.spec-stats .text-gray-600');
+    
+    if (!specList || !totalCountElement) {
+        return;
+    }
+    
+    const visibleItems = specList.querySelectorAll('.spec-combination-item:not([style*="display: none"])');
+    const totalItems = specList.querySelectorAll('.spec-combination-item');
+    
+    totalCountElement.textContent = `共${visibleItems.length}个规格组合（总计${totalItems.length}个）`;
 }

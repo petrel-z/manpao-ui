@@ -515,24 +515,6 @@ function showCategoryMenu(categoryId) {
 function renameCategory(categoryId) {
     // 隐藏菜单
     document.getElementById(`category-menu-${categoryId}`).classList.add('hidden');
-    // 这里可以实现重命名逻辑
-    console.log('重命名分类:', categoryId);
-}
-
-// 删除分类
-function deleteCategory(categoryId) {
-    // 隐藏菜单
-    document.getElementById(`category-menu-${categoryId}`).classList.add('hidden');
-    // 这里可以实现删除逻辑
-    if (confirm('确定要删除这个分类吗？删除后该分类下的商品将移至未分类。')) {
-        console.log('删除分类:', categoryId);
-    }
-}
-
-// 排序分类
-function sortCategories() {
-    console.log('排序分类');
-    // 这里可以实现排序逻辑
 }
 
 // 显示添加分类弹窗
@@ -550,14 +532,6 @@ function hideAddCategoryModal() {
 
 // 保存分类
 function saveCategory() {
-    const categoryName = document.getElementById('category-name-input').value.trim();
-    if (!categoryName) {
-        alert('请输入分类名称');
-        return;
-    }
-    
-    // 这里可以实现保存逻辑
-    console.log('保存分类:', categoryName);
     hideAddCategoryModal();
 }
 
